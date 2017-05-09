@@ -1,0 +1,31 @@
+{
+  "name": "lewismsparlin",
+  "version": "1.0.0",
+  "description": "Lewis Sparlin Home",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lsparlin/lsparlin.github.io.git"
+  },
+  "author": "Lewis Sparlin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lsparlin/lsparlin.github.io/issues"
+  },
+  "homepage": "https://github.com/lsparlin/lsparlin.github.io#readme",
+  "devDependencies": {
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.3",
+    "node-less": "^1.0.0"
+  }
+}
