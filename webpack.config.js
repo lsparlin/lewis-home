@@ -10,6 +10,7 @@ module.exports = {
     plugins: [
       new CopyWebpackPlugin([
         { from: 'src/html' },
+        { from: 'src/resources' },
         { from: 'bower_components' }
       ])
     ],
