@@ -1,11 +1,18 @@
-/* webpack.config.js */
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = {
     entry: './src/js/main.js',
     output: {
-        path: __dirname + '/resources/js',
-        filename: 'bundle.js',
-        publicPath: '/resources/js'
+        path: __dirname + '/public',
+        filename: 'resources/js/bundle.js',
+        publicPath: '/public'
     },
+    plugins: [
+      new CopyWebpackPlugin([
+        { from: 'src/html' },
+        { from: 'bower_components' }
+      ])
+    ],
  		module: {
        loaders: [
         { 
