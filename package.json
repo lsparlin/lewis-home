@@ -27,6 +27,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "less": "^2.7.2",
     "less-loader": "^4.0.3",
-    "node-less": "^1.0.0"
+    "node-less": "^1.0.0",
+    "style-loader": "^0.17.0"
   }
 }
