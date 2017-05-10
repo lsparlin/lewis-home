@@ -1,11 +1,14 @@
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+var path = require('path')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
+
+var BUILD_DIR = path.resolve(__dirname, 'public')
+var APP_DIR = path.resolve(__dirname, 'src/js')
 
 module.exports = {
-    entry: './src/js/main.js',
+    entry: APP_DIR + '/app.jsx',
     output: {
-        path: __dirname + '/public',
+        path: BUILD_DIR,
         filename: 'resources/js/bundle.js',
-        publicPath: '/public'
     },
     plugins: [
       new CopyWebpackPlugin([
@@ -17,6 +20,7 @@ module.exports = {
        loaders: [
         { 
            test: /\.jsx?$/, 
+           include: APP_DIR,
            exclude: /(node_modules|bower_components)/, 
            loader: 'babel-loader' 
         },
