@@ -15,12 +15,14 @@ class App extends React.Component {
   }
 
   componentWillMount() {
+    var newState = this.state
     Prismic.api('https://lewismsparlin.prismic.io/api').then((api) => {
       api.getByUID('page', 'home').then((homeResponse) => {
+        newState.loading = false
         prismicProps.forEach((prismicProperty) => {
-          this.setState({[prismicProperty]:  homeResponse.data['page.' + prismicProperty].value[0].text})
+          newState[prismicProperty] =  homeResponse.data['page.' + prismicProperty].value[0].text
         })
-        this.setState({loading: false})
+        this.setState(newState)
       })
     })
   }
@@ -28,9 +30,7 @@ class App extends React.Component {
   render () {
     if (this.state.loading) {
       return(
-      <div>
-        loading...
-      </div>
+      <div></div>
       )
     }
     return(
@@ -43,6 +43,11 @@ class App extends React.Component {
         <div>
           <p> {this.state.content}</p>
         </div>
+			  <div className="footer">
+			  	<a href="https://www.netlify.com">
+        	  <img src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg" />
+        	</a>
+			  </div>
       </div>
     )
   }
