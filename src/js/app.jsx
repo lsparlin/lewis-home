@@ -5,6 +5,7 @@ var Prismic = require('prismic.io');
 import React from 'react';
 import {render} from 'react-dom';
 
+let contentType = 'page'
 let prismicProps = ['title', 'subtitle', 'content']
 
 class App extends React.Component {
@@ -15,9 +16,9 @@ class App extends React.Component {
 
   componentWillMount() {
     Prismic.api('https://lewismsparlin.prismic.io/api').then((api) => {
-      api.getByUID('blog-post', 'home').then((homeResponse) => {
+      api.getByUID('page', 'home').then((homeResponse) => {
         prismicProps.forEach((prismicProperty) => {
-          this.setState({[prismicProperty]:  homeResponse.data['blog-post.' + prismicProperty].value[0].text})
+          this.setState({[prismicProperty]:  homeResponse.data['page.' + prismicProperty].value[0].text})
         })
         this.setState({loading: false})
       })
