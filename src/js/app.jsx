@@ -11,18 +11,18 @@ let prismicProps = ['title', 'subtitle', 'content']
 class App extends React.Component {
 	constructor(props) {
     super(props);
-    this.state = {loading: true, title: 'Default', subtitle: 'Subtitle here', content: 'Testing content'};
+    this.state = {loading: true};
   }
 
   componentWillMount() {
-    var newState = this.state
+    var pageContent = {}
     Prismic.api('https://lewismsparlin.prismic.io/api').then((api) => {
       api.getByUID('page', 'home').then((homeResponse) => {
-        newState.loading = false
+        pageContent.loading = false
         prismicProps.forEach((prismicProperty) => {
-          newState[prismicProperty] =  homeResponse.data['page.' + prismicProperty].value[0].text
+          pageContent[prismicProperty] =  homeResponse.data['page.' + prismicProperty].value[0].text
         })
-        this.setState(newState)
+        this.setState(pageContent)
       })
     })
   }
