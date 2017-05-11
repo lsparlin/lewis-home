@@ -2,19 +2,25 @@ require('../less/main.less');
 
 import React from 'react';
 import {render} from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import App from './pages/App.jsx'
 import PrismicPage from './pages/PrismicPage.jsx'
+import NetlifyFooter from './pages/NetlifyFooter.jsx'
 
 let PRISMIC_API = "https://lewismsparlin.prismic.io/api"
+
+const HomePage = () => <PrismicPage prismicApi={PRISMIC_API} />
+const FourOFour = () => <h1>NOT FOUND &#128542;</h1>
 
 render((
 	<BrowserRouter>
 		<div>
-			<PrismicPage prismicApi={PRISMIC_API} />
+			<Switch>
+				<Route exact path="/" component={HomePage} />
+				<Route component={FourOFour} />
+			</Switch>
 
-			<Route path="/" component={App} />
+			<NetlifyFooter />
 		</div>
   </BrowserRouter>
 	), document.getElementById('app')
