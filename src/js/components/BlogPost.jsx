@@ -30,7 +30,7 @@ class BlogPost extends React.Component {
       )
     }
     return(
-      <div>
+      <div className="BlogPost">
 			  <h1>{this.state.title.value[0].text}</h1>
         <h3>{this.state.subtitle.value[0].text}</h3>
 
