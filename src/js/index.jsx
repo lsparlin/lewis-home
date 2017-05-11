@@ -4,8 +4,8 @@ import React from 'react';
 import {render} from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import PrismicPage from './pages/PrismicPage.jsx'
-import NetlifyFooter from './pages/NetlifyFooter.jsx'
+import PrismicPage from './components/PrismicPage.jsx'
+import NetlifyFooter from './components/NetlifyFooter.jsx'
 
 let PRISMIC_API = "https://lewismsparlin.prismic.io/api"
 
