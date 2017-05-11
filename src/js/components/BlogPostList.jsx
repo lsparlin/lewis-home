@@ -36,7 +36,7 @@ class BlogPostList extends React.Component {
 				<ul>
 					{ this.state.blogDocuments.map( (blogDoc) => {
 						let uid = blogDoc.uid
-						return (<li key={uid}> <Link to={'blog/' + uid}>{blogDoc.data['blog-post.title'].value[0].text} ({uid})</Link> </li>)
+						return (<li key={uid}> <Link to={'blog/' + uid}>{blogDoc.data['blog-post.title'].value[0].text}</Link> </li>)
 						})
 				 	}
 				</ul>
