@@ -14,11 +14,12 @@ class BlogPostList extends React.Component {
   componentWillMount() {
     var blogData = {}
     Prismic.api(this.prismicApi).then((api) => {
-      api.query(Prismic.Predicates.at('document.type', 'blog-post')).then((blogResponse) => {
+      api.query(Prismic.Predicates.at('document.type', 'blog-post'),
+        {'fetch': 'blog-post.title'}
+      ).then((blogResponse) => {
 				if (blogResponse.results_size) {
         	blogData.loading = false
 					blogData.blogDocuments = blogResponse.results
-					console.log(blogData)
         	this.setState(blogData)
 				}
       })
