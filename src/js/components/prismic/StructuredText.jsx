@@ -7,11 +7,18 @@ class StructuredText extends React.Component {
   }
 
   render() {
+    // If the text contains spans for rich text - I will :( use this unsafe operation so I don't re-invent the wheel
+    var isTooComplexForMe = this.structuredText.blocks.map(block => !!block.spans.length).find(bool => bool == true)
+    if (isTooComplexForMe) {
+      return ( 
+        <div dangerouslySetInnerHTML={{__html: this.structuredText.asHtml()}}></div>
+      )
+    }
+
     return (
       <span>
-        { this.structuredText.value.map((value, index) => {
+        { this.structuredText.blocks.map((value, index) => {
             if (value.type.includes('heading')) return ( <Heading key={index} value={value} /> )
-            else if (value.type === 'paragraph' && value.spans.length) return ( <DecoratedPar key={index} value={value} /> )
             else if (value.type === 'paragraph') return ( <Par key={index} value={value} /> )
             else return ( <Par key={index} value={value} /> )
           })
@@ -22,13 +29,6 @@ class StructuredText extends React.Component {
 }
 
 const Par = (props) => ( <p>{props.value.text}</p> )
-
-const DecoratedPar = (props) => {
-  console.log('Decorated paragraph found: "' + props.value.text + '" - working on this')
-  return (
-    <p> {props.value.text}</p> 
-  )
-} 
 
 const Heading = (props) => {
   if (props.value.type === "heading1") return ( <h1>{props.value.text}</h1> )

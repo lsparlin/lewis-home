@@ -17,7 +17,7 @@ class PrismicHeader extends React.Component {
       api.getByUID(contentType, 'lewismsparlin-header').then((homeResponse) => {
         pageContent.loading = false
         pageProps.forEach((prismicProperty) => {
-          pageContent[prismicProperty] =  homeResponse.data[contentType + '.' + prismicProperty].value[0].text
+          pageContent[prismicProperty] =  homeResponse.fragments[contentType + '.' + prismicProperty].blocks[0].text
         })
         this.setState(pageContent)
       })

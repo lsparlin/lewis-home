@@ -19,7 +19,7 @@ class BlogPost extends React.Component {
     Prismic.api(this.prismicApi).then((api) => {
       api.getByUID(contentType, this.blogUID).then((blogResponse) => {
       	blog.loading = false
-        blogProperties.forEach((property) => blog[property] = blogResponse.data[contentType + '.' + property])
+        blogProperties.forEach((property) => blog[property] = blogResponse.fragments[contentType + '.' + property])
      	  this.setState(blog)
       })
     })

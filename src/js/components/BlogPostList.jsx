@@ -43,8 +43,8 @@ class BlogPostList extends React.Component {
 						let uid = blogDoc.uid
 						return (
               <div key={uid} className="blog-link">
-                <Link to={'blog/' + uid}> <StructuredText value={blogDoc.data['blog-post.title']} /> </Link>
-                <StructuredText value={blogDoc.data['blog-post.subtitle']} />
+                <Link to={'blog/' + uid}> <StructuredText value={blogDoc.fragments['blog-post.title']} /> </Link>
+                <StructuredText value={blogDoc.fragments['blog-post.subtitle']} />
               </div>
             )
 						})
