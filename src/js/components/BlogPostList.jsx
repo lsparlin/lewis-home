@@ -2,6 +2,8 @@ var Prismic = require('prismic.io');
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import StructuredText from './prismic/StructuredText.jsx'
+
 let contentType = 'blog-post'
 
 class BlogPostList extends React.Component {
@@ -40,10 +42,9 @@ class BlogPostList extends React.Component {
 					{ this.state.blogDocuments.map( (blogDoc) => {
 						let uid = blogDoc.uid
 						return (
-              <div className="blog-link">
-                <h4 key={uid}> <Link to={'blog/' + uid}>{blogDoc.data['blog-post.title'].value[0].text}</Link> <br/>
-                  <small>{blogDoc.data['blog-post.subtitle'].value[0].text}</small>
-                </h4>
+              <div key={uid} className="blog-link">
+                <Link to={'blog/' + uid}> <StructuredText value={blogDoc.data['blog-post.title']} /> </Link>
+                <StructuredText value={blogDoc.data['blog-post.subtitle']} />
               </div>
             )
 						})

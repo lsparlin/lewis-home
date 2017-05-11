@@ -1,6 +1,8 @@
 var Prismic = require('prismic.io');
 import React from 'react';
 
+import StructuredText from './prismic/StructuredText.jsx'
+
 let contentType = 'blog-post'
 let blogProperties = ['title', 'subtitle', 'content']
 
@@ -31,13 +33,11 @@ class BlogPost extends React.Component {
     }
     return(
       <div className="BlogPost">
-			  <h1>
-          {this.state.title.value[0].text} <br/>
-          <small>{this.state.subtitle.value[0].text}</small>
-        </h1>
+        <StructuredText value={this.state.title} />
+        <StructuredText value={this.state.subtitle} />
         <hr />
 
-        { this.state.content.value.map((value, index) => <p key={index}>{value.text}</p>) }
+        <StructuredText value={this.state.content} />
       </div>
     )
   }
