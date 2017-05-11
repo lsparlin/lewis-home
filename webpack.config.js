@@ -12,8 +12,8 @@ module.exports = {
     },
     plugins: [
       new CopyWebpackPlugin([
-				{ from: '_redirects' },
         { from: 'src/html' },
+        { from: 'src/resources' },
         { from: 'bower_components' }
       ])
     ],
