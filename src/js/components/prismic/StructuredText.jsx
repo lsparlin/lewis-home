@@ -11,6 +11,7 @@ class StructuredText extends React.Component {
       <span>
         { this.structuredText.value.map((value, index) => {
             if (value.type.includes('heading')) return ( <Heading key={index} value={value} /> )
+            else if (value.type === 'paragraph' && value.spans.length) return ( <DecoratedPar key={index} value={value} /> )
             else if (value.type === 'paragraph') return ( <Par key={index} value={value} /> )
             else return ( <Par key={index} value={value} /> )
           })
@@ -21,6 +22,13 @@ class StructuredText extends React.Component {
 }
 
 const Par = (props) => ( <p>{props.value.text}</p> )
+
+const DecoratedPar = (props) => {
+  console.log('Decorated paragraph found: "' + props.value.text + '" - working on this')
+  return (
+    <p> {props.value.text}</p> 
+  )
+} 
 
 const Heading = (props) => {
   if (props.value.type === "heading1") return ( <h1>{props.value.text}</h1> )

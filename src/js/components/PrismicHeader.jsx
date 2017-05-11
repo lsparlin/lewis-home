@@ -33,7 +33,7 @@ class PrismicHeader extends React.Component {
     return(
       <div className="PrismicHeader">
         <div className="jumbotron">
-            <h1>{this.state.title}</h1>
+            <h1> <a href="/">{this.state.title}</a> </h1>
 
             <p>{this.state.subtitle}</p>
         </div>
