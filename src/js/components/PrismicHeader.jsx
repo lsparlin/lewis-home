@@ -1,10 +1,10 @@
 var Prismic = require('prismic.io');
 import React from 'react';
 
-let contentType = 'page'
-let pageProps = ['title', 'subtitle', 'content']
+let contentType = 'site-header'
+let pageProps = ['title', 'subtitle']
 
-class PrismicPage extends React.Component {
+class PrismicHeader extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {loading: true};
@@ -14,7 +14,7 @@ class PrismicPage extends React.Component {
   componentWillMount() {
     var pageContent = {}
     Prismic.api(this.prismicApi).then((api) => {
-      api.getByUID(contentType, 'home').then((homeResponse) => {
+      api.getByUID(contentType, 'lewismsparlin-header').then((homeResponse) => {
         pageContent.loading = false
         pageProps.forEach((prismicProperty) => {
           pageContent[prismicProperty] =  homeResponse.data[contentType + '.' + prismicProperty].value[0].text
@@ -37,12 +37,9 @@ class PrismicPage extends React.Component {
 
             <p>{this.state.subtitle}</p>
         </div>
-        <div>
-          <p> {this.state.content}</p>
-        </div>
       </div>
     )
   }
 }
 
-export default PrismicPage
+export default PrismicHeader

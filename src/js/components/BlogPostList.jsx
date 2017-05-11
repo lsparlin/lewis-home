@@ -14,11 +14,12 @@ class BlogPostList extends React.Component {
   componentWillMount() {
     var blogData = {}
     Prismic.api(this.prismicApi).then((api) => {
-      api.query(Prismic.Predicates.at('document.type', 'blog-post')).then((blogResponse) => {
+      api.query(Prismic.Predicates.at('document.type', 'blog-post'),
+        {'fetch': 'blog-post.title'}
+      ).then((blogResponse) => {
 				if (blogResponse.results_size) {
         	blogData.loading = false
 					blogData.blogDocuments = blogResponse.results
-					console.log(blogData)
         	this.setState(blogData)
 				}
       })
@@ -36,7 +37,7 @@ class BlogPostList extends React.Component {
 				<ul>
 					{ this.state.blogDocuments.map( (blogDoc) => {
 						let uid = blogDoc.uid
-						return (<li key={uid}> <Link to={'blog/' + uid}>{blogDoc.data['blog-post.title'].value[0].text} ({uid})</Link> </li>)
+						return (<li key={uid}> <Link to={'blog/' + uid}>{blogDoc.data['blog-post.title'].value[0].text} </Link> </li>)
 						})
 				 	}
 				</ul>
