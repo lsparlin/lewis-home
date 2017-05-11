@@ -31,8 +31,11 @@ class BlogPost extends React.Component {
     }
     return(
       <div className="BlogPost">
-			  <h1>{this.state.title.value[0].text}</h1>
-        <h3>{this.state.subtitle.value[0].text}</h3>
+			  <h1>
+          {this.state.title.value[0].text} <br/>
+          <small>{this.state.subtitle.value[0].text}</small>
+        </h1>
+        <hr />
 
         { this.state.content.value.map((value, index) => <p key={index}>{value.text}</p>) }
       </div>
