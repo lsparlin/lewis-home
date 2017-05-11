@@ -2,7 +2,7 @@ var Prismic = require('prismic.io');
 import React from 'react';
 
 let contentType = 'page'
-let prismicProps = ['title', 'subtitle', 'content']
+let pageProps = ['title', 'subtitle', 'content']
 
 class PrismicPage extends React.Component {
 	constructor(props) {
@@ -14,10 +14,10 @@ class PrismicPage extends React.Component {
   componentWillMount() {
     var pageContent = {}
     Prismic.api(this.prismicApi).then((api) => {
-      api.getByUID('page', 'home').then((homeResponse) => {
+      api.getByUID(contentType, 'home').then((homeResponse) => {
         pageContent.loading = false
-        prismicProps.forEach((prismicProperty) => {
-          pageContent[prismicProperty] =  homeResponse.data['page.' + prismicProperty].value[0].text
+        pageProps.forEach((prismicProperty) => {
+          pageContent[prismicProperty] =  homeResponse.data[contentType + '.' + prismicProperty].value[0].text
         })
         this.setState(pageContent)
       })
