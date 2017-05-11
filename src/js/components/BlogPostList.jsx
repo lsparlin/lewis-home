@@ -15,7 +15,7 @@ class BlogPostList extends React.Component {
     var blogData = {}
     Prismic.api(this.prismicApi).then((api) => {
       api.query(Prismic.Predicates.at('document.type', 'blog-post'),
-        {'fetch': 'blog-post.title'}
+        {'orderings': '[document.last_publication_date desc]', 'fetch': 'blog-post.title'}
       ).then((blogResponse) => {
 				if (blogResponse.results_size) {
         	blogData.loading = false
