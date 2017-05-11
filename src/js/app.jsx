@@ -1,8 +1,4 @@
-require('../less/main.less');
-
-
 import React from 'react';
-import {render} from 'react-dom';
 import PrismicPage from './pages/PrismicPage.jsx'
 
 let PRISMIC_API = "https://lewismsparlin.prismic.io/api"
@@ -26,4 +22,4 @@ class App extends React.Component {
   }
 }
 
-render(<App/>, document.getElementById('app'));
+export default App
