@@ -36,7 +36,7 @@ class BlogPostList extends React.Component {
     }
     return(
       <div className="BlogPostList">
-        <h2>Stuff I've Written</h2>
+        <h4>Most Recent Writings</h4>
         <hr />
 				<div className="blog-list">
 					{ this.state.blogDocuments.map( (blogDoc) => {

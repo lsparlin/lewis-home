@@ -17,7 +17,7 @@ const HomeContent = () => {
   return (
     <div className="row">
       <div className="one-half column">
-        <h2> BIO here</h2>
+        <h4> BIO here</h4>
         <hr/>
       </div>
       <div className="one-half column">
