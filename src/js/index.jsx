@@ -1,4 +1,4 @@
-require('../less/main.less');
+require('../scss/main.scss');
 var config = require('./app.config.json')
 
 import React from 'react';

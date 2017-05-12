@@ -4,8 +4,8 @@
 @import "./components/BlogPost";
 
 .container {
-  .jumbotron {
-    margin-top: 10px;
-  }
-
+	max-width: 1200px;
+	@media (min-width: 550px) {
+		width: 85%;
+	}
 }
