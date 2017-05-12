@@ -1,4 +1,5 @@
 require('../less/main.less');
+var config = require('./app.config.json')
 
 import React from 'react';
 import {render} from 'react-dom';
@@ -10,17 +11,16 @@ import BlogPost from './components/BlogPost.jsx'
 import NetlifyFooter from './components/NetlifyFooter.jsx'
 
 // these should come from a configuration
-let PRISMIC_API = "https://lewismsparlin.prismic.io/api"
-let should404 = false
+let PRISMIC_API = config.prismicApi
 
 const HomeContent = () => {
   return (
     <div className="row">
-      <div className="col-lg-6">
+      <div className="one-half column">
         <h2> BIO here</h2>
         <hr/>
       </div>
-      <div className="col-lg-6">
+      <div className="one-half column">
         <BlogPostList prismicApi={PRISMIC_API} />
       </div>
     </div>
