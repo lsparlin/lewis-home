@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import BlogPostList from './BlogPostList.jsx'
 import BlogPost from './BlogPost.jsx'
+import StructuredText from './prismic/StructuredText.jsx'
 
 let contentType = 'site-header'
 let pageProps = ['title', 'subtitle', 'bio']
@@ -21,7 +22,7 @@ class PrismicHome extends React.Component {
       api.getByUID(contentType, 'lewismsparlin-header').then((homeResponse) => {
         pageContent.loading = false
         pageProps.forEach((prismicProperty) => {
-          pageContent[prismicProperty] =  homeResponse.fragments[contentType + '.' + prismicProperty].blocks[0].text
+          pageContent[prismicProperty] = homeResponse.fragments[contentType + '.' + prismicProperty]
         })
         this.setState(pageContent)
       })
@@ -37,9 +38,9 @@ class PrismicHome extends React.Component {
     return(
       <div className="PrismicHome">
         <section className="page-heading">
-          <h1> <a href="/">{this.state.title}</a> </h1>
+          <a href="/"> <StructuredText value={this.state.title}/> </a>
 
-          <h5>{this.state.subtitle}</h5>
+          <StructuredText value={this.state.subtitle} />
         </section>
 	      <BrowserRouter>
 	      	<Switch>
@@ -54,13 +55,13 @@ class PrismicHome extends React.Component {
 }
 
 const HomeContent = (props) => (
-  <div className="row">
-    <div className="one-third column">
+  <div className="HomeContent row">
+    <div className="five columns">
       <h4> Quick Intro</h4>
       <hr/>
-      <p>{props.bio}</p>
+      <StructuredText value={props.bio} />
     </div>
-    <div className="two-thirds column">
+    <div className="seven columns">
       <BlogPostList prismicApi={props.prismicApi} />
     </div>
   </div>
