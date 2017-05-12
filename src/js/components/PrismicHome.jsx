@@ -55,12 +55,12 @@ class PrismicHome extends React.Component {
 
 const HomeContent = (props) => (
   <div className="row">
-    <div className="one-half column">
-      <h4> BIO here</h4>
+    <div className="one-third column">
+      <h4> Quick Intro</h4>
       <hr/>
       <p>{props.bio}</p>
     </div>
-    <div className="one-half column">
+    <div className="two-thirds column">
       <BlogPostList prismicApi={props.prismicApi} />
     </div>
   </div>
