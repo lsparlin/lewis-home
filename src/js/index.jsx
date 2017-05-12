@@ -19,3 +19,4 @@ render((
 	), document.getElementById('app')
 );
 
+setTimeout(() => { window.prerenderReady = true}, 1500);

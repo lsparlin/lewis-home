@@ -8,7 +8,7 @@ module.exports = {
     entry: JS_DIR + '/index.jsx',
     output: {
         path: BUILD_DIR,
-        filename: 'resources/js/bundle.js',
+        filename: 'resources/js/bundle.js'
     },
     plugins: [
       new CopyWebpackPlugin([
@@ -17,8 +17,7 @@ module.exports = {
         { from: 'src/resources' }
       ])
     ],
- 		module: {
-       loaders: [
+ 		module: { loaders: [
         { 
            test: /\.jsx?$/, 
            include: JS_DIR,
