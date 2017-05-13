@@ -44,13 +44,14 @@ class PrismicHome extends React.Component {
         <section className="page-heading">
           <a href="/"> <StructuredText value={this.state.title}/> </a>
 
-          <StructuredText value={this.state.subtitle} />
-					<div className="align-center">
+					<div>
 						{ this.state.links && this.state.links.map((link, index) => 
 								<span key={index} className="margin-h-1m"> <SocialLink fragment={link} multiplier={2} /> </span>) 
 						}
 					</div>
+          <StructuredText value={this.state.subtitle} />
         </section>
+
 	      <BrowserRouter>
 	      	<Switch>
 	      		<Route exact path="/" render={() => <HomeContent prismicApi={this.prismicApi} bio={this.state.bio} />} />
