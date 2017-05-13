@@ -7,20 +7,20 @@ let contentType = 'blog-post'
 let blogProperties = ['title', 'subtitle', 'content']
 
 class BlogPost extends React.Component {
-	constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {loading: true}
     this.blogUID = props.uid
-		this.prismicApi = props.prismicApi
+    this.prismicApi = props.prismicApi
   }
 
   componentWillMount() {
     var blog = {}
     Prismic.api(this.prismicApi).then((api) => {
       api.getByUID(contentType, this.blogUID).then((blogResponse) => {
-      	blog.loading = false
+        blog.loading = false
         blogProperties.forEach((property) => blog[property] = blogResponse.fragments[contentType + '.' + property])
-     	  this.setState(blog)
+         this.setState(blog)
       })
     })
   }
