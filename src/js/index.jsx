@@ -11,12 +11,12 @@ import NetlifyFooter from './components/NetlifyFooter.jsx'
 let PRISMIC_API = config.prismicApi
 
 render((
-		<div>
+    <div>
       <PrismicHome prismicApi={PRISMIC_API} />
 
-			<NetlifyFooter />
-		</div>
-	), document.getElementById('app')
+      <NetlifyFooter />
+    </div>
+  ), document.getElementById('app')
 );
 
 setTimeout(() => { window.prerenderReady = true}, 1500);
