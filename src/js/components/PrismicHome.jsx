@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import BlogPostList from './BlogPostList.jsx'
 import BlogPost from './BlogPost.jsx'
 import StructuredText from './prismic/StructuredText.jsx'
+import SocialLink from './prismic/SocialLink.jsx'
 
 let contentType = 'site-header'
 let pageProps = ['title', 'subtitle', 'bio']
@@ -18,14 +19,17 @@ class PrismicHome extends React.Component {
 
   componentWillMount() {
     var pageContent = {}
+		var socialLinks = { links: [] }
     Prismic.api(this.prismicApi).then((api) => {
       api.getByUID(contentType, 'lewismsparlin-header').then((homeResponse) => {
         pageContent.loading = false
-        pageProps.forEach((prismicProperty) => {
-          pageContent[prismicProperty] = homeResponse.fragments[contentType + '.' + prismicProperty]
-        })
+        pageProps.forEach((prismicProperty) => { pageContent[prismicProperty] = homeResponse.fragments[contentType + '.' + prismicProperty] })
         this.setState(pageContent)
       })
+			api.query(Prismic.Predicates.at('document.type', 'social-link')).then((linkResponse) => {
+				socialLinks.links = linkResponse.results.map((doc) => doc.fragments)
+				this.setState(socialLinks)
+			})
     })
   }
 
@@ -41,6 +45,11 @@ class PrismicHome extends React.Component {
           <a href="/"> <StructuredText value={this.state.title}/> </a>
 
           <StructuredText value={this.state.subtitle} />
+					<div className="align-center">
+						{ this.state.links && this.state.links.map((link, index) => 
+								<span key={index} className="margin-h-1m"> <SocialLink fragment={link} multiplier={2} /> </span>) 
+						}
+					</div>
         </section>
 	      <BrowserRouter>
 	      	<Switch>
