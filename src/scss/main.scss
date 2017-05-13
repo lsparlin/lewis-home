@@ -5,8 +5,8 @@
 @import "./components/BlogPost";
 
 .container {
-	max-width: 1200px;
-	@media (min-width: 550px) {
-		width: 85%;
-	}
+  max-width: 1200px;
+  @media (min-width: 550px) {
+    width: 85%;
+  }
 }
