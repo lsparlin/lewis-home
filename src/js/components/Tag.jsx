@@ -9,7 +9,6 @@ let contentType = 'blog-post'
 class BlogPostList extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {loading: true, tagName: props.tagName};
     this.prismicApi = props.prismicApi
   }
@@ -20,10 +19,8 @@ class BlogPostList extends React.Component {
       api.query(Prismic.Predicates.at('document.tags', [this.state.tagName]),
         {'orderings': '[document.last_publication_date desc]'}
       ).then((docResponse) => {
-        if (docResponse.results_size) {
-          blogData.loading = false
-          blogData.documents = docResponse.results
-        }
+        blogData.loading = false
+        blogData.documents = docResponse.results
         this.setState(blogData)
       })
     })
@@ -40,16 +37,13 @@ class BlogPostList extends React.Component {
         <h4>Tag: <span className="label label-default">{this.state.tagName}</span></h4>
         <hr />
         <div className="tagged-list">
-          { this.state.documents.map( (doc) => {
-            let uid = doc.uid
-            return (
-              <div key={uid} className="blog-link">
-                <Link to={'/blog/' + uid}> <StructuredText value={doc.fragments['blog-post.title']} /> </Link>
+          { this.state.documents.map( (doc) => (
+              <div key={doc.uid} className="blog-link">
+                <Link to={'/blog/' + doc.uid}> <StructuredText value={doc.fragments['blog-post.title']} /> </Link>
                 <StructuredText value={doc.fragments['blog-post.subtitle']} />
               </div>
             )
-            })
-           }
+          )}
         </div>
       </div>
     )
