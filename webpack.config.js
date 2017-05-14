@@ -8,24 +8,23 @@ module.exports = {
     entry: JS_DIR + '/index.jsx',
     output: {
         path: BUILD_DIR,
-        filename: 'resources/js/bundle.js',
+        filename: 'resources/js/bundle.js'
     },
     plugins: [
       new CopyWebpackPlugin([
         { from: 'src/html' },
-				{ from: 'src/style', to: BUILD_DIR + '/style' },
+        { from: 'src/style', to: BUILD_DIR + '/style' },
         { from: 'src/resources' }
       ])
     ],
- 		module: {
-       loaders: [
+     module: { loaders: [
         { 
            test: /\.jsx?$/, 
            include: JS_DIR,
            exclude: /(node_modules|bower_components)/, 
            loader: 'babel-loader' 
         },
-   	    {
+         {
            test: /\.scss/,
            loaders: ['style-loader', 'css-loader', 'sass-loader']
         }
