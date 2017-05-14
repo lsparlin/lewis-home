@@ -1,3 +1,5 @@
+require('../style/skeleton.css')
+require('../style/normalize.css')
 require('../scss/main.scss');
 var config = require('./app.config.json')
 

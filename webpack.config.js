@@ -13,7 +13,6 @@ module.exports = {
     plugins: [
       new CopyWebpackPlugin([
         { from: 'src/html' },
-        { from: 'src/style', to: BUILD_DIR + '/style' },
         { from: 'src/resources' }
       ])
     ],
@@ -24,9 +23,13 @@ module.exports = {
            exclude: /(node_modules|bower_components)/, 
            loader: 'babel-loader' 
         },
-         {
-           test: /\.scss/,
-           loaders: ['style-loader', 'css-loader', 'sass-loader']
+        {
+          test: /\.scss/,
+          loaders: ['style-loader', 'css-loader', 'sass-loader']
+        },
+        {
+          test: /\.css/,
+          loaders: ['style-loader', 'css-loader']
         }
 
        ]
