@@ -2,10 +2,11 @@ var Prismic = require('prismic.io');
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import SocialLink from './prismic/SocialLink.jsx'
 import BlogPostList from './BlogPostList.jsx'
 import BlogPost from './BlogPost.jsx'
+import Tag from './Tag.jsx'
 import StructuredText from './prismic/StructuredText.jsx'
-import SocialLink from './prismic/SocialLink.jsx'
 
 let contentType = 'site-header'
 let pageProps = ['title', 'subtitle', 'bio']
@@ -56,6 +57,7 @@ class PrismicHome extends React.Component {
           <Switch>
             <Route exact path="/" render={() => <HomeContent prismicApi={this.prismicApi} bio={this.state.bio} />} />
             <Route path="/blog/:uid" render={({match}) => <BlogPost uid={match.params.uid} prismicApi={this.prismicApi}/>} />
+            <Route path="/tag/:name" render={({match}) => <Tag tagName={match.params.name} prismicApi={this.prismicApi}/>} />
             <Route component={FourZeroFour} />
           </Switch>
         </BrowserRouter>

@@ -1,5 +1,6 @@
 var Prismic = require('prismic.io');
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import StructuredText from './prismic/StructuredText.jsx'
 
@@ -37,7 +38,12 @@ class BlogPost extends React.Component {
       <div className="BlogPost">
         <StructuredText value={this.state.title} />
         <StructuredText value={this.state.subtitle} />
-        { this.state.tags.map((tagName) => <span className="label label-default margin-h-1m" key={tagName}>{tagName}</span> ) }
+        { this.state.tags.map((tagName) => (
+          <Link key={tagName} to={'/tag/' + tagName}> 
+            <span className="label label-default margin-h-1m">{tagName}</span> 
+          </Link>
+          )
+        )}
         <hr />
 
         <StructuredText value={this.state.content} />
