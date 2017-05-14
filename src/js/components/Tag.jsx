@@ -23,8 +23,8 @@ class BlogPostList extends React.Component {
         if (docResponse.results_size) {
           blogData.loading = false
           blogData.documents = docResponse.results
-          this.setState(blogData)
         }
+        this.setState(blogData)
       })
     })
   }
@@ -32,7 +32,7 @@ class BlogPostList extends React.Component {
   render () {
     if (this.state.loading) {
       return(
-      <div>Loading Docs tagged with [{this.state.tagName}...</div>
+      <div>Loading Docs tagged with [{this.state.tagName}]...</div>
       )
     }
     return(
