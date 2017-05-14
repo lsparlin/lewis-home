@@ -20,7 +20,9 @@ class BlogPost extends React.Component {
       api.getByUID(contentType, this.blogUID).then((blogResponse) => {
         blog.loading = false
         blogProperties.forEach((property) => blog[property] = blogResponse.fragments[contentType + '.' + property])
-         this.setState(blog)
+        blog.tags = blogResponse.tags
+        this.setState(blog)
+        console.log(this.state)
       })
     })
   }
@@ -35,6 +37,7 @@ class BlogPost extends React.Component {
       <div className="BlogPost">
         <StructuredText value={this.state.title} />
         <StructuredText value={this.state.subtitle} />
+        { this.state.tags.map((tagName) => <span className="label label-default margin-h-1m" key={tagName}>{tagName}</span> ) }
         <hr />
 
         <StructuredText value={this.state.content} />
