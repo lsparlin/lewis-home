@@ -4,7 +4,7 @@ import React from 'react';
 import BlogListing from './BlogListing.jsx'
 import {queryAt} from './prismic/PrismicHelper.jsx'
 
-class BlogPostList extends React.Component {
+class Tag extends React.Component {
   constructor(props) {
     super(props);
     this.state = {loading: true, tagName: props.tagName};
@@ -33,4 +33,4 @@ class BlogPostList extends React.Component {
   }
 }
 
-export default BlogPostList
+export default Tag
