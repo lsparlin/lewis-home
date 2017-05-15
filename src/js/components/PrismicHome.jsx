@@ -1,4 +1,4 @@
-var Prismic = require('prismic.io');
+import Prismic from 'prismic.io';
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -7,6 +7,7 @@ import BlogPostList from './BlogPostList.jsx'
 import BlogPost from './BlogPost.jsx'
 import Tag from './Tag.jsx'
 import StructuredText from './prismic/StructuredText.jsx'
+import {queryByTypeAndUid, queryByDocType} from './prismic/PrismicHelper.jsx'
 
 let contentType = 'site-header'
 let pageProps = ['title', 'subtitle', 'bio']
@@ -19,19 +20,14 @@ class PrismicHome extends React.Component {
   }
 
   componentWillMount() {
-    var pageContent = {}
-    var socialLinks = { links: [] }
-    Prismic.api(this.prismicApi).then((api) => {
-      api.getByUID(contentType, 'lewismsparlin-header').then((homeResponse) => {
-        pageContent.loading = false
-        pageProps.forEach((prismicProperty) => { pageContent[prismicProperty] = homeResponse.fragments[contentType + '.' + prismicProperty] })
-        this.setState(pageContent)
-      })
-      api.query(Prismic.Predicates.at('document.type', 'social-link')).then((linkResponse) => {
-        socialLinks.links = linkResponse.results.map((doc) => doc.fragments)
-        this.setState(socialLinks)
-      })
+    queryByTypeAndUid(contentType, 'lewismsparlin-header').then(homeDoc => {
+      var pageContent = {loading: false}
+      pageProps.forEach((prismicProperty) => { pageContent[prismicProperty] = homeDoc.fragments[contentType + '.' + prismicProperty] })
+      this.setState(pageContent)
     })
+    queryByDocType('social-link')
+      .then(results => results.map(doc => doc.fragments) )
+      .then(fragments => { this.setState({links: fragments}) })
   }
 
   render () {

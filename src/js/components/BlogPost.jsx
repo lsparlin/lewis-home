@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import StructuredText from './prismic/StructuredText.jsx'
+import {queryByTypeAndUid} from './prismic/PrismicHelper.jsx'
 
 let contentType = 'blog-post'
 let blogProperties = ['title', 'subtitle', 'content']
@@ -16,15 +17,10 @@ class BlogPost extends React.Component {
   }
 
   componentWillMount() {
-    var blog = {}
-    Prismic.api(this.prismicApi).then((api) => {
-      api.getByUID(contentType, this.blogUID).then((blogResponse) => {
-        blog.loading = false
-        blogProperties.forEach((property) => blog[property] = blogResponse.fragments[contentType + '.' + property])
-        blog.tags = blogResponse.tags
-        this.setState(blog)
-        console.log(this.state)
-      })
+    queryByTypeAndUid(contentType, this.blogUID).then(blogDocument => {
+      var blog = {loading: false, tags: blogDocument.tags}
+      blogProperties.forEach(property => blog[property] = blogDocument.fragments[contentType + '.' + property])
+      this.setState(blog)
     })
   }
 

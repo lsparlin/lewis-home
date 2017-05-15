@@ -2,6 +2,7 @@ var Prismic = require('prismic.io');
 import React from 'react';
 
 import BlogListing from './BlogListing.jsx'
+import {queryAt} from './prismic/PrismicHelper.jsx'
 
 class BlogPostList extends React.Component {
   constructor(props) {
@@ -11,16 +12,8 @@ class BlogPostList extends React.Component {
   }
 
   componentWillMount() {
-    var blogData = {}
-    Prismic.api(this.prismicApi).then((api) => {
-      api.query(Prismic.Predicates.at('document.tags', [this.state.tagName]),
-        {'orderings': '[document.last_publication_date desc]'}
-      ).then((docResponse) => {
-        blogData.loading = false
-        blogData.documents = docResponse.results
-        this.setState(blogData)
-      })
-    })
+    queryAt('document.tags', [this.state.tagName], 'ordered')
+      .then(results => this.setState({loading: false, documents: results}) )
   }
 
   render () {

@@ -2,6 +2,7 @@ var Prismic = require('prismic.io');
 import React from 'react';
 
 import BlogListing from './BlogListing.jsx'
+import {queryByDocType} from './prismic/PrismicHelper.jsx'
 
 class BlogPostList extends React.Component {
   constructor(props) {
@@ -11,18 +12,12 @@ class BlogPostList extends React.Component {
   }
 
   componentWillMount() {
-    var blogData = {}
-    Prismic.api(this.prismicApi).then((api) => {
-      api.query(Prismic.Predicates.at('document.type', 'blog-post'),
-        {'orderings': '[document.last_publication_date desc]', 'fetch': ['blog-post.title', 'blog-post.subtitle']}
-      ).then((blogResponse) => {
-        if (blogResponse.results_size) {
-          blogData.loading = false
-          blogData.blogDocuments = blogResponse.results
-          this.setState(blogData)
-        }
+    queryByDocType('blog-post', 'ordered', ['blog-post.title', 'blog-post.subtitle'])
+      .then(results => {
+        var blogData = {loading: false}
+        blogData.blogDocuments = results
+        this.setState(blogData)
       })
-    })
   }
 
   render () {
