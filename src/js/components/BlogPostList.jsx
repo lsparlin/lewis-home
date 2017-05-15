@@ -8,16 +8,11 @@ class BlogPostList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {loading: true};
-    this.prismicApi = props.prismicApi
   }
 
   componentWillMount() {
     queryByDocType('blog-post', 'ordered', ['blog-post.title', 'blog-post.subtitle'])
-      .then(results => {
-        var blogData = {loading: false}
-        blogData.blogDocuments = results
-        this.setState(blogData)
-      })
+      .then(results => this.setState({loading: false, blogDocuments: results}) )
   }
 
   render () {

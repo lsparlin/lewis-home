@@ -13,7 +13,6 @@ class BlogPost extends React.Component {
     super(props);
     this.state = {loading: true}
     this.blogUID = props.uid
-    this.prismicApi = props.prismicApi
   }
 
   componentWillMount() {

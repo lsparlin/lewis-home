@@ -16,7 +16,6 @@ class PrismicHome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {loading: true};
-    this.prismicApi = props.prismicApi
   }
 
   componentWillMount() {
@@ -51,9 +50,9 @@ class PrismicHome extends React.Component {
 
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" render={() => <HomeContent prismicApi={this.prismicApi} bio={this.state.bio} />} />
-            <Route path="/blog/:uid" render={({match}) => <BlogPost uid={match.params.uid} prismicApi={this.prismicApi}/>} />
-            <Route path="/tag/:name" render={({match}) => <Tag tagName={match.params.name} prismicApi={this.prismicApi}/>} />
+            <Route exact path="/" render={() => <HomeContent bio={this.state.bio} />} />
+            <Route path="/blog/:uid" render={({match}) => <BlogPost uid={match.params.uid} />} />
+            <Route path="/tag/:name" render={({match}) => <Tag tagName={match.params.name} />} />
             <Route component={FourZeroFour} />
           </Switch>
         </BrowserRouter>
@@ -70,7 +69,7 @@ const HomeContent = (props) => (
       <StructuredText value={props.bio} />
     </div>
     <div className="seven columns">
-      <BlogPostList prismicApi={props.prismicApi} />
+      <BlogPostList />
     </div>
   </div>
 )

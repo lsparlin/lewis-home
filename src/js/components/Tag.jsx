@@ -8,7 +8,6 @@ class BlogPostList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {loading: true, tagName: props.tagName};
-    this.prismicApi = props.prismicApi
   }
 
   componentWillMount() {
