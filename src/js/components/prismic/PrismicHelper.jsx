@@ -11,10 +11,19 @@ function getApi() {
   return API
 }
 
+function predicateAndOmitTags(singlePredicate) {
+  var predicates = [singlePredicate]
+  if (config.omitTags) {
+    predicates = [...predicates, Prismic.Predicates.not('document.tags', config.omitTags )]
+  }
+  return predicates
+}
+
 const queryByTypeAndUid = (type, uid) => {
   return getApi()
     .then((api) => {
-      return api.getByUID(type, uid)
+      return api.query(predicateAndOmitTags(Prismic.Predicates.at('my.' + type + '.uid', uid)) )
+         .then(response => response.results[0])
     })
 
 }
@@ -30,14 +39,10 @@ const queryAt = (field, name, ordered, limitTo) => {
   if (limitTo) {
     queryOptions.fetch = limitTo
   }
-  var predicates = [Prismic.Predicates.at(field, name)]
-  if (config.omitTags) {
-    predicates = [...predicates, Prismic.Predicates.not('document.tags', config.omitTags )]
-  }
   return getApi()
     .then((api) => {
       return api.query(
-        predicates,
+        predicateAndOmitTags(Prismic.Predicates.at(field, name)),
         queryOptions
       ).then(response => response.results)
     })
