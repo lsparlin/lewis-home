@@ -1,6 +1,7 @@
 var Prismic = require('prismic.io');
 import React from 'react';
 import { Link } from 'react-router-dom';
+var dateFormat = require('dateformat');
 
 import StructuredText from './prismic/StructuredText.jsx'
 import {queryByTypeAndUid} from './prismic/PrismicHelper.jsx'
@@ -17,13 +18,14 @@ class BlogPost extends React.Component {
 
   componentWillMount() {
     queryByTypeAndUid(contentType, this.blogUID).then(blogDocument => {
-      var blog = {loading: false, tags: blogDocument.tags}
+      var blog = {loading: false, tags: blogDocument.tags, date: blogDocument.firstPublicationDate}
       blogProperties.forEach(property => blog[property] = blogDocument.fragments[contentType + '.' + property])
       this.setState(blog)
     })
   }
 
   render () {
+    console.log(this.state.date)
     if (this.state.loading) {
       return (
         <div></div>
@@ -33,12 +35,15 @@ class BlogPost extends React.Component {
       <div className="BlogPost">
         <StructuredText value={this.state.title} />
         <StructuredText value={this.state.subtitle} />
-        { this.state.tags.map((tagName) => (
-          <Link key={tagName} to={'/tag/' + tagName}> 
-            <span className="label label-default margin-h-1m">{tagName}</span> 
-          </Link>
-          )
-        )}
+        <div>
+          <span className="publish-date">{dateFormat(this.state.date, 'mediumDate')}</span>
+          { this.state.tags.map((tagName) => (
+            <Link key={tagName} to={'/tag/' + tagName}> 
+              <span className="label label-default margin-h-1m">{tagName}</span> 
+            </Link>
+            )
+          )}
+        </div>
         <hr />
 
         <StructuredText value={this.state.content} />
