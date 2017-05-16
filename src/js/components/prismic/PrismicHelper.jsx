@@ -31,8 +31,8 @@ const queryAt = (field, name, ordered, limitTo) => {
     queryOptions.fetch = limitTo
   }
   var predicates = [Prismic.Predicates.at(field, name)]
-  if (config.omitTag) {
-    predicates = [...predicates, Prismic.Predicates.not('document.tags', [config.omitTag] )]
+  if (config.omitTags) {
+    predicates = [...predicates, Prismic.Predicates.not('document.tags', config.omitTags )]
   }
   return getApi()
     .then((api) => {

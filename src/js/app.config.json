@@ -1,4 +1,4 @@
 {
   "prismicApi": "https://lewismsparlin.prismic.io/api",
-  "omitTag": "preview-only"
+  "omitTags": ["preview-only"]
 }
