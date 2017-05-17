@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import BlogListing from './BlogListing.jsx'
 import {queryAt} from './prismic/PrismicHelper.jsx'
@@ -22,6 +23,10 @@ class Tag extends React.Component {
     }
     return(
       <div className="Tag">
+        <Helmet>
+          <title>{'[' + this.state.tagName + '] Tag'}</title>
+        </Helmet>
+
         <h4>Tag: <span className="label label-default">{this.state.tagName}</span></h4>
         <hr />
         <div className="tagged-list">

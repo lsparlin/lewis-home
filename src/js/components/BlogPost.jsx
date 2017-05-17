@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 var dateFormat = require('dateformat');
 
@@ -32,6 +33,10 @@ class BlogPost extends React.Component {
     }
     return(
       <div className="BlogPost">
+        <Helmet>
+          <title>{'Blog: ' + this.state.title.blocks[0].text}</title>
+        </Helmet>
+
         <StructuredText value={this.state.title} />
         <StructuredText value={this.state.subtitle} />
         <div>

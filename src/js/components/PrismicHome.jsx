@@ -1,5 +1,6 @@
 import Prismic from 'prismic.io';
 import React from 'react';
+import {Helmet} from 'react-helmet';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import SocialLink from './prismic/SocialLink.jsx'
@@ -22,6 +23,7 @@ class PrismicHome extends React.Component {
     queryByTypeAndUid(contentType, 'lewismsparlin-header').then(homeDoc => {
       var pageContent = {loading: false}
       pageProps.forEach((prismicProperty) => { pageContent[prismicProperty] = homeDoc.fragments[contentType + '.' + prismicProperty] })
+      pageContent.siteTitle = pageContent.title.blocks[0].text
       this.setState(pageContent)
     })
     queryByDocType('social-link')
@@ -37,6 +39,10 @@ class PrismicHome extends React.Component {
     }
     return(
       <div className="PrismicHome">
+        <Helmet titleTemplate={'%s | ' + this.state.siteTitle}>
+          <title>Home</title>
+        </Helmet>
+
         <section className="page-heading">
           <a href="/"> <StructuredText value={this.state.title}/> </a>
 
