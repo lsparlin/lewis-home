@@ -22,7 +22,6 @@ class BlogPost extends React.Component {
       blogProperties.forEach(property => blog[property] = blogDocument.fragments[contentType + '.' + property])
       blog.blogTitle = blog.title.blocks[0].text
       blog.blogSubtitle = blog.subtitle.blocks[0].text
-      blog.blogContent = blog.content.blocks[0].text + '...'
       this.setState(blog)
     })
   }
@@ -37,10 +36,10 @@ class BlogPost extends React.Component {
       <div className="BlogPost">
         <Helmet>
           <title>{'Blog: ' + this.state.title.blocks[0].text}</title>
-          <meta name="twitter:title" content={this.state.blogTitle + ': ' + this.state.blogSubtitle} />
-          <meta property="og:title" content={this.state.blogTitle + ': ' + this.state.blogSubtitle} />
-          <meta name="twitter:description" content={this.state.blogContent} />
-          <meta property="og:description" content={this.state.blogContent} />
+          <meta name="twitter:title" content={this.state.blogTitle} />
+          <meta property="og:title" content={this.state.blogTitle} />
+          <meta name="twitter:description" content={this.state.blogSubtitle} />
+          <meta property="og:description" content={this.state.blogSubtitle} />
         </Helmet>
 
         <StructuredText value={this.state.title} />
