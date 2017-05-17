@@ -1,3 +1,4 @@
+require('babel-polyfill')
 var path = require('path')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -5,7 +6,7 @@ var BUILD_DIR = path.resolve(__dirname, 'public')
 var JS_DIR = path.resolve(__dirname, 'src/js')
 
 module.exports = {
-    entry: JS_DIR + '/index.jsx',
+    entry: ['babel-polyfill', JS_DIR + '/index.jsx'],
     output: {
         path: BUILD_DIR,
         filename: 'resources/js/bundle.js'
