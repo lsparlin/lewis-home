@@ -45,6 +45,9 @@ class PrismicHome extends React.Component {
           <title>Home</title>
           <meta name="description" content={this.state.siteDescription} />
           <meta name="keywords" content={this.state.siteKeywords} />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:title" content={this.state.siteTitle} />
+          <meta name="twitter:description" content={this.state.siteDescription} />
         </Helmet>
 
         <section className="page-heading">
