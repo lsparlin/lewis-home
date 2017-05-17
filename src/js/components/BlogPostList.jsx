@@ -1,4 +1,3 @@
-var Prismic = require('prismic.io');
 import React from 'react';
 
 import BlogListing from './BlogListing.jsx'
