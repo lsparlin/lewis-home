@@ -11,7 +11,7 @@ import StructuredText from './prismic/StructuredText.jsx'
 import {queryByTypeAndUid, queryByDocType} from './prismic/PrismicHelper.jsx'
 
 let contentType = 'site-header'
-let pageProps = ['title', 'subtitle', 'bio']
+let pageProps = ['title', 'subtitle', 'bio', 'description', 'keywords']
 
 class PrismicHome extends React.Component {
   constructor(props) {
@@ -24,6 +24,8 @@ class PrismicHome extends React.Component {
       var pageContent = {loading: false}
       pageProps.forEach((prismicProperty) => { pageContent[prismicProperty] = homeDoc.fragments[contentType + '.' + prismicProperty] })
       pageContent.siteTitle = pageContent.title.blocks[0].text
+      pageContent.siteDescription = pageContent.description.blocks[0].text
+      pageContent.siteKeywords = pageContent.keywords.blocks[0].text
       this.setState(pageContent)
     })
     queryByDocType('social-link')
@@ -41,6 +43,8 @@ class PrismicHome extends React.Component {
       <div className="PrismicHome">
         <Helmet titleTemplate={'%s | ' + this.state.siteTitle}>
           <title>Home</title>
+          <meta name="description" content={this.state.siteDescription} />
+          <meta name="keywords" content={this.state.siteKeywords} />
         </Helmet>
 
         <section className="page-heading">
