@@ -1,20 +1,18 @@
 import Prismic from 'prismic.io';
 
-var config = require('../../app.config.json')
-
 var API = undefined
 
 function getApi() {
   if (!API) {
-    API = Prismic.api(config.prismicApi)
+    API = Prismic.api(ENV.config.prismicApi)
   }
   return API
 }
 
 function predicateAndOmitTags(singlePredicate) {
   var predicates = [singlePredicate]
-  if (config.omitTags) {
-    predicates = [...predicates, Prismic.Predicates.not('document.tags', config.omitTags )]
+  if (ENV.config.omitTags) {
+    predicates = [...predicates, Prismic.Predicates.not('document.tags', ENV.config.omitTags )]
   }
   return predicates
 }
@@ -48,7 +46,7 @@ const queryAt = (field, name, ordered, limitTo) => {
     })
 }
 
-export {
+export default {
   queryByTypeAndUid,
   queryAt,
   queryByDocType

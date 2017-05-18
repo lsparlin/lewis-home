@@ -1,4 +1,5 @@
 require('babel-polyfill')
+var webpack = require('webpack')
 var path = require('path')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -11,7 +12,15 @@ module.exports = {
         path: BUILD_DIR,
         filename: 'resources/js/bundle.js'
     },
+    resolve: {
+      alias: {
+        'config': path.resolve(__dirname, 'app.config.js')
+      }
+    },
     plugins: [
+      new webpack.ProvidePlugin({
+        'ENV.config': 'config'
+      }),
       new CopyWebpackPlugin([
         { from: 'src/html' },
         { from: 'src/resources' }

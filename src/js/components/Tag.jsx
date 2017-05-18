@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import BlogListing from './BlogListing.jsx'
-import {queryAt} from './prismic/PrismicHelper.jsx'
+import PrismicHelper from './prismic/PrismicHelper.jsx'
 
 class Tag extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class Tag extends React.Component {
   }
 
   componentWillMount() {
-    queryAt('document.tags', [this.state.tagName], 'ordered')
+    PrismicHelper.queryAt('document.tags', [this.state.tagName], 'ordered')
       .then(results => this.setState({loading: false, documents: results}) )
   }
 

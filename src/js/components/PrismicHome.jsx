@@ -8,10 +8,9 @@ import BlogPostList from './BlogPostList.jsx'
 import BlogPost from './BlogPost.jsx'
 import Tag from './Tag.jsx'
 import StructuredText from './prismic/StructuredText.jsx'
-import {queryByTypeAndUid, queryByDocType} from './prismic/PrismicHelper.jsx'
+import PrismicHelper from './prismic/PrismicHelper.jsx'
 
-let contentType = 'site-header'
-let pageProps = ['title', 'subtitle', 'bio', 'description', 'keywords']
+let homeConfig = ENV.config.prismicPageMapping.home
 
 class PrismicHome extends React.Component {
   constructor(props) {
@@ -20,15 +19,16 @@ class PrismicHome extends React.Component {
   }
 
   componentWillMount() {
-    queryByTypeAndUid(contentType, 'lewismsparlin-header').then(homeDoc => {
+    PrismicHelper.queryByTypeAndUid(homeConfig.customType, homeConfig.uid).then(homeDoc => {
       var pageContent = {loading: false}
-      pageProps.forEach((prismicProperty) => { pageContent[prismicProperty] = homeDoc.fragments[contentType + '.' + prismicProperty] })
+      homeConfig.properties.forEach(property => 
+        { pageContent[property.name] = homeDoc.fragments[homeConfig.customType + '.' + property.apiName] })
       pageContent.siteTitle = pageContent.title.blocks[0].text
-      pageContent.siteDescription = pageContent.description.blocks[0].text
-      pageContent.siteKeywords = pageContent.keywords.blocks[0].text
+      pageContent.siteDescription = pageContent.siteDescription.blocks[0].text
+      pageContent.siteKeywords = pageContent.siteKeywords.blocks[0].text
       this.setState(pageContent)
     })
-    queryByDocType('social-link')
+    PrismicHelper.queryByDocType('social-link')
       .then(results => results.map(doc => doc.fragments) )
       .then(fragments => { this.setState({links: fragments}) })
   }
@@ -61,12 +61,12 @@ class PrismicHome extends React.Component {
                 <span key={index} className="margin-h-1m"> <SocialLink fragment={link} multiplier={2} /> </span>) 
             }
           </div>
-          <StructuredText value={this.state.subtitle} />
+          <StructuredText value={this.state.subTitle} />
         </section>
 
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" render={() => <HomeContent bio={this.state.bio} />} />
+            <Route exact path="/" render={() => <HomeContent bio={this.state.biography} />} />
             <Route path="/blog/:uid" render={({match}) => <BlogPost uid={match.params.uid} />} />
             <Route path="/tag/:name" render={({match}) => <Tag tagName={match.params.name} />} />
             <Route component={FourZeroFour} />

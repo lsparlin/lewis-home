@@ -1,7 +1,9 @@
 import React from 'react';
 
 import BlogListing from './BlogListing.jsx'
-import {queryByDocType} from './prismic/PrismicHelper.jsx'
+import PrismicHelper from './prismic/PrismicHelper.jsx'
+
+var blogConfig = ENV.config.prismicPageMapping.blogPost
 
 class BlogPostList extends React.Component {
   constructor(props) {
@@ -10,7 +12,8 @@ class BlogPostList extends React.Component {
   }
 
   componentWillMount() {
-    queryByDocType('blog-post', 'ordered', ['blog-post.title', 'blog-post.subtitle'])
+    let limitToProperties = blogConfig.listProperties.map(prop => blogConfig.customType + '.' + prop.apiName)
+    PrismicHelper.queryByDocType(blogConfig.customType, 'ordered', limitToProperties)
       .then(results => this.setState({loading: false, blogDocuments: results}) )
   }
 
