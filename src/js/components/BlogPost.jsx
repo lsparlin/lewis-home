@@ -55,7 +55,9 @@ class BlogPost extends React.Component {
         </div>
         <hr />
 
-        <StructuredText value={this.state.blogContent} />
+        <div className="blog-content">
+          <StructuredText value={this.state.blogContent} />
+        </div>
       </div>
     )
   }

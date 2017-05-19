@@ -14,4 +14,19 @@
   h3 {
     color: #777;
   }
+
+  .blog-content {
+    margin-top: 5.0rem;
+
+    h1,h2,h3,h4,h5,h6 {
+      font-weight: 500;
+    }
+    h1 {
+      font-size: #{$h1-size * .7}rem;
+    }
+    p {
+      font-family: serif;
+      text-align: justify;
+    }
+  }
 }
