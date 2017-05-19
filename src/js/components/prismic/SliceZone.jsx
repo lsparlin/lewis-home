@@ -24,6 +24,8 @@ class SliceZone extends React.Component {
 }
 const CodeSlice = (props) => ( <pre> <code>{props.value.text}</code> </pre> )
 
-const ImageSlice = (props) => ( <img src={props.value.url} height={props.value.height} width={props.value.width} /> )
+const ImageSlice = (props) => (
+  <div className="overflow-scroll-x"> <img src={props.value.url} height={props.value.height} width={props.value.width} /> </div>
+)
 
 export default SliceZone
