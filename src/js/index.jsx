@@ -7,13 +7,11 @@ import React from 'react';
 import {render} from 'react-dom';
 
 import PrismicHome from './components/PrismicHome.jsx'
-import NetlifyFooter from './components/NetlifyFooter.jsx'
 
 render((
     <div>
       <PrismicHome />
 
-      <NetlifyFooter />
     </div>
   ), document.getElementById('app')
 );

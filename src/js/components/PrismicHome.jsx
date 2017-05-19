@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
 import {Helmet} from 'react-helmet';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -8,6 +9,8 @@ import BlogPost from './BlogPost.jsx'
 import Tag from './Tag.jsx'
 import StructuredText from './prismic/StructuredText.jsx'
 import PrismicHelper from './prismic/PrismicHelper.jsx'
+
+import NetlifyFooter from './NetlifyFooter.jsx'
 
 let homeConfig = ENV.config.prismicPageMapping.home
 
@@ -50,21 +53,30 @@ class PrismicHome extends React.Component {
           <meta property="og:description" content={this.state.siteDescription} />
         </Helmet>
 
-        <section className="page-heading">
-          <a href="/"> <StructuredText value={this.state.title}/> </a>
+        <ReactCSSTransitionGroup
+          transitionName="home"
+          transitionAppear={true}
+          transitionAppearTimeout={300}
+          transitionEnter={false}
+          transitionLeave={false} >
+          <section className="page-heading">
+            <a href="/"> <StructuredText value={this.state.title}/> </a>
 
-          <SocialLinks multiplier={2} />
-          <StructuredText value={this.state.subTitle} />
-        </section>
+            <SocialLinks multiplier={2} />
+            <StructuredText value={this.state.subTitle} />
+          </section>
 
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" render={() => <HomeContent bio={this.state.biography} />} />
-            <Route path="/blog/:uid" render={({match}) => <BlogPost uid={match.params.uid} />} />
-            <Route path="/tag/:name" render={({match}) => <Tag tagName={match.params.name} />} />
-            <Route component={FourZeroFour} />
-          </Switch>
-        </BrowserRouter>
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/" render={() => <HomeContent bio={this.state.biography} />} />
+              <Route path="/blog/:uid" render={({match}) => <BlogPost uid={match.params.uid} />} />
+              <Route path="/tag/:name" render={({match}) => <Tag tagName={match.params.name} />} />
+              <Route component={FourZeroFour} />
+            </Switch>
+          </BrowserRouter>
+
+          <NetlifyFooter />
+        </ReactCSSTransitionGroup>
       </div>
     )
   }
