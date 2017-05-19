@@ -13,15 +13,14 @@ class SocialLinks extends React.Component {
 
   componentWillMount() {
     PrismicHelper.queryByDocType(socialLinkConfig.customType)
-      .then(results => results.map(doc => doc.fragments) )
-      .then(fragments => this.setState({links: fragments}) )
+      .then(results => this.setState({linkDocuments: results}) )
   }
 
   render() {
     return (
       <div className="SocialLinks">
-        { this.state.links && this.state.links.map((link, index) => (
-            <span key={index} className="margin-h-1m"> <SocialLink fragment={link} multiplier={this.state.multiplier} /> </span>
+        { this.state.linkDocuments && this.state.linkDocuments.map((linkDoc, index) => (
+            <span key={index} className="margin-h-1m"> <SocialLink fragments={linkDoc.fragments} multiplier={this.state.multiplier} /> </span>
           ) 
         )}
       </div>

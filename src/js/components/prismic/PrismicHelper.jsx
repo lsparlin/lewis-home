@@ -46,8 +46,15 @@ const queryAt = (field, name, ordered, limitTo) => {
     })
 }
 
+const stateObjectFromFragment = (pageConfig, fragments) => {
+    return pageConfig.properties.map(prop => {
+      return { [prop.name] : fragments[pageConfig.customType + '.' + prop.apiName] } 
+    }).reduce((acc, curr) => Object.assign({}, acc, curr) )
+}
+
 export default {
   queryByTypeAndUid,
   queryAt,
-  queryByDocType
+  queryByDocType,
+  stateObjectFromFragment
 }

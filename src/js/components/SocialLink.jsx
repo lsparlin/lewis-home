@@ -1,15 +1,15 @@
 import React from 'react';
 
+import PrismicHelper from './prismic/PrismicHelper.jsx'
+
 const socialLinkConfig = ENV.config.prismicPageMapping.socialLink
 
 class SocialLink extends React.Component {
   constructor(props) {
     super(props)
-    let linkProps = socialLinkConfig.properties.map(confProp => {
-      return { [confProp.name] : props.fragment[socialLinkConfig.customType + '.' + confProp.apiName] } 
-    }).reduce((acc, curr) => Object.assign({}, acc, curr) )
-
-    this.state = Object.assign({}, { multiplier: props.multiplier || 1 }, linkProps )
+    this.state = Object.assign({},
+      { multiplier: props.multiplier || 1 },
+      PrismicHelper.stateObjectFromFragment(socialLinkConfig, props.fragments) )
   }
 
 

@@ -19,17 +19,15 @@ class PrismicHome extends React.Component {
 
   componentWillMount() {
     PrismicHelper.queryByTypeAndUid(homeConfig.customType, homeConfig.uid).then(homeDoc => {
-      var pageContent = {loading: false}
-      homeConfig.properties.forEach(property => 
-        { pageContent[property.name] = homeDoc.fragments[homeConfig.customType + '.' + property.apiName] })
-      pageContent.siteTitle = pageContent.title.blocks[0].text
-      pageContent.siteDescription = pageContent.siteDescription.blocks[0].text
-      pageContent.siteKeywords = pageContent.siteKeywords.blocks[0].text
-      this.setState(pageContent)
+      let propsFromFragments = PrismicHelper.stateObjectFromFragment(homeConfig, homeDoc.fragments)
+      this.setState(Object.assign({},
+        {loading: false},
+        propsFromFragments,
+        { siteTitle: propsFromFragments.title.blocks[0].text,
+          siteDescription: propsFromFragments.siteDescription.blocks[0].text,
+          siteKeywords: propsFromFragments.siteKeywords.blocks[0].text })
+      )
     })
-    PrismicHelper.queryByDocType('social-link')
-      .then(results => results.map(doc => doc.fragments) )
-      .then(fragments => { this.setState({links: fragments}) })
   }
 
   render () {

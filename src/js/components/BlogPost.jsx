@@ -17,11 +17,12 @@ class BlogPost extends React.Component {
 
   componentWillMount() {
     PrismicHelper.queryByTypeAndUid(blogConfig.customType, this.blogUID).then(blogDocument => {
-      var blog = {loading: false, tags: blogDocument.tags, date: blogDocument.firstPublicationDate}
-      blogConfig.properties.forEach(prop => blog[prop.name] = blogDocument.fragments[blogConfig.customType + '.' + prop.apiName])
-      blog.blogTitle = blog.title.blocks[0].text
-      blog.blogSubtitle = blog.subTitle.blocks[0].text
-      this.setState(blog)
+      let propsFromFragments = PrismicHelper.stateObjectFromFragment(blogConfig, blogDocument.fragments)
+      this.setState(Object.assign({},
+        {loading: false, tags: blogDocument.tags, date: blogDocument.firstPublicationDate},
+        propsFromFragments,
+        {blogTitle: propsFromFragments.title.blocks[0].text, blogSubtitle: propsFromFragments.subTitle.blocks[0].text})
+      )
     })
   }
 
