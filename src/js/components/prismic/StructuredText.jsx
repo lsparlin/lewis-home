@@ -8,7 +8,9 @@ class StructuredText extends React.Component {
 
   render() {
     // If the text contains spans for rich text - I will :( use this unsafe operation so I don't re-invent the wheel
-    var isTooComplexForMe = this.structuredText.blocks.filter(block => !!block.spans.length).length
+    var isTooComplexForMe = this.structuredText.blocks.filter(block => block.spans && !!block.spans.length).length
+    console.log(this.structuredText)
+    console.log(isTooComplexForMe)
     if (isTooComplexForMe) {
       return ( 
         <div dangerouslySetInnerHTML={{__html: this.structuredText.asHtml()}}></div>
@@ -20,6 +22,8 @@ class StructuredText extends React.Component {
         { this.structuredText.blocks.map((value, index) => {
             if (value.type.includes('heading')) return ( <Heading key={index} value={value} /> )
             else if (value.type === 'paragraph') return ( <Par key={index} value={value} /> )
+            else if (value.type === 'preformatted') return ( <Code key={index} value={value} /> )
+            else if (value.type === 'image') return ( <Img key={index} value={value} /> )
             else return ( <Par key={index} value={value} /> )
           })
         }
@@ -29,6 +33,10 @@ class StructuredText extends React.Component {
 }
 
 const Par = (props) => ( <p>{props.value.text}</p> )
+
+const Code = (props) => ( <pre> <code>{props.value.text}</code> </pre> )
+
+const Img = (props) => ( <img src={props.value.url} height={props.value.dimensions.height} width={props.value.dimensions.width} /> )
 
 const Heading = (props) => {
   if (props.value.type === "heading1") return ( <h1>{props.value.text}</h1> )
