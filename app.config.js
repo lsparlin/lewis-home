@@ -31,9 +31,6 @@ module.exports = {
         {name: 'subTitle', apiName: 'subtitle'},
         {name: 'blogContent', apiName: 'content'}
       ]
-    },
-    tag: {
-      customType: 'tag'
     }
   }
 }
