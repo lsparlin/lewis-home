@@ -1,9 +1,8 @@
-import Prismic from 'prismic.io';
 import React from 'react';
 import {Helmet} from 'react-helmet';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import SocialLink from './prismic/SocialLink.jsx'
+import SocialLinks from './SocialLinks.jsx'
 import BlogPostList from './BlogPostList.jsx'
 import BlogPost from './BlogPost.jsx'
 import Tag from './Tag.jsx'
@@ -56,11 +55,7 @@ class PrismicHome extends React.Component {
         <section className="page-heading">
           <a href="/"> <StructuredText value={this.state.title}/> </a>
 
-          <div>
-            { this.state.links && this.state.links.map((link, index) => 
-                <span key={index} className="margin-h-1m"> <SocialLink fragment={link} multiplier={2} /> </span>) 
-            }
-          </div>
+          <SocialLinks multiplier={2} />
           <StructuredText value={this.state.subTitle} />
         </section>
 

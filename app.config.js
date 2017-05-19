@@ -14,7 +14,11 @@ module.exports = {
       ]
     },
     socialLink: {
-      customType: 'social-link'
+      customType: 'social-link',
+      properties: [
+        {name: 'image', apiName: 'image'},
+        {name: 'socialUrl', apiName: 'url'}
+      ]
     },
     blogPost: {
       customType: 'blog-post',

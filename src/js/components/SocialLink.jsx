@@ -1,23 +1,22 @@
 import React from 'react';
 
-let IMAGE_PROP = 'social-link.image'
-let URL_PROP = 'social-link.url'
+const socialLinkConfig = ENV.config.prismicPageMapping.socialLink
 
 class SocialLink extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      multiplier: props.multiplier || 1,
-      image: props.fragment[IMAGE_PROP],
-      url: props.fragment[URL_PROP]
-    }
+    let linkProps = socialLinkConfig.properties.map(confProp => {
+      return { [confProp.name] : props.fragment[socialLinkConfig.customType + '.' + confProp.apiName] } 
+    }).reduce((acc, curr) => Object.assign({}, acc, curr) )
+
+    this.state = Object.assign({}, { multiplier: props.multiplier || 1 }, linkProps )
   }
 
 
   render() {
     let m = this.state.multiplier
     let image = this.state.image
-    let url = this.state.url
+    let url = this.state.socialUrl
   
     return (
       <a className="SocialLink" href={url.value.url} target="_blank" style={{targetNew: 'tab'}}>
