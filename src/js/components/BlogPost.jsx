@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 var dateFormat = require('dateformat');
 
 import StructuredText from './prismic/StructuredText.jsx'
+import SliceZone from './prismic/SliceZone.jsx'
 import PrismicHelper from './prismic/PrismicHelper.jsx'
 
 const blogConfig = ENV.config.prismicPageMapping.blogPost
@@ -56,7 +57,8 @@ class BlogPost extends React.Component {
         <hr />
 
         <div className="blog-content">
-          <StructuredText value={this.state.blogContent} />
+          { this.state.blogBody ? <SliceZone value={this.state.blogBody} /> : 
+              <StructuredText value={this.state.blogContent} /> }
         </div>
       </div>
     )
