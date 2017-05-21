@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 var dateFormat = require('dateformat');
@@ -43,23 +44,30 @@ class BlogPost extends React.Component {
           <meta property="og:description" content={this.state.blogSubtitle} />
         </Helmet>
 
-        <StructuredText value={this.state.title} />
-        <StructuredText value={this.state.subTitle} />
-        <div>
-          <span className="publish-date">{dateFormat(this.state.date, 'mediumDate')}</span>
-          { this.state.tags.map((tagName) => (
-            <Link key={tagName} to={'/tag/' + tagName}> 
-              <span className="label label-default margin-h-1m">{tagName}</span> 
-            </Link>
-            )
-          )}
-        </div>
-        <hr />
+        <ReactCSSTransitionGroup
+          transitionName="home"
+          transitionAppear={true}
+          transitionAppearTimeout={300}
+          transitionEnter={false}
+          transitionLeave={false} >
+          <StructuredText value={this.state.title} />
+          <StructuredText value={this.state.subTitle} />
+          <div>
+            <span className="publish-date">{dateFormat(this.state.date, 'mediumDate')}</span>
+            { this.state.tags.map((tagName) => (
+              <Link key={tagName} to={'/tag/' + tagName}> 
+                <span className="label label-default margin-h-1m">{tagName}</span> 
+              </Link>
+              )
+            )}
+          </div>
+          <hr />
 
-        <div className="blog-content">
-          { this.state.blogBody ? <SliceZone value={this.state.blogBody} /> : 
-              <StructuredText value={this.state.blogContent} /> }
-        </div>
+          <div className="blog-content">
+            { this.state.blogBody ? <SliceZone value={this.state.blogBody} /> : 
+                <StructuredText value={this.state.blogContent} /> }
+          </div>
+        </ReactCSSTransitionGroup>
       </div>
     )
   }

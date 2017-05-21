@@ -1,14 +1,5 @@
 .PrismicHome {
 
-  .home-appear {
-    opacity: 0.01;
-  }
-  
-  .home-appear.home-appear-active {
-    opacity: 1;
-    transition: opacity 300ms ease-in;
-  }
-
   section {
     margin-top: 8.0rem;
     margin-bottom: 8.0rem;
