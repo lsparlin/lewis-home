@@ -1,6 +1,6 @@
 module.exports = {
-  prismicApi: "https://lewismsparlin.prismic.io/api",
-  omitTags: ["preview-only"],
+  prismicApi: ENV.prismicApi || 'http://lewismsparlin.prismic.io/api',
+  omitTags: ENV.prismicOmitTags && ENV.prismicOmitTags.split(','),
   prismicPageMapping: {
     home: {
       customType: 'site-header',

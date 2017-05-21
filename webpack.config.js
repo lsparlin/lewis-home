@@ -18,6 +18,10 @@ module.exports = {
       }
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'ENV.prismicApi': JSON.stringify(process.env.PRISMIC_API),
+        'ENV.prismicOmitTags': JSON.stringify(process.env.PRISMIC_OMIT_TAGS)
+      }),
       new webpack.ProvidePlugin({
         'ENV.config': 'config'
       }),
