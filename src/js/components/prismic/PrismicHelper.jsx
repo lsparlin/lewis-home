@@ -10,9 +10,10 @@ function getApi() {
 }
 
 function predicateAndOmitTags(singlePredicate) {
-  var predicates = [singlePredicate]
+  let predicates = [singlePredicate]
   if (ENV.config.omitTags) {
-    predicates = [...predicates, Prismic.Predicates.not('document.tags', ENV.config.omitTags )]
+    let notPredicates = ENV.config.omitTags.map(omit => Prismic.Predicates.not('document.tags', [omit]) )
+    return [...predicates, ...notPredicates]
   }
   return predicates
 }
