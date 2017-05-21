@@ -50,7 +50,7 @@ const queryAt = (field, name, ordered, limitTo) => {
 const stateObjectFromFragment = (pageConfig, fragments) => {
     return pageConfig.properties.map(prop => {
       let fragment = fragments[pageConfig.customType + '.' + prop.apiName]
-      return { [prop.name] : fragment, [prop.name + 'TextOnly'] : fragment.asText() } 
+      return { [prop.name] : fragment, [prop.name + 'TextOnly'] : fragment && fragment.asText() } 
     }).reduce((acc, curr) => Object.assign({}, acc, curr) )
 }
 
