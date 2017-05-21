@@ -36,7 +36,7 @@ class BlogPost extends React.Component {
       <div className="BlogPost">
         <Helmet>
           <title>{'Blog: ' + this.state.title.blocks[0].text}</title>
-          { this.state.shortDescription &&
+          { this.state.shortDescriptionTextOnly &&
               <meta name="description" content={this.state.shortDescriptionTextOnly} /> 
           }
           <meta name="twitter:title" content={this.state.titleTextOnly} />
