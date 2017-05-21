@@ -20,10 +20,10 @@ class BlogPost extends React.Component {
   componentWillMount() {
     PrismicHelper.queryByTypeAndUid(blogConfig.customType, this.blogUID).then(blogDocument => {
       let propsFromFragments = PrismicHelper.stateObjectFromFragment(blogConfig, blogDocument.fragments)
-      this.setState(Object.assign({},
+      this.setState( Object.assign({},
         {loading: false, tags: blogDocument.tags, date: blogDocument.firstPublicationDate},
         propsFromFragments,
-        {blogTitle: propsFromFragments.title.blocks[0].text, blogSubtitle: propsFromFragments.subTitle.blocks[0].text})
+        {blogTitle: propsFromFragments.title.asText(), blogSubtitle: propsFromFragments.subTitle.asText()})
       )
     })
   }
@@ -38,6 +38,9 @@ class BlogPost extends React.Component {
       <div className="BlogPost">
         <Helmet>
           <title>{'Blog: ' + this.state.title.blocks[0].text}</title>
+          { this.state.shortDescription &&
+              <meta name="description" content={this.state.shortDescription.asText()} /> 
+          }
           <meta name="twitter:title" content={this.state.blogTitle} />
           <meta property="og:title" content={this.state.blogTitle} />
           <meta name="twitter:description" content={this.state.blogSubtitle} />

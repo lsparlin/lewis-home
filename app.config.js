@@ -29,6 +29,7 @@ module.exports = {
       properties: [
         {name: 'title', apiName: 'title'},
         {name: 'subTitle', apiName: 'subtitle'},
+        {name: 'shortDescription', apiName: 'short-description'},
         {name: 'blogContent', apiName: 'content'},
         {name: 'blogBody', apiName: 'body'}
       ]
