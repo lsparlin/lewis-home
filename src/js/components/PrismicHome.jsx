@@ -23,12 +23,8 @@ class PrismicHome extends React.Component {
   componentWillMount() {
     PrismicHelper.queryByTypeAndUid(homeConfig.customType, homeConfig.uid).then(homeDoc => {
       let propsFromFragments = PrismicHelper.stateObjectFromFragment(homeConfig, homeDoc.fragments)
-      this.setState(Object.assign({},
-        {loading: false},
-        propsFromFragments,
-        { siteTitle: propsFromFragments.title.blocks[0].text,
-          siteDescription: propsFromFragments.siteDescription.blocks[0].text,
-          siteKeywords: propsFromFragments.siteKeywords.blocks[0].text })
+      this.setState(Object.assign({}, propsFromFragments,
+        {loading: false} )
       )
     })
   }
@@ -41,16 +37,16 @@ class PrismicHome extends React.Component {
     }
     return(
       <div className="PrismicHome">
-        <Helmet titleTemplate={'%s | ' + this.state.siteTitle}>
+        <Helmet titleTemplate={'%s | ' + this.state.titleTextOnly}>
           <title>Home</title>
-          <meta name="description" content={this.state.siteDescription} />
-          <meta name="keywords" content={this.state.siteKeywords} />
+          <meta name="description" content={this.state.siteDescriptionTextOnly} />
+          <meta name="keywords" content={this.state.siteKeywordsTextOnly} />
           <meta name="twitter:card" content="summary" />
           <meta property="og:type" content="website" />
-          <meta name="twitter:title" content={this.state.siteTitle} />
-          <meta property="og:title" content={this.state.siteTitle} />
-          <meta name="twitter:description" content={this.state.siteDescription} />
-          <meta property="og:description" content={this.state.siteDescription} />
+          <meta name="twitter:title" content={this.state.titleTextOnly} />
+          <meta property="og:title" content={this.state.titleTextOnly} />
+          <meta name="twitter:description" content={this.state.siteDescriptionTextOnly} />
+          <meta property="og:description" content={this.state.siteDescriptionTextOnly} />
         </Helmet>
 
         <ReactCSSTransitionGroup
