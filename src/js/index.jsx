@@ -6,11 +6,11 @@ require('../scss/main.scss');
 import React from 'react';
 import {render} from 'react-dom';
 
-import PrismicHome from './components/PrismicHome.jsx'
+import HomePage from './components/HomePage.jsx'
 
 render((
     <div>
-      <PrismicHome />
+      <HomePage />
 
     </div>
   ), document.getElementById('app')

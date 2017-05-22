@@ -21,7 +21,7 @@ class BlogPostList extends React.Component {
   render () {
     return (
       <div className="BlogPostList">
-        <h4>Most Recent Writings</h4>
+        <h4>Recent Writings</h4>
         <hr />
         <div className="blog-list">
           <ReactCSSTransitionGroup
