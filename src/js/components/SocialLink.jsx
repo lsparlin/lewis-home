@@ -19,7 +19,7 @@ class SocialLink extends React.Component {
     let url = this.state.socialUrl
   
     return (
-      <a className="SocialLink" href={url.value.url} target="_blank" style={{targetNew: 'tab'}}>
+      <a className="SocialLink" rel="me" href={url.value.url} target="_blank" style={{targetNew: 'tab'}}>
         <img alt={image.main.alt} src={image.main.url} height={(image.main.height * m)  + 'px'} width={(image.main.width * m) +'px'} />
       </a>
     )
