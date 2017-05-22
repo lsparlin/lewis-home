@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default () => (
   <div>
     <Helmet> <title>NOT FOUND</title> </Helmet> 
