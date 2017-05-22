@@ -1,5 +1,5 @@
 module.exports = {
-  prismicApi: ENV.prismicApi || 'http://lewismsparlin.prismic.io/api',
+  prismicApi: ENV.prismicApi || 'https://lewismsparlin.prismic.io/api',
   omitTags: ENV.prismicOmitTags && ENV.prismicOmitTags.split(','),
   prismicPageMapping: {
     home: {
