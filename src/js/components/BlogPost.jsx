@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 var dateFormat = require('dateformat');
 
+import NotFound from './NotFound.jsx'
 import StructuredText from './prismic/StructuredText.jsx'
 import SliceZone from './prismic/SliceZone.jsx'
 import PrismicHelper from './prismic/PrismicHelper.jsx'
@@ -19,16 +20,22 @@ class BlogPost extends React.Component {
 
   componentWillMount() {
     PrismicHelper.queryByTypeAndUid(blogConfig.customType, this.blogUID).then(blogDocument => {
-      let propsFromFragments = PrismicHelper.stateObjectFromFragment(blogConfig, blogDocument.fragments)
-      this.setState( Object.assign({}, propsFromFragments,
-        {loading: false, url: ENV.url, uid: this.blogUID, tags: blogDocument.tags, date: blogDocument.firstPublicationDate})
-      )
+      if (!blogDocument) {
+        this.setState({loading: false})
+      } else {
+        let propsFromFragments = PrismicHelper.stateObjectFromFragment(blogConfig, blogDocument.fragments)
+        this.setState( Object.assign({}, propsFromFragments,
+          {loading: false, url: ENV.url, uid: this.blogUID, tags: blogDocument.tags, date: blogDocument.firstPublicationDate})
+        )
+      }
     })
   }
 
   render () {
     if (this.state.loading) {
       return ( <div></div> )
+    } else if (!this.state.title) {
+      return ( <NotFound /> )
     }
     return (
       <div className="BlogPost">
