@@ -21,7 +21,7 @@ class BlogPost extends React.Component {
     PrismicHelper.queryByTypeAndUid(blogConfig.customType, this.blogUID).then(blogDocument => {
       let propsFromFragments = PrismicHelper.stateObjectFromFragment(blogConfig, blogDocument.fragments)
       this.setState( Object.assign({}, propsFromFragments,
-        {loading: false, tags: blogDocument.tags, date: blogDocument.firstPublicationDate})
+        {loading: false, url: ENV.url, uid: this.blogUID, tags: blogDocument.tags, date: blogDocument.firstPublicationDate})
       )
     })
   }
@@ -39,6 +39,8 @@ class BlogPost extends React.Component {
           { this.state.shortDescriptionTextOnly &&
               <meta name="description" content={this.state.shortDescriptionTextOnly} /> 
           }
+          <meta property="og:url" content={this.state.url + '/blog/' + this.state.uid} />
+          <meta property="og:type" content="article" />
           <meta name="twitter:title" content={this.state.titleTextOnly} />
           <meta property="og:title" content={this.state.titleTextOnly} />
           <meta name="twitter:description" content={this.state.subTitleTextOnly} />

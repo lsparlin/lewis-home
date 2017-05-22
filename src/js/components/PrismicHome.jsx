@@ -24,7 +24,7 @@ class PrismicHome extends React.Component {
     PrismicHelper.queryByTypeAndUid(homeConfig.customType, homeConfig.uid).then(homeDoc => {
       let propsFromFragments = PrismicHelper.stateObjectFromFragment(homeConfig, homeDoc.fragments)
       this.setState(Object.assign({}, propsFromFragments,
-        {loading: false} )
+        {loading: false, url: ENV.url} )
       )
     })
   }
@@ -43,6 +43,9 @@ class PrismicHome extends React.Component {
           <meta name="keywords" content={this.state.siteKeywordsTextOnly} />
           <meta name="twitter:card" content="summary" />
           <meta property="og:type" content="website" />
+          <meta property="og:url" content={this.state.url} />
+          <meta property="og:site_name" content={this.state.titleTextOnly} />
+          <meta property="og:locale" content="en_US" />
           <meta name="twitter:title" content={this.state.titleTextOnly} />
           <meta property="og:title" content={this.state.titleTextOnly} />
           <meta name="twitter:description" content={this.state.siteDescriptionTextOnly} />
