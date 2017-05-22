@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
+import { CSSTransitionGroup } from 'react-transition-group'; 
 
 import BlogListing from './BlogListing.jsx'
 import PrismicHelper from './prismic/PrismicHelper.jsx'
@@ -24,7 +24,7 @@ class BlogPostList extends React.Component {
         <h4>Recent Writings</h4>
         <hr />
         <div className="blog-list">
-          <ReactCSSTransitionGroup
+          <CSSTransitionGroup
             transitionName="easein"
             transitionAppear={true}
             transitionAppearTimeout={300}
@@ -33,7 +33,7 @@ class BlogPostList extends React.Component {
             { this.state.blogDocuments &&
                 this.state.blogDocuments.map( (blogDoc) => (<BlogListing key={blogDoc.uid} blogDoc={blogDoc} />) )
             }
-          </ReactCSSTransitionGroup>
+          </CSSTransitionGroup>
         </div>
       </div>
     )

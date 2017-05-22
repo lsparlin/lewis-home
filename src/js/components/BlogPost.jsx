@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
+import { CSSTransitionGroup } from 'react-transition-group'; 
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 var dateFormat = require('dateformat');
@@ -45,7 +45,7 @@ class BlogPost extends React.Component {
           <meta property="og:description" content={this.state.subTitleTextOnly} />
         </Helmet>
 
-        <ReactCSSTransitionGroup
+        <CSSTransitionGroup
           transitionName="easein"
           transitionAppear={true}
           transitionAppearTimeout={300}
@@ -68,7 +68,7 @@ class BlogPost extends React.Component {
             { this.state.blogBody ? <SliceZone value={this.state.blogBody} /> : 
                 <StructuredText value={this.state.blogContent} /> }
           </div>
-        </ReactCSSTransitionGroup>
+        </CSSTransitionGroup>
       </div>
     )
   }
