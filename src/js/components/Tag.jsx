@@ -24,7 +24,7 @@ class Tag extends React.Component {
     return(
       <div className="Tag">
         <Helmet>
-          <title>{'[' + this.state.tagName + '] Tag'}</title>
+          <title>{'Tagged with ' + this.state.tagName.toUpperCase()}</title>
         </Helmet>
 
         <h4>Tag: <span className="label label-default">{this.state.tagName}</span></h4>
