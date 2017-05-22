@@ -67,7 +67,7 @@ class PrismicHome extends React.Component {
           <section className="page-heading">
             <a href="/"> <StructuredText value={this.state.title}/> </a>
 
-            <SocialLinks multiplier={2} />
+            <SocialLinks multiplier={1.5} />
             <StructuredText value={this.state.subTitle} />
           </section>
 
