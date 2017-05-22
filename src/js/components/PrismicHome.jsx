@@ -59,7 +59,7 @@ class PrismicHome extends React.Component {
         </Helmet>
 
         <ReactCSSTransitionGroup
-          transitionName="home"
+          transitionName="easein"
           transitionAppear={true}
           transitionAppearTimeout={300}
           transitionEnter={false}

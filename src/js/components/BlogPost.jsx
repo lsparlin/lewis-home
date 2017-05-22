@@ -28,11 +28,9 @@ class BlogPost extends React.Component {
 
   render () {
     if (this.state.loading) {
-      return (
-        <div></div>
-      )
+      return ( <div></div> )
     }
-    return(
+    return (
       <div className="BlogPost">
         <Helmet>
           <title>{this.state.title.blocks[0].text}</title>
@@ -48,7 +46,7 @@ class BlogPost extends React.Component {
         </Helmet>
 
         <ReactCSSTransitionGroup
-          transitionName="home"
+          transitionName="easein"
           transitionAppear={true}
           transitionAppearTimeout={300}
           transitionEnter={false}
