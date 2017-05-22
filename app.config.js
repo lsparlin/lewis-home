@@ -10,7 +10,8 @@ module.exports = {
         {name: 'subTitle', apiName: 'subtitle'},
         {name: 'biography', apiName: 'bio'},
         {name: 'siteDescription', apiName: 'description'},
-        {name: 'siteKeywords', apiName: 'keywords'}
+        {name: 'siteKeywords', apiName: 'keywords'},
+        {name: 'socialCardImage', apiName: 'card-image'}
       ]
     },
     socialLink: {

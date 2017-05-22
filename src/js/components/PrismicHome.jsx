@@ -50,6 +50,12 @@ class PrismicHome extends React.Component {
           <meta property="og:title" content={this.state.titleTextOnly} />
           <meta name="twitter:description" content={this.state.siteDescriptionTextOnly} />
           <meta property="og:description" content={this.state.siteDescriptionTextOnly} />
+          { this.state.socialCardImage &&
+            <meta name="twitter:image" content={this.state.socialCardImage.main.url} />
+          }
+          { this.state.socialCardImage &&
+            <meta property="og:image" content={this.state.socialCardImage.main.url} />
+          }
         </Helmet>
 
         <ReactCSSTransitionGroup
