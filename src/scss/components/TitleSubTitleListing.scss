@@ -1,4 +1,4 @@
-.BlogListing {
+.TitleSubTitleListing {
   a {
     text-decoration: none;
   }
@@ -13,6 +13,6 @@
   }
 }
 
-.BlogListing + .BlogListing {
+.TitleSubTitleListing + .TitleSubTitleListing {
   margin-top: 25px;
 }

@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import NotFound from './NotFound.jsx'
 import SocialLinks from './SocialLinks.jsx'
-import BlogPostList from './BlogPostList.jsx'
+import DocumentList from './DocumentList.jsx'
 import BlogPost from './BlogPost.jsx'
 import Tag from './Tag.jsx'
 import StructuredText from './prismic/StructuredText.jsx'
@@ -102,7 +102,7 @@ const HomeContent = (props) => (
       <StructuredText value={props.bio} />
     </div>
     <div className="seven columns">
-      <BlogPostList />
+      <DocumentList type="blogPost"/>
     </div>
   </div>
 )
