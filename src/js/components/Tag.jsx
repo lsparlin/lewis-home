@@ -11,7 +11,7 @@ class Tag extends React.Component {
   }
 
   componentWillMount() {
-    PrismicHelper.queryAt('document.tags', [this.state.tagName], 'ordered')
+    PrismicHelper.queryAt('document.tags', [this.state.tagName], 'ordered', false, 10)
       .then(results => this.setState({loading: false, documents: results}) )
   }
 

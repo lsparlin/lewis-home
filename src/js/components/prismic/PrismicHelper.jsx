@@ -26,12 +26,12 @@ const queryByTypeAndUid = (type, uid) => {
     })
 
 }
-const queryByDocType = (type, ordered, limitTo) => {
-  return queryAt('document.type', type, ordered, limitTo)
+const queryByDocType = (type, ordered, limitTo, pageSize, page) => {
+  return queryAt('document.type', type, ordered, limitTo, pageSize, page)
 }
 
-const queryAt = (field, name, ordered, limitTo) => {
-  var queryOptions = {}
+const queryAt = (field, name, ordered, limitTo, pageSize, page) => {
+  var queryOptions = {pageSize: pageSize || 10, page: page || 1}
   if (ordered) {
     queryOptions.orderings = '[document.last_publication_date desc]'
   }

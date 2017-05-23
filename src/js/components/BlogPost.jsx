@@ -6,6 +6,7 @@ var dateFormat = require('dateformat');
 
 import NotFound from './NotFound.jsx'
 import StructuredText from './prismic/StructuredText.jsx'
+import { imageBackgroundStyle } from './prismic/Image.jsx'
 import SliceZone from './prismic/SliceZone.jsx'
 import PrismicHelper from './prismic/PrismicHelper.jsx'
 
@@ -44,6 +45,12 @@ class BlogPost extends React.Component {
           { this.state.shortDescriptionTextOnly &&
               <meta name="description" content={this.state.shortDescriptionTextOnly} /> 
           }
+          { this.state.titleImage &&
+              <meta name="twitter:card" content="summary_large_image" /> }
+          { this.state.titleImage &&
+              <meta name="twitter:image" content={this.state.titleImage.main.url} /> }
+          { this.state.titleImage &&
+              <meta property="og:image" content={this.state.titleImage.main.url} /> }
           <meta property="og:url" content={this.state.url + '/blog/' + this.state.uid} />
           <meta property="og:type" content="article" />
           <meta name="twitter:title" content={this.state.titleTextOnly} />
@@ -58,9 +65,13 @@ class BlogPost extends React.Component {
           transitionAppearTimeout={300}
           transitionEnter={false}
           transitionLeave={false} >
-          <StructuredText value={this.state.title} />
-          <StructuredText value={this.state.subTitle} />
-          <div>
+          <div className="blog-post-hero-header" style={imageBackgroundStyle(this.state.titleImage)}> 
+            <div className="hero-text">
+            <StructuredText value={this.state.title} />
+            <StructuredText value={this.state.subTitle} />
+            </div>
+          </div>
+          <div className="margin-left-2p">
             <span className="publish-date">{dateFormat(this.state.date, 'mediumDate')}</span>
             { this.state.tags.map((tagName) => (
               <Link key={tagName} to={'/tag/' + tagName}> 
@@ -69,7 +80,6 @@ class BlogPost extends React.Component {
               )
             )}
           </div>
-          <hr />
 
           <div className="blog-content">
             { this.state.blogBody ? <SliceZone value={this.state.blogBody} /> : 

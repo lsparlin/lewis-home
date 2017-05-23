@@ -23,6 +23,7 @@ module.exports = {
     },
     blogPost: {
       customType: 'blog-post',
+      pageSize: 5,
       listProperties: [
         {name: 'title', apiName: 'title'},
         {name: 'subTitle', apiName: 'subtitle'}
@@ -30,6 +31,7 @@ module.exports = {
       properties: [
         {name: 'title', apiName: 'title'},
         {name: 'subTitle', apiName: 'subtitle'},
+        {name: 'titleImage', apiName: 'title-image'},
         {name: 'shortDescription', apiName: 'short-description'},
         {name: 'blogContent', apiName: 'content'},
         {name: 'blogBody', apiName: 'body'}

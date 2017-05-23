@@ -14,7 +14,7 @@ class BlogPostList extends React.Component {
 
   componentWillMount() {
     let limitToProperties = blogConfig.listProperties.map(prop => blogConfig.customType + '.' + prop.apiName)
-    PrismicHelper.queryByDocType(blogConfig.customType, 'ordered', limitToProperties)
+    PrismicHelper.queryByDocType(blogConfig.customType, 'ordered', limitToProperties, blogConfig.pageSize)
       .then(results => this.setState({blogDocuments: results}) )
   }
 
