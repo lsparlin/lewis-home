@@ -6,11 +6,12 @@ const Image = (props) => {
   return ( <img src={imageMain.url} height={imageMain.height} width={imageMain.width} /> )
 }
 
-function imageBackgroundStyle(image) {
+function imageBackgroundStyle(image, titleColor) {
   if (image) {
-    return {
-      backgroundImage: 'url(' + image.main.url + ')'
-    }
+    return Object.assign({},
+      { backgroundImage: 'url(' + image.main.url + ')' },
+      titleColor && { color: titleColor}
+    )
   }
   else return {
     height: '150px',

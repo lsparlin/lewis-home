@@ -19,6 +19,8 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {loading: true};
+
+    this.renderMetaTags = this.renderMetaTags.bind(this)
   }
 
   componentWillMount() {
@@ -36,27 +38,7 @@ class HomePage extends React.Component {
     }
     return(
       <div className="PrismicHome">
-        <Helmet titleTemplate={'%s | ' + this.state.titleTextOnly}>
-          <title>Home</title>
-          <meta name="description" content={this.state.siteDescriptionTextOnly} />
-          <meta name="keywords" content={this.state.siteKeywordsTextOnly} />
-          <meta name="twitter:card" content="summary" />
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content={this.state.url} />
-          <meta property="og:site_name" content={this.state.titleTextOnly} />
-          <meta property="og:locale" content="en_US" />
-          <meta name="twitter:title" content={this.state.titleTextOnly} />
-          <meta property="og:title" content={this.state.titleTextOnly} />
-          <meta name="twitter:description" content={this.state.siteDescriptionTextOnly} />
-          <meta property="og:description" content={this.state.siteDescriptionTextOnly} />
-          { this.state.socialCardImage &&
-            <meta name="twitter:image" content={this.state.socialCardImage.main.url} />
-          }
-          { this.state.socialCardImage &&
-            <meta property="og:image" content={this.state.socialCardImage.main.url} />
-          }
-        </Helmet>
-
+        { this.renderMetaTags() }
         <CSSTransitionGroup
           transitionName="easein"
           transitionAppear={true}
@@ -84,6 +66,32 @@ class HomePage extends React.Component {
       </div>
     )
   }
+
+  renderMetaTags() {
+    return (
+      <Helmet titleTemplate={'%s | ' + this.state.titleTextOnly}>
+        <title>Home</title>
+        <meta name="description" content={this.state.siteDescriptionTextOnly} />
+        <meta name="keywords" content={this.state.siteKeywordsTextOnly} />
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={this.state.url} />
+        <meta property="og:site_name" content={this.state.titleTextOnly} />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:title" content={this.state.titleTextOnly} />
+        <meta property="og:title" content={this.state.titleTextOnly} />
+        <meta name="twitter:description" content={this.state.siteDescriptionTextOnly} />
+        <meta property="og:description" content={this.state.siteDescriptionTextOnly} />
+        { this.state.socialCardImage &&
+          <meta name="twitter:image" content={this.state.socialCardImage.main.url} />
+        }
+        { this.state.socialCardImage &&
+          <meta property="og:image" content={this.state.socialCardImage.main.url} />
+        }
+      </Helmet>
+    )
+  }
+
 }
 
 const HomeContent = (props) => (

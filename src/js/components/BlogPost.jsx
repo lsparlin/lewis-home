@@ -17,6 +17,8 @@ class BlogPost extends React.Component {
     super(props);
     this.state = {loading: true}
     this.blogUID = props.uid
+
+    this.renderMetaTags = this.renderMetaTags.bind(this)
   }
 
   componentWillMount() {
@@ -40,35 +42,17 @@ class BlogPost extends React.Component {
     }
     return (
       <div className="BlogPost">
-        <Helmet>
-          <title>{this.state.title.blocks[0].text}</title>
-          { this.state.shortDescriptionTextOnly &&
-              <meta name="description" content={this.state.shortDescriptionTextOnly} /> 
-          }
-          { this.state.titleImage &&
-              <meta name="twitter:card" content="summary_large_image" /> }
-          { this.state.titleImage &&
-              <meta name="twitter:image" content={this.state.titleImage.main.url} /> }
-          { this.state.titleImage &&
-              <meta property="og:image" content={this.state.titleImage.main.url} /> }
-          <meta property="og:url" content={this.state.url + '/blog/' + this.state.uid} />
-          <meta property="og:type" content="article" />
-          <meta name="twitter:title" content={this.state.titleTextOnly} />
-          <meta property="og:title" content={this.state.titleTextOnly} />
-          <meta name="twitter:description" content={this.state.subTitleTextOnly} />
-          <meta property="og:description" content={this.state.subTitleTextOnly} />
-        </Helmet>
-
+        { this.renderMetaTags() }
         <CSSTransitionGroup
           transitionName="easein"
           transitionAppear={true}
           transitionAppearTimeout={300}
           transitionEnter={false}
           transitionLeave={false} >
-          <div className="blog-post-hero-header" style={imageBackgroundStyle(this.state.titleImage)}> 
+          <div className="blog-post-hero-header" style={imageBackgroundStyle(this.state.titleImage, this.state.titleColorOnImageTextOnly)}> 
             <div className="hero-text">
             <StructuredText value={this.state.title} />
-            <StructuredText value={this.state.subTitle} />
+            <StructuredText value={this.state.subTitle} color={this.state.subTitleColorOnImageTextOnly} />
             </div>
           </div>
           <div className="margin-left-2p">
@@ -87,6 +71,31 @@ class BlogPost extends React.Component {
           </div>
         </CSSTransitionGroup>
       </div>
+    )
+  }
+
+  renderMetaTags() {
+    return (
+      <Helmet>
+        <title>{this.state.title.blocks[0].text}</title>
+        { this.state.shortDescriptionTextOnly &&
+            <meta name="description" content={this.state.shortDescriptionTextOnly} /> 
+        }
+        { this.state.titleImage &&
+            <meta name="twitter:card" content="summary_large_image" /> }
+        { this.state.titleImage &&
+            <meta name="twitter:image" content={this.state.titleImage.main.url} /> }
+        { this.state.titleImage &&
+            <meta property="og:image" content={this.state.titleImage.main.url} /> }
+        <meta property="og:url" content={this.state.url + '/blog/' + this.state.uid} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:title" content={this.state.titleTextOnly} />
+        <meta property="og:title" content={this.state.titleTextOnly} />
+        <meta name="twitter:description" content={this.state.subTitleTextOnly} />
+        <meta property="og:description" content={this.state.subTitleTextOnly} />
+      </Helmet>
+
+
     )
   }
 }
