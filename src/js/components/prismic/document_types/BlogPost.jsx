@@ -57,18 +57,16 @@ class BlogPost extends React.Component {
           </div>
           <div className="margin-left-2p">
             <span className="publish-date">{dateFormat(this.state.date, 'mediumDate')}</span>
-            { this.state.tags.map((tagName) => (
+            { this.state.tags.map(tagName =>
               <Link key={tagName} to={'/tag/' + tagName}> 
                 <span className="label label-default margin-h-1m">{tagName}</span> 
-              </Link>
-              )
-            )}
+              </Link> )
+            }
           </div>
 
-          <div className="blog-content">
-            { this.state.blogBody ? <SliceZone value={this.state.blogBody} /> : 
-                <StructuredText value={this.state.blogContent} /> }
-          </div>
+          <article className="blog-content">
+            <SliceZone value={this.state.blogBody} /> 
+          </article>
         </CSSTransitionGroup>
       </div>
     )
@@ -94,10 +92,9 @@ class BlogPost extends React.Component {
         <meta name="twitter:description" content={this.state.subTitleTextOnly} />
         <meta property="og:description" content={this.state.subTitleTextOnly} />
       </Helmet>
-
-
     )
   }
+
 }
 
 export default BlogPost

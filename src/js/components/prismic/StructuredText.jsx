@@ -11,9 +11,7 @@ class StructuredText extends React.Component {
     // If the text contains spans for rich text - I will :( use this unsafe operation so I don't re-invent the wheel
     var isTooComplexForMe = this.structuredText.blocks.filter(block => block.spans && !!block.spans.length).length
     if (isTooComplexForMe) {
-      return ( 
-        <div dangerouslySetInnerHTML={{__html: this.structuredText.asHtml()}}></div>
-      )
+      return ( <div dangerouslySetInnerHTML={{__html: this.structuredText.asHtml()}}></div> )
     }
 
     return (

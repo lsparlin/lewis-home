@@ -25,9 +25,8 @@ class HomePage extends React.Component {
 
   componentWillMount() {
     PrismicHelper.queryByTypeAndUid(homeConfig.customType, homeConfig.uid).then(homeDoc => {
-      let propsFromFragments = PrismicHelper.stateObjectFromFragment(homeConfig, homeDoc.fragments)
-      this.setState(Object.assign({}, propsFromFragments,
-        {loading: false, url: ENV.url} )
+      this.setState(Object.assign({}, {loading: false, url: ENV.url},
+        PrismicHelper.stateObjectFromFragment(homeConfig, homeDoc.fragments) )
       )
     })
   }

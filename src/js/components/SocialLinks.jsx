@@ -8,7 +8,7 @@ const socialLinkConfig = ENV.config.prismicPageMapping.socialLink
 class SocialLinks extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { multiplier: props.multiplier || 1 }
+    this.state = { multiplier: props.multiplier }
   }
 
   componentWillMount() {
@@ -19,10 +19,9 @@ class SocialLinks extends React.Component {
   render() {
     return (
       <div className="SocialLinks">
-        { this.state.linkDocuments && this.state.linkDocuments.map((linkDoc, index) => (
-            <span key={index} className="margin-h-1m"> <SocialLink fragments={linkDoc.fragments} multiplier={this.state.multiplier} /> </span>
-          ) 
-        )}
+        { this.state.linkDocuments && this.state.linkDocuments.map((linkDoc, index) => 
+            <SocialLink key={index} fragments={linkDoc.fragments} multiplier={this.state.multiplier} /> )
+        }
       </div>
      )
   }

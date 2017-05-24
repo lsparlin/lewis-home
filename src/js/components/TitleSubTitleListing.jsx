@@ -11,10 +11,8 @@ const TitleSubTitleListing = (props) => {
 
   return(
     <div className="TitleSubTitleListing">
-      <div key={doc.uid} className="document-link">
-        <Link to={docTypeConfig.documentRoute + doc.uid}> <StructuredText value={doc.title} /> </Link>
-        <StructuredText value={doc.subTitle} />
-      </div>
+      <Link to={docTypeConfig.documentRoute + doc.uid}> <StructuredText value={doc.title} /> </Link>
+      <StructuredText value={doc.subTitle} />
     </div>
   )
 }
