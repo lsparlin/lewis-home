@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NotFound from './NotFound.jsx'
 import SocialLinks from './SocialLinks.jsx'
 import DocumentList from './DocumentList.jsx'
-import BlogPost from './BlogPost.jsx'
+import DocumentPage from './DocumentPage.jsx'
 import Tag from './Tag.jsx'
 import StructuredText from './prismic/StructuredText.jsx'
 import PrismicHelper from './prismic/PrismicHelper.jsx'
@@ -55,7 +55,11 @@ class HomePage extends React.Component {
           <BrowserRouter>
             <Switch>
               <Route exact path="/" render={() => <HomeContent bio={this.state.biography} />} />
-              <Route path="/blog/:uid" render={({match}) => <BlogPost uid={match.params.uid} />} />
+              { Object.keys(ENV.config.prismicPageMapping).map(key => ENV.config.prismicPageMapping[key])
+                  .filter(config => config.documentRoute)
+                  .map(config =>
+                    <Route key={config.customType} path={config.documentRoute + ':uid'} 
+                      render={({match}) => <DocumentPage uid={match.params.uid} type={config.customType} />} />) }
               <Route path="/tag/:name" render={({match}) => <Tag tagName={match.params.name} />} />
               <Route component={NotFound} />
             </Switch>

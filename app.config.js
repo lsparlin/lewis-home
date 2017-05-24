@@ -22,6 +22,7 @@ module.exports = {
       ]
     },
     blogPost: {
+      documentRoute: '/blog/',
       customType: 'blog-post',
       pageSize: 5,
       listProperties: [

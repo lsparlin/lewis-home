@@ -30,11 +30,18 @@ class Tag extends React.Component {
         <h4>Tag: <span className="label label-default">{this.state.tagName}</span></h4>
         <hr />
         <div className="tagged-list">
-          { this.state.documents.map( (doc) => (<TitleSubTitleListing key={doc.uid} doc={doc} type="blogPost" />) )}
+          { this.state.documents.map( (doc) => (<TitleSubTitleListing key={doc.uid} doc={doc} type={appTypeFromPrismicType(doc.type)} />) )}
         </div>
       </div>
     )
   }
+}
+
+function appTypeFromPrismicType(prismicType) {
+  let prismicMapping = ENV.config.prismicPageMapping
+  let foundType = Object.keys(prismicMapping)
+    .find(key => prismicMapping[key].customType && prismicMapping[key].customType === prismicType)
+  return foundType || 'blogPost'
 }
 
 export default Tag

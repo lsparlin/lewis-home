@@ -4,11 +4,11 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 var dateFormat = require('dateformat');
 
-import NotFound from './NotFound.jsx'
-import StructuredText from './prismic/StructuredText.jsx'
-import { imageBackgroundStyle } from './prismic/Image.jsx'
-import SliceZone from './prismic/SliceZone.jsx'
-import PrismicHelper from './prismic/PrismicHelper.jsx'
+import NotFound from '../../NotFound.jsx'
+import StructuredText from '../StructuredText.jsx'
+import { imageBackgroundStyle } from '../Image.jsx'
+import SliceZone from '../SliceZone.jsx'
+import PrismicHelper from '../PrismicHelper.jsx'
 
 const blogConfig = ENV.config.prismicPageMapping.blogPost
 
