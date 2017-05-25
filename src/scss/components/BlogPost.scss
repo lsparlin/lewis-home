@@ -31,7 +31,13 @@
         h1 { font-size: #{$h1-size}rem; }
         h3 { font-size: #{$h3-size}rem; }
       }
+
     }
+  }
+  .tags {
+    a { text-decoration: none; }
+    .label { font-size: 1.2rem; }
+
   }
 
   .publish-date {
@@ -39,10 +45,6 @@
     color: #777;
     padding: .2em 0;
     margin-right: 10px;
-  }
-
-  .label {
-    font-size: 1.2rem;
   }
 
   h3 {

@@ -6,7 +6,7 @@ require('../scss/main.scss');
 import React from 'react';
 import {render} from 'react-dom';
 
-import HomePage from './components/HomePage.jsx'
+import HomePage from './components/HomePage'
 
 render((
     <div>

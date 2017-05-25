@@ -4,11 +4,12 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 var dateFormat = require('dateformat');
 
-import NotFound from '../../NotFound.jsx'
-import StructuredText from '../StructuredText.jsx'
-import { imageBackgroundStyle } from '../Image.jsx'
-import SliceZone from '../SliceZone.jsx'
-import PrismicHelper from '../PrismicHelper.jsx'
+import NotFound from '../../NotFound'
+import StructuredText from '../StructuredText'
+import { imageBackgroundStyle } from '../Image'
+import SliceZone from '../SliceZone'
+import PrismicHelper from '../PrismicHelper'
+import DisqusThread from '../../disqus/DisqusThread'
 
 const blogConfig = ENV.config.prismicPageMapping.blogPost
 
@@ -28,7 +29,8 @@ class BlogPost extends React.Component {
       } else {
         let propsFromFragments = PrismicHelper.stateObjectFromFragment(blogConfig, blogDocument.fragments)
         this.setState( Object.assign({}, propsFromFragments,
-          {loading: false, url: ENV.url, uid: this.blogUID, tags: blogDocument.tags, date: blogDocument.firstPublicationDate})
+          {loading: false, url: ENV.url, disqusName: ENV.disqusShortname, uid: this.blogUID,
+            tags: blogDocument.tags, date: blogDocument.firstPublicationDate})
         )
       }
     })
@@ -55,7 +57,7 @@ class BlogPost extends React.Component {
             <StructuredText value={this.state.subTitle} color={this.state.subTitleColorOnImageTextOnly} />
             </div>
           </div>
-          <div className="margin-left-2p">
+          <div className="tags margin-left-2p">
             <span className="publish-date">{dateFormat(this.state.date, 'mediumDate')}</span>
             { this.state.tags.map(tagName =>
               <Link key={tagName} to={'/tag/' + tagName}> 
@@ -68,6 +70,11 @@ class BlogPost extends React.Component {
             <SliceZone value={this.state.blogBody} /> 
           </article>
         </CSSTransitionGroup>
+        <DisqusThread 
+          shortname={this.state.disqusName}
+          url={this.state.url + blogConfig.documentRoute + this.state.uid}
+          identifier={this.state.uid}
+          title={this.state.titleTextOnly} />
       </div>
     )
   }
@@ -91,6 +98,7 @@ class BlogPost extends React.Component {
         <meta property="og:title" content={this.state.titleTextOnly} />
         <meta name="twitter:description" content={this.state.subTitleTextOnly} />
         <meta property="og:description" content={this.state.subTitleTextOnly} />
+        <link rel="canonical" href={ENV.url + blogConfig.documentRoute + this.blogUID} />
       </Helmet>
     )
   }

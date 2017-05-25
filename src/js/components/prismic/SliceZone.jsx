@@ -1,7 +1,7 @@
 import React from 'react';
 
-import StructuredText from './StructuredText.jsx';
-import Image from './Image.jsx';
+import StructuredText from './StructuredText';
+import Image from './Image';
 
 const SliceZone = (props) => {
   let sliceZone = props.value

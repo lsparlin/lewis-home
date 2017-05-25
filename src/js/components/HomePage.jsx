@@ -3,15 +3,13 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import {Helmet} from 'react-helmet';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import NotFound from './NotFound.jsx'
-import SocialLinks from './SocialLinks.jsx'
-import DocumentList from './DocumentList.jsx'
-import DocumentPage from './DocumentPage.jsx'
-import Tag from './Tag.jsx'
-import StructuredText from './prismic/StructuredText.jsx'
-import PrismicHelper from './prismic/PrismicHelper.jsx'
-
-import NetlifyFooter from './NetlifyFooter.jsx'
+import NotFound from './NotFound'
+import SocialLinks from './SocialLinks'
+import DocumentList from './DocumentList'
+import DocumentPage from './DocumentPage'
+import Tag from './Tag'
+import StructuredText from './prismic/StructuredText'
+import PrismicHelper from './prismic/PrismicHelper'
 
 let homeConfig = ENV.config.prismicPageMapping.home
 
@@ -36,7 +34,7 @@ class HomePage extends React.Component {
       return( <div></div> )
     }
     return(
-      <div className="PrismicHome">
+      <div className="HomePage">
         { this.renderMetaTags() }
         <CSSTransitionGroup
           transitionName="easein"
@@ -64,7 +62,7 @@ class HomePage extends React.Component {
             </Switch>
           </BrowserRouter>
 
-          <NetlifyFooter />
+          <Footer />
         </CSSTransitionGroup>
       </div>
     )
@@ -91,6 +89,7 @@ class HomePage extends React.Component {
         { this.state.socialCardImage &&
           <meta property="og:image" content={this.state.socialCardImage.main.url} />
         }
+        <link rel="canonical" href={ENV.url} />
       </Helmet>
     )
   }
@@ -107,6 +106,14 @@ const HomeContent = (props) => (
     <div className="seven columns">
       <DocumentList type="blogPost"/>
     </div>
+  </div>
+)
+
+const Footer = () => (
+  <div className="Footer">
+    <a href="https://www.netlify.com">
+      <img src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg" />
+    </a>
   </div>
 )
 
