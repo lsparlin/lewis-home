@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import TitleSubTitleListing from './TitleSubTitleListing.jsx'
-import PrismicHelper from './prismic/PrismicHelper.jsx'
+import TitleSubTitleListing from './TitleSubTitleListing'
+import PrismicHelper from './prismic/PrismicHelper'
 
 class Tag extends React.Component {
   constructor(props) {

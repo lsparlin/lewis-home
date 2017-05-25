@@ -3,13 +3,13 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import {Helmet} from 'react-helmet';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import NotFound from './NotFound.jsx'
-import SocialLinks from './SocialLinks.jsx'
-import DocumentList from './DocumentList.jsx'
-import DocumentPage from './DocumentPage.jsx'
-import Tag from './Tag.jsx'
-import StructuredText from './prismic/StructuredText.jsx'
-import PrismicHelper from './prismic/PrismicHelper.jsx'
+import NotFound from './NotFound'
+import SocialLinks from './SocialLinks'
+import DocumentList from './DocumentList'
+import DocumentPage from './DocumentPage'
+import Tag from './Tag'
+import StructuredText from './prismic/StructuredText'
+import PrismicHelper from './prismic/PrismicHelper'
 
 let homeConfig = ENV.config.prismicPageMapping.home
 
