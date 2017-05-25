@@ -13,6 +13,7 @@ module.exports = {
         filename: 'resources/js/bundle.js'
     },
     resolve: {
+      extensions: ['.js', '.jsx'],
       alias: {
         'config': path.resolve(__dirname, 'app.config.js')
       }

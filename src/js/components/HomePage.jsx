@@ -11,8 +11,6 @@ import Tag from './Tag.jsx'
 import StructuredText from './prismic/StructuredText.jsx'
 import PrismicHelper from './prismic/PrismicHelper.jsx'
 
-import NetlifyFooter from './NetlifyFooter.jsx'
-
 let homeConfig = ENV.config.prismicPageMapping.home
 
 class HomePage extends React.Component {
@@ -36,7 +34,7 @@ class HomePage extends React.Component {
       return( <div></div> )
     }
     return(
-      <div className="PrismicHome">
+      <div className="HomePage">
         { this.renderMetaTags() }
         <CSSTransitionGroup
           transitionName="easein"
@@ -64,7 +62,7 @@ class HomePage extends React.Component {
             </Switch>
           </BrowserRouter>
 
-          <NetlifyFooter />
+          <Footer />
         </CSSTransitionGroup>
       </div>
     )
@@ -107,6 +105,14 @@ const HomeContent = (props) => (
     <div className="seven columns">
       <DocumentList type="blogPost"/>
     </div>
+  </div>
+)
+
+const Footer = () => (
+  <div className="Footer">
+    <a href="https://www.netlify.com">
+      <img src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg" />
+    </a>
   </div>
 )
 
