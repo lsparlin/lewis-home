@@ -1,5 +1,4 @@
 module.exports = {
-  disqusShortname: 'lewismsparlin',
   prismicApi: ENV.prismicApi || 'https://lewismsparlin.prismic.io/api',
   omitTags: ENV.prismicOmitTags && ENV.prismicOmitTags.split(','),
   prismicPageMapping: {

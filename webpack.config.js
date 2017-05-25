@@ -20,9 +20,11 @@ module.exports = {
     },
     plugins: [
       new webpack.DefinePlugin({
+        'ENV': {},
         'ENV.url': JSON.stringify(process.env.URL),
         'ENV.prismicApi': JSON.stringify(process.env.PRISMIC_API),
-        'ENV.prismicOmitTags': JSON.stringify(process.env.PRISMIC_OMIT_TAGS)
+        'ENV.prismicOmitTags': JSON.stringify(process.env.PRISMIC_OMIT_TAGS),
+        'ENV.disqusShortname': JSON.stringify(process.env.DISQUS_SHORTNAME)
       }),
       new webpack.ProvidePlugin({
         'ENV.config': 'config'

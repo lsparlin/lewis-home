@@ -3,6 +3,10 @@ import React from 'react';
 import Disqus from '../../disqus'
 
 export default (props) => {
+  if (!ENV.disqusShortname) {
+    return null
+  }
+
   Disqus.initDisqus({
     url: props.url,
     identifier: props.identifier,
