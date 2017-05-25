@@ -9,6 +9,7 @@ import StructuredText from '../StructuredText'
 import { imageBackgroundStyle } from '../Image'
 import SliceZone from '../SliceZone'
 import PrismicHelper from '../PrismicHelper'
+import DisqusThread from '../../disqus/DisqusThread'
 
 const blogConfig = ENV.config.prismicPageMapping.blogPost
 
@@ -68,6 +69,10 @@ class BlogPost extends React.Component {
             <SliceZone value={this.state.blogBody} /> 
           </article>
         </CSSTransitionGroup>
+        <DisqusThread 
+          url={this.state.url + blogConfig.documentRoute + this.state.uid}
+          identifier={this.state.uid}
+          title={this.state.titleTextOnly} />
       </div>
     )
   }
