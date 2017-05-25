@@ -55,7 +55,7 @@ class BlogPost extends React.Component {
             <StructuredText value={this.state.subTitle} color={this.state.subTitleColorOnImageTextOnly} />
             </div>
           </div>
-          <div className="margin-left-2p">
+          <div className="tags margin-left-2p">
             <span className="publish-date">{dateFormat(this.state.date, 'mediumDate')}</span>
             { this.state.tags.map(tagName =>
               <Link key={tagName} to={'/tag/' + tagName}> 
@@ -91,6 +91,7 @@ class BlogPost extends React.Component {
         <meta property="og:title" content={this.state.titleTextOnly} />
         <meta name="twitter:description" content={this.state.subTitleTextOnly} />
         <meta property="og:description" content={this.state.subTitleTextOnly} />
+        <link rel="canonical" href={ENV.url + blogConfig.documentRoute + this.blogUID} />
       </Helmet>
     )
   }

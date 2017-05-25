@@ -89,6 +89,7 @@ class HomePage extends React.Component {
         { this.state.socialCardImage &&
           <meta property="og:image" content={this.state.socialCardImage.main.url} />
         }
+        <link rel="canonical" href={ENV.url} />
       </Helmet>
     )
   }
