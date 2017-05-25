@@ -8,6 +8,7 @@ export default (props) => {
   }
 
   Disqus.initDisqus({
+    shortname: props.shortname,
     url: props.url,
     identifier: props.identifier,
     title: props.title
