@@ -60,9 +60,19 @@
     h1 { font-size: #{$h1-size * .7}rem; }
     h2 { font-size: #{$h2-size * .7}rem; }
     h3 { font-size: #{$h3-size * .7}rem; }
+    pre, code {
+      margin: 0;
+    }
     p {
       font-family: serif;
       text-align: justify;
+      margin: 0;
+    }
+    .StructuredText {
+      margin-bottom: 0;
+    }
+    .StructuredText + .StructuredText {
+      margin-top: 2.0rem;
     }
     img {
       margin-bottom: 2.5rem;
