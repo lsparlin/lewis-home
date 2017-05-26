@@ -9,6 +9,7 @@ import StructuredText from '../StructuredText'
 import { imageBackgroundStyle } from '../Image'
 import SliceZone from '../SliceZone'
 import PrismicHelper from '../PrismicHelper'
+import DisqusThread from '../../disqus/DisqusThread'
 
 const blogConfig = ENV.config.prismicPageMapping.blogPost
 
@@ -28,7 +29,8 @@ class BlogPost extends React.Component {
       } else {
         let propsFromFragments = PrismicHelper.stateObjectFromFragment(blogConfig, blogDocument.fragments)
         this.setState( Object.assign({}, propsFromFragments,
-          {loading: false, url: ENV.url, uid: this.blogUID, tags: blogDocument.tags, date: blogDocument.firstPublicationDate})
+          {loading: false, url: ENV.url, disqusName: ENV.disqusShortname, uid: this.blogUID,
+            tags: blogDocument.tags, date: blogDocument.firstPublicationDate})
         )
       }
     })
@@ -68,6 +70,11 @@ class BlogPost extends React.Component {
             <SliceZone value={this.state.blogBody} /> 
           </article>
         </CSSTransitionGroup>
+        <DisqusThread 
+          shortname={this.state.disqusName}
+          url={this.state.url + blogConfig.documentRoute + this.state.uid}
+          identifier={this.state.uid}
+          title={this.state.titleTextOnly} />
       </div>
     )
   }
