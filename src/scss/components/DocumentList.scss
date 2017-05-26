@@ -1,0 +1,12 @@
+.DocumentList {
+
+  .document-category {
+    .document-category-name {
+      margin: 0;
+      text-decoration: underline;
+    }
+  }
+  .document-category + .document-category {
+    margin-top: 25px;
+  }
+}
