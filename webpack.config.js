@@ -31,7 +31,7 @@ module.exports = {
       }),
       new CopyWebpackPlugin([
         { from: 'src/html' },
-        { from: 'src/resources' }
+        { from: 'src/assets' }
       ])
     ],
      module: { loaders: [
