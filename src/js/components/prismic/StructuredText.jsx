@@ -11,11 +11,11 @@ class StructuredText extends React.Component {
     // If the text contains spans for rich text - I will :( use this unsafe operation so I don't re-invent the wheel
     var isTooComplexForMe = this.structuredText.blocks.filter(block => block.spans && !!block.spans.length).length
     if (isTooComplexForMe) {
-      return ( <div dangerouslySetInnerHTML={{__html: this.structuredText.asHtml()}}></div> )
+      return ( <div className="StructuredText" dangerouslySetInnerHTML={{__html: this.structuredText.asHtml()}}></div> )
     }
 
     return (
-      <span>
+      <div className="StructuredText">
         { this.structuredText.blocks.map((value, index) => {
             if (value.type.includes('heading')) return ( <Heading key={index} value={value} color={this.color} /> )
             else if (value.type === 'paragraph') return ( <Par key={index} value={value} /> )
@@ -24,7 +24,7 @@ class StructuredText extends React.Component {
             else return ( <Par key={index} value={value} /> )
           })
         }
-      </span>
+      </div>
     )
   }
 }
