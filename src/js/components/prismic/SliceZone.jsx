@@ -10,7 +10,7 @@ const SliceZone = (props) => {
       { sliceZone && sliceZone.slices.map((slice, index) => {
           if (slice.sliceType === 'text') return ( <StructuredText key={index} value={slice.value} /> )
           else if (slice.sliceType === 'code-sample') return ( <CodeSlice key={index} value={slice.value} /> )
-          else if (slice.sliceType === 'ordered-list') {console.log(slice); return (<OrderedListSlice key={index} value={slice.value} /> ) }
+          else if (slice.sliceType === 'ordered-list') return (<OrderedListSlice key={index} value={slice.value} /> )
           else if (slice.sliceType === 'image') return ( <div key={index} className="overflow-scroll-x"><Image value={slice.value} /> </div> )
           else return null
         })
