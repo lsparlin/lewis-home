@@ -64,9 +64,11 @@
     pre, code {
       margin: 0;
     }
-    p {
+    p, li {
       font-family: serif;
       text-align: justify;
+    }
+    p {
       margin: 0;
     }
     .StructuredText {
@@ -78,5 +80,9 @@
     img {
       margin-bottom: 2.5rem;
     }
-  }
+    ol {
+      margin-top: 1.5rem;
     }
+  }
+
+}

@@ -9,7 +9,8 @@ const SliceZone = (props) => {
     <div className="SliceZone">
       { sliceZone && sliceZone.slices.map((slice, index) => {
           if (slice.sliceType === 'text') return ( <StructuredText key={index} value={slice.value} /> )
-          else if (slice.sliceType === 'code-sample') return ( <CodeSlice key={index} value={slice.value.blocks} /> )
+          else if (slice.sliceType === 'code-sample') return ( <CodeSlice key={index} value={slice.value} /> )
+          else if (slice.sliceType === 'ordered-list') {console.log(slice); return (<OrderedListSlice key={index} value={slice.value} /> ) }
           else if (slice.sliceType === 'image') return ( <div key={index} className="overflow-scroll-x"><Image value={slice.value} /> </div> )
           else return null
         })
@@ -20,8 +21,14 @@ const SliceZone = (props) => {
 
 const CodeSlice = (props) => ( 
   <pre> 
-    { props.value.map( (block, index) => <code key={index} className="overflow-scroll-x">{block.text}</code> ) }
+    { props.value.blocks.map( (block, index) => <code key={index} className="overflow-scroll-x">{block.text}</code> ) }
   </pre> 
+)
+
+const OrderedListSlice = (props) => (
+  <ol>
+    { props.value.blocks.map( (block, index) => <li key={index}>{block.text}</li> ) }
+  </ol>
 )
 
 export default SliceZone
