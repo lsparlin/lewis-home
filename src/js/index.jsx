@@ -8,12 +8,14 @@ import {render} from 'react-dom';
 
 import HomePage from './components/HomePage'
 
+function prerenderIsReady() {
+  setTimeout(() => { window.prerenderReady = true }, 250)
+}
+
 render((
     <div>
-      <HomePage />
-
+      <HomePage onReady={prerenderIsReady} />
     </div>
   ), document.getElementById('app')
 );
 
-setTimeout(() => { window.prerenderReady = true}, 1500);
