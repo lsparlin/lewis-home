@@ -1,6 +1,7 @@
 require('../style/normalize.css')
 require('../style/skeleton.css')
 require('../style/custom-bootstrap.min.css')
+require('../style/prism.css')
 require('../scss/main.scss');
 
 import React from 'react';
