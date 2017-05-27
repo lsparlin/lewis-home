@@ -18,6 +18,7 @@ class HomePage extends React.Component {
     super(props);
     this.state = {loading: true};
 
+    this.onReady = props.onReady
     this.renderMetaTags = this.renderMetaTags.bind(this)
   }
 
@@ -26,7 +27,7 @@ class HomePage extends React.Component {
       this.setState(Object.assign({}, {loading: false, url: ENV.url},
         PrismicHelper.stateObjectFromFragment(homeConfig, homeDoc.fragments) )
       )
-    })
+    }).then(this.onReady)
   }
 
   render () {
