@@ -33,7 +33,11 @@ class BlogPost extends React.Component {
             tags: blogDocument.tags, date: blogDocument.firstPublicationDate})
         )
       }
-    }).then(() => require('../../../prism-code-styling/prism')) // style code tags
+    })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    require('../../../prism-code-styling/prism') // style code tags
   }
 
   render () {
