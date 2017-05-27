@@ -61,8 +61,10 @@
     h1 { font-size: #{$h1-size * .7}rem; }
     h2 { font-size: #{$h2-size * .7}rem; }
     h3 { font-size: #{$h3-size * .7}rem; }
+    pre { padding: 0 }
     pre, code {
-      margin: 0;
+      background: none;
+      margin: 0.25rem 0;
     }
     p, li {
       font-family: serif;
@@ -78,7 +80,7 @@
       margin-top: 2.0rem;
     }
     img {
-      margin-bottom: 2.5rem;
+      margin: 2.5rem 0;
     }
     ol {
       margin-top: 1.5rem;

@@ -36,6 +36,10 @@ class BlogPost extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    require('../../../prism-code-styling/prism') // style code tags
+  }
+
   render () {
     if (this.state.loading) {
       return ( <div></div> )
