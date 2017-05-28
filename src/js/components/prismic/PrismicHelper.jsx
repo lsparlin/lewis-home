@@ -49,15 +49,16 @@ const queryAt = (field, name, ordered, limitTo, pageSize, page) => {
 
 const stateObjectFromFragments = (config, fragments, listName) => {
   let properties = config.properties
+  let propPrefix = ''
   if (listName && config[listName]) {
     properties = config[listName]
   }
+  if (config.customType) {
+    propPrefix = config.customType + '.'
+  }
+
   return properties.map(prop => {
-    let fragmentProperty = prop.apiName
-    if (config.customType) {
-      fragmentProperty = config.customType + '.' + fragmentProperty
-    }
-    let fragment = fragments[fragmentProperty]
+    let fragment = fragments[propPrefix + prop.apiName]
     return { [prop.name] : fragment, [prop.name + 'TextOnly'] : fragment && fragment.asText() } 
   }).reduce((acc, curr) => Object.assign({}, acc, curr) )
 }
