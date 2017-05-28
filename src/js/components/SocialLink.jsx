@@ -9,7 +9,7 @@ class SocialLink extends React.Component {
     super(props)
     this.state = Object.assign({},
       { multiplier: props.multiplier || 1 },
-      PrismicHelper.stateObjectFromFragment(socialLinkConfig, props.fragments) )
+      PrismicHelper.stateObjectFromFragments(socialLinkConfig, props.fragments) )
   }
 
 

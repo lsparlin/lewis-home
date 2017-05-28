@@ -27,7 +27,7 @@ class BlogPost extends React.Component {
       if (!blogDocument) {
         this.setState({loading: false})
       } else {
-        let propsFromFragments = PrismicHelper.stateObjectFromFragment(blogConfig, blogDocument.fragments)
+        let propsFromFragments = PrismicHelper.stateObjectFromFragments(blogConfig, blogDocument.fragments)
         this.setState( Object.assign({}, propsFromFragments,
           {loading: false, url: ENV.url, disqusName: ENV.disqusShortname, uid: this.blogUID,
             tags: blogDocument.tags, date: blogDocument.firstPublicationDate})

@@ -39,5 +39,13 @@ module.exports = {
         {name: 'blogBody', apiName: 'body'}
       ]
     }
+  }, 
+  prismicGroupMapping: { // definitions for custom field groupings
+    styledCode: {
+      properties: [
+        {name: 'styledCode', apiName: 'styled-code'},
+        {name: 'language', apiName: 'styled-code-language'}
+      ]
+    }
   }
 }

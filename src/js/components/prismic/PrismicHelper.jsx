@@ -47,20 +47,29 @@ const queryAt = (field, name, ordered, limitTo, pageSize, page) => {
     })
 }
 
-const stateObjectFromFragment = (pageConfig, fragments, listName) => {
-  let properties = pageConfig.properties
-  if (listName && pageConfig[listName]) {
-    properties = pageConfig[listName]
+const stateObjectFromFragments = (config, fragments, listName) => {
+  let properties = config.properties
+  if (listName && config[listName]) {
+    properties = config[listName]
   }
   return properties.map(prop => {
-    let fragment = fragments[pageConfig.customType + '.' + prop.apiName]
+    let fragmentProperty = prop.apiName
+    if (config.customType) {
+      fragmentProperty = config.customType + '.' + fragmentProperty
+    }
+    let fragment = fragments[fragmentProperty]
     return { [prop.name] : fragment, [prop.name + 'TextOnly'] : fragment && fragment.asText() } 
   }).reduce((acc, curr) => Object.assign({}, acc, curr) )
+}
+
+const fragmentsFromNoRepeatGroup = (group) => {
+  return group.value[0].fragments
 }
 
 export default {
   queryByTypeAndUid,
   queryAt,
   queryByDocType,
-  stateObjectFromFragment
+  stateObjectFromFragments,
+  fragmentsFromNoRepeatGroup
 }

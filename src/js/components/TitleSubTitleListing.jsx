@@ -7,7 +7,7 @@ import PrismicHelper from './prismic/PrismicHelper'
 const TitleSubTitleListing = (props) => {
   let docTypeConfig = ENV.config.prismicPageMapping[props.type]
   let doc = Object.assign({}, {uid: props.doc.uid},
-    PrismicHelper.stateObjectFromFragment(docTypeConfig, props.doc.fragments, 'listProperties') )
+    PrismicHelper.stateObjectFromFragments(docTypeConfig, props.doc.fragments, 'listProperties') )
 
   return(
     <div className="TitleSubTitleListing">
