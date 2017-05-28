@@ -8,6 +8,7 @@ module.exports = {
       properties: [
         {name: 'title', apiName: 'title'},
         {name: 'subTitle', apiName: 'subtitle'},
+        {name: 'additionalMessage', apiName: 'additional-site-message'},
         {name: 'biography', apiName: 'bio'},
         {name: 'siteDescription', apiName: 'description'},
         {name: 'siteKeywords', apiName: 'keywords'},
@@ -41,6 +42,12 @@ module.exports = {
     }
   }, 
   prismicGroupMapping: { // definitions for custom field groupings
+    siteAdditionalMessage: {
+      properties: [
+        {name: 'additionalMessage', apiName: 'additional-message'},
+        {name: 'messageColor', apiName: 'additional-message-color'}
+      ]
+    },
     styledCode: {
       properties: [
         {name: 'styledCode', apiName: 'styled-code'},

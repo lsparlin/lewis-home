@@ -3,6 +3,7 @@ import React from 'react';
 import PrismicHelper from './PrismicHelper';
 import StructuredText from './StructuredText';
 import Image from './Image';
+import {StyledCode} from './CustomGroups';
 
 const SliceZone = (props) => {
   let sliceZone = props.value
@@ -28,9 +29,8 @@ const CodeSlice = (props) => (
 )
 
 const StyledCodeSlice = (props) => { 
-  let config = ENV.config.prismicGroupMapping.styledCode
-  let fragmentObject = PrismicHelper.stateObjectFromFragments(config, PrismicHelper.fragmentsFromNoRepeatGroup(props.value))
-  return ( <CodeSlice value={fragmentObject.styledCode} languageClass={'language-' + fragmentObject.languageTextOnly} /> )
+  const codeComponent = (styledCode, language) => ( <CodeSlice value={styledCode} languageClass={'language-' + language} /> )
+  return ( <StyledCode value={props.value} codeComponent={codeComponent} /> )
 }
 
 const OrderedListSlice = (props) => (

@@ -9,6 +9,7 @@ import DocumentList from './DocumentList'
 import DocumentPage from './DocumentPage'
 import Tag from './Tag'
 import StructuredText from './prismic/StructuredText'
+import {AdditionalSiteMessage} from './prismic/CustomGroups'
 import PrismicHelper from './prismic/PrismicHelper'
 
 let homeConfig = ENV.config.prismicPageMapping.home
@@ -48,6 +49,7 @@ class HomePage extends React.Component {
 
             <SocialLinks multiplier={1.5} />
             <StructuredText value={this.state.subTitle} />
+            <AdditionalSiteMessage value={this.state.additionalMessage} />
           </section>
 
           <BrowserRouter>
