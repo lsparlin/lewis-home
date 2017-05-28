@@ -19,11 +19,10 @@ function predicateAndOmitTags(singlePredicate) {
 }
 
 const queryByTypeAndUid = (type, uid) => {
-  return getApi()
-    .then((api) => {
-      return api.query(predicateAndOmitTags(Prismic.Predicates.at('my.' + type + '.uid', uid)) )
-         .then(response => response.results[0])
-    })
+  return getApi().then( api => {
+    return api.query(predicateAndOmitTags(Prismic.Predicates.at('my.' + type + '.uid', uid)) )
+    .then(response => response.results[0])
+  })
 
 }
 const queryByDocType = (type, ordered, limitTo, pageSize, page) => {
@@ -38,13 +37,12 @@ const queryAt = (field, name, ordered, limitTo, pageSize, page) => {
   if (limitTo) {
     queryOptions.fetch = limitTo
   }
-  return getApi()
-    .then((api) => {
-      return api.query(
-        predicateAndOmitTags(Prismic.Predicates.at(field, name)),
-        queryOptions
-      ).then(response => response.results)
-    })
+  return getApi().then( api => {
+    return api.query(
+      predicateAndOmitTags(Prismic.Predicates.at(field, name)),
+      queryOptions
+    ).then(response => response.results)
+  })
 }
 
 const stateObjectFromFragments = (config, fragments, listName) => {
