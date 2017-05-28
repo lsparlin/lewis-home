@@ -48,11 +48,13 @@ const categorizedDocuments = (documents, type, categoryTags) => {
 
   return [...categoryTags, ''].map( tag => {
     let categoryName = tag ? tag.replace(ENV.config.categoryTagPrefix, '') : 'misc.'
+    let documentsInCategory = documents.filter(doc => documentIsInCategory(doc, tag))
+
+    if (!documentsInCategory.length) { return null }
     return (
       <div key={tag} className="document-category">
         <h5 className="document-category-name">on {categoryName}</h5>
-        { documents.filter(doc => documentIsInCategory(doc, tag))
-            .map( doc => (<TitleSubTitleListing key={doc.uid} doc={doc} type={type}/>) )}
+        { documentsInCategory.map( doc => <TitleSubTitleListing key={doc.uid} doc={doc} type={type}/> ) }
       </div>
     )
   })
