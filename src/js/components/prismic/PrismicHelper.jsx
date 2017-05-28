@@ -62,14 +62,9 @@ const stateObjectFromFragments = (config, fragments, listName) => {
   }).reduce((acc, curr) => Object.assign({}, acc, curr) )
 }
 
-const fragmentsFromNoRepeatGroup = (group) => {
-  return group.value[0].fragments
-}
-
 export default {
   queryByTypeAndUid,
   queryAt,
   queryByDocType,
-  stateObjectFromFragments,
-  fragmentsFromNoRepeatGroup
+  stateObjectFromFragments
 }
