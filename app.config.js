@@ -45,7 +45,7 @@ module.exports = {
     siteAdditionalMessage: {
       properties: [
         {name: 'additionalMessage', apiName: 'additional-message'},
-        {name: 'messageColor', apiName: 'additional-message-color'}
+        {name: 'messageColor', apiName: 'additional-color'}
       ]
     },
     styledCode: {
