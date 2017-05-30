@@ -104,7 +104,7 @@ class HomePage extends React.Component {
 const HomeContent = (props) => (
   <div className="HomeContent row">
     <div className="five columns">
-      <h4> Quick Intro</h4>
+      <h4 className="column-title"> Quick Intro</h4>
       <hr/>
       <StructuredText value={props.bio} />
     </div>
