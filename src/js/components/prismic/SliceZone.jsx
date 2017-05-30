@@ -24,12 +24,15 @@ const SliceZone = (props) => {
 
 const CodeSlice = (props) => ( 
   <pre> 
-    { props.value.blocks.map( (block, index) => <code key={index} className={'overflow-scroll-x ' + (props.languageClass || '')}>{block.text}</code> ) }
+    { props.value.blocks.map( (block, index) => 
+      <code key={index} className={'overflow-scroll-x ' + (props.languageClass || '')}>{block.text}</code> ) 
+    }
   </pre> 
 )
 
 const StyledCodeSlice = (props) => { 
-  const codeComponent = (styledCode, language) => ( <CodeSlice value={styledCode} languageClass={'language-' + language} /> )
+  const codeComponent = (styledCode, language) =>
+    ( <CodeSlice value={styledCode} languageClass={'language-' + language} /> )
   return ( <StyledCode value={props.value} codeComponent={codeComponent} /> )
 }
 

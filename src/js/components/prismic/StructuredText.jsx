@@ -36,7 +36,8 @@ const Par = (props) => ( <p>{props.value.text}</p> )
 
 const Pre = (props) => ( <pre>{props.value.text}</pre> )
 
-const Img = (props) => ( <img src={props.value.url} height={props.value.dimensions.height} width={props.value.dimensions.width} /> )
+const Img = (props) => ( <img src={props.value.url} 
+  height={props.value.dimensions.height} width={props.value.dimensions.width} alt={props.value.alt} /> )
 
 const Heading = (props) => {
   var styleIfColor = props.color && {color: props.color}

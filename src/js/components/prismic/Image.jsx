@@ -3,7 +3,7 @@ import React from 'react';
 const Image = (props) => {
   let imageMain = props.value.main
 
-  return ( <img src={imageMain.url} height={imageMain.height} width={imageMain.width} /> )
+  return ( <img src={imageMain.url} height={imageMain.height} width={imageMain.width} alt={imageMain.alt} /> )
 }
 
 function imageBackgroundStyle(image, titleColor) {
