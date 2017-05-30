@@ -7,7 +7,7 @@ import NotFound from './NotFound'
 import SocialLinks from './SocialLinks'
 import DocumentList from './DocumentList'
 import DocumentPage from './DocumentPage'
-import Tag from './Tag'
+import TagPage from './TagPage'
 import StructuredText from './prismic/StructuredText'
 import {AdditionalSiteMessage} from './prismic/CustomGroups'
 import PrismicHelper from './prismic/PrismicHelper'
@@ -62,7 +62,7 @@ class HomePage extends React.Component {
                       render={({match}) => <DocumentPage uid={match.params.uid} type={config.customType} />} 
                     /> ) 
               }
-              <Route path="/tag/:name" render={({match}) => <Tag tagName={match.params.name} />} />
+              <Route path="/tag/:name" render={({match}) => <TagPage tagName={match.params.name} />} />
               <Route component={NotFound} />
             </Switch>
           </BrowserRouter>

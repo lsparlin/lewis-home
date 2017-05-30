@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import TitleSubTitleListing from './TitleSubTitleListing'
 import PrismicHelper from './prismic/PrismicHelper'
 
-class Tag extends React.Component {
+class TagPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {loading: true, tagName: props.tagName};
@@ -22,7 +22,7 @@ class Tag extends React.Component {
       )
     }
     return(
-      <div className="Tag">
+      <div className="TagPage">
         <Helmet>
           <title>{'Tagged with ' + this.state.tagName.toUpperCase()}</title>
         </Helmet>
@@ -44,4 +44,4 @@ function appTypeFromPrismicType(prismicType) {
   return foundType || 'blogPost'
 }
 
-export default Tag
+export default TagPage
