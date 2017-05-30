@@ -3,7 +3,7 @@ import React from 'react';
 import PrismicHelper from './PrismicHelper';
 import StructuredText from './StructuredText';
 import Image from './Image';
-import {StyledCode} from './CustomGroups';
+import {StyledCode, TextWithInlineImage} from './CustomGroups';
 
 const SliceZone = (props) => {
   let sliceZone = props.value
@@ -15,6 +15,7 @@ const SliceZone = (props) => {
           else if (slice.sliceType === 'styled-code-sample') return ( <StyledCodeSlice key={index} value={slice.value} /> )
           else if (slice.sliceType === 'ordered-list') return (<OrderedListSlice key={index} value={slice.value} /> )
           else if (slice.sliceType === 'image') return ( <div key={index} className="overflow-scroll-x"><Image value={slice.value} /> </div> )
+          else if (slice.sliceType === 'text-inline-image') return ( <TextWithInlineImage key={index} value={slice.value} />)
           else return null
         })
       }
