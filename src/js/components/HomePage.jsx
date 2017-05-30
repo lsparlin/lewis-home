@@ -57,9 +57,11 @@ class HomePage extends React.Component {
               <Route exact path="/" render={() => <HomeContent bio={this.state.biography} />} />
               { Object.keys(ENV.config.prismicPageMapping).map(key => ENV.config.prismicPageMapping[key])
                   .filter(config => config.documentRoute)
-                  .map(config =>
+                  .map( config =>
                     <Route key={config.customType} path={config.documentRoute + ':uid'} 
-                      render={({match}) => <DocumentPage uid={match.params.uid} type={config.customType} />} />) }
+                      render={({match}) => <DocumentPage uid={match.params.uid} type={config.customType} />} 
+                    /> ) 
+              }
               <Route path="/tag/:name" render={({match}) => <Tag tagName={match.params.name} />} />
               <Route component={NotFound} />
             </Switch>
