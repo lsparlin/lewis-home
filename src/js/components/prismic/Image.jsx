@@ -2,9 +2,8 @@ import React from 'react';
 
 const Image = (props) => {
   let imageMain = props.value.main
-  let style = Object.assign({}, props.float && {float: props.float, margin: 0})
 
-  return ( <img src={imageMain.url} height={imageMain.height} width={imageMain.width} alt={imageMain.alt} style={style} /> )
+  return ( <img src={imageMain.url} height={imageMain.height} width={imageMain.width} alt={imageMain.alt} /> )
 }
 
 function imageBackgroundStyle(image, titleColor) {

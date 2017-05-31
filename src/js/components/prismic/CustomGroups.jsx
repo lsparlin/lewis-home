@@ -17,7 +17,13 @@ const TextWithInlineImage = (props) => {
   let  inlineImgProps = PrismicHelper.stateObjectFromFragments(
     groupConfig.textWithInlineImage,
     fragmentsFromNoRepeatGroup(props.value) )
-  let imageComponent = () => (<Image value={inlineImgProps.inlineImage} float={inlineImgProps.imageFloatTextOnly} />)
+  let floatClass = inlineImgProps.imageFloatTextOnly ? 'float-' + inlineImgProps.imageFloatTextOnly : ''
+  let imageComponent = () => (
+    <div className={'overflow-scroll-x ' + floatClass}>
+      <Image value={inlineImgProps.inlineImage} />
+    </div>
+  )
+
   return ( 
     <div className="TextWithInlineImage">
       <StructuredText value={inlineImgProps.text} imageComponent={imageComponent} /> 

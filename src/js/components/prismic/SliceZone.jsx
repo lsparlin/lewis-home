@@ -14,7 +14,7 @@ const SliceZone = (props) => {
           else if (slice.sliceType === 'code-sample') return ( <CodeSlice key={index} value={slice.value} /> )
           else if (slice.sliceType === 'styled-code-sample') return ( <StyledCodeSlice key={index} value={slice.value} /> )
           else if (slice.sliceType === 'ordered-list') return (<OrderedListSlice key={index} value={slice.value} /> )
-          else if (slice.sliceType === 'image') return ( <div key={index} className="overflow-scroll-x"><Image value={slice.value} /> </div> )
+          else if (slice.sliceType === 'image') return ( <div key={index} className="image-container overflow-scroll-x"><Image value={slice.value} /> </div> )
           else if (slice.sliceType === 'text-inline-image') return ( <TextWithInlineImage key={index} value={slice.value} />)
           else return null
         })
