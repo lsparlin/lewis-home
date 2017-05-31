@@ -42,12 +42,10 @@ const Img = (props) => ( <img src={props.value.url}
 
 const Heading = (props) => {
   var styleIfColor = props.color && {color: props.color}
-  if (props.value.type === "heading1") return ( <h1 style={styleIfColor}>{props.value.text}</h1> )
-  if (props.value.type === "heading2") return ( <h2 style={styleIfColor}>{props.value.text}</h2> )
-  if (props.value.type === "heading3") return ( <h3 style={styleIfColor}>{props.value.text}</h3> )
-  if (props.value.type === "heading4") return ( <h4 style={styleIfColor}>{props.value.text}</h4> )
-  if (props.value.type === "heading5") return ( <h5 style={styleIfColor}>{props.value.text}</h5> )
-  if (props.value.type === "heading6") return ( <h6 style={styleIfColor}>{props.value.text}</h6> )
+
+  return React.createElement(props.value.type.replace('heading', 'h'),
+    {style: styleIfColor},
+    [props.value.text])
 }
 
 export default StructuredText;
