@@ -10,6 +10,7 @@ import { imageBackgroundStyle } from '../Image'
 import SliceZone from '../SliceZone'
 import PrismicHelper from '../PrismicHelper'
 import DisqusThread from '../../disqus/DisqusThread'
+const Prismjs = require('../../../prism-code-styling/prism') // style code tags
 
 const blogConfig = ENV.config.prismicPageMapping.blogPost
 
@@ -34,10 +35,7 @@ class BlogPost extends React.Component {
         )
       }
     })
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    require('../../../prism-code-styling/prism') // style code tags
+    .then(() => Prismjs.highlightAll())
   }
 
   render () {
