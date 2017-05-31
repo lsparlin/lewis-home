@@ -1,16 +1,28 @@
 import React from 'react';
 
 import StructuredText from './StructuredText'
+import Image from './Image'
 import PrismicHelper from './PrismicHelper'
 
 let groupConfig = ENV.config.prismicGroupMapping
 
 const AdditionalSiteMessage = (props) => {
-
   let messageProps = PrismicHelper.stateObjectFromFragments(
     groupConfig.siteAdditionalMessage, 
     fragmentsFromNoRepeatGroup(props.value) )
   return <StructuredText value={messageProps.additionalMessage} color={messageProps.messageColorTextOnly} />
+}
+
+const TextWithInlineImage = (props) => {
+  let  inlineImgProps = PrismicHelper.stateObjectFromFragments(
+    groupConfig.textWithInlineImage,
+    fragmentsFromNoRepeatGroup(props.value) )
+  let imageComponent = () => (<Image value={inlineImgProps.inlineImage} float={inlineImgProps.imageFloatTextOnly} />)
+  return ( 
+    <div className="TextWithInlineImage">
+      <StructuredText value={inlineImgProps.text} imageComponent={imageComponent} /> 
+    </div>
+  )
 }
 
 const StyledCode = (props) => {
@@ -22,6 +34,7 @@ const StyledCode = (props) => {
 
 export {
   AdditionalSiteMessage,
+  TextWithInlineImage,
   StyledCode
 }
 

@@ -48,6 +48,13 @@ module.exports = {
         {name: 'messageColor', apiName: 'additional-color'}
       ]
     },
+    textWithInlineImage: {
+      properties: [
+        {name: 'text', apiName: 'text'},
+        {name: 'imageFloat', apiName: 'image-float'},
+        {name: 'inlineImage', apiName: 'image'}
+      ]
+    },
     styledCode: {
       properties: [
         {name: 'styledCode', apiName: 'styled-code'},

@@ -7,7 +7,7 @@ import NotFound from './NotFound'
 import SocialLinks from './SocialLinks'
 import DocumentList from './DocumentList'
 import DocumentPage from './DocumentPage'
-import Tag from './Tag'
+import TagPage from './TagPage'
 import StructuredText from './prismic/StructuredText'
 import {AdditionalSiteMessage} from './prismic/CustomGroups'
 import PrismicHelper from './prismic/PrismicHelper'
@@ -57,10 +57,12 @@ class HomePage extends React.Component {
               <Route exact path="/" render={() => <HomeContent bio={this.state.biography} />} />
               { Object.keys(ENV.config.prismicPageMapping).map(key => ENV.config.prismicPageMapping[key])
                   .filter(config => config.documentRoute)
-                  .map(config =>
+                  .map( config =>
                     <Route key={config.customType} path={config.documentRoute + ':uid'} 
-                      render={({match}) => <DocumentPage uid={match.params.uid} type={config.customType} />} />) }
-              <Route path="/tag/:name" render={({match}) => <Tag tagName={match.params.name} />} />
+                      render={({match}) => <DocumentPage uid={match.params.uid} type={config.customType} />} 
+                    /> ) 
+              }
+              <Route path="/tag/:name" render={({match}) => <TagPage tagName={match.params.name} />} />
               <Route component={NotFound} />
             </Switch>
           </BrowserRouter>
@@ -102,7 +104,7 @@ class HomePage extends React.Component {
 const HomeContent = (props) => (
   <div className="HomeContent row">
     <div className="five columns">
-      <h4> Quick Intro</h4>
+      <h4 className="column-title"> Quick Intro</h4>
       <hr/>
       <StructuredText value={props.bio} />
     </div>

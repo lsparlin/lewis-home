@@ -5,6 +5,7 @@ class StructuredText extends React.Component {
     super(props);
     this.structuredText = props.value
     this.color = props.color
+    this.imageComponent = props.imageComponent
   }
 
   render() {
@@ -19,6 +20,7 @@ class StructuredText extends React.Component {
 
     return (
       <div className="StructuredText">
+        { this.imageComponent && this.imageComponent() }
         { this.structuredText.blocks.map((value, index) => {
             if (value.type.includes('heading')) return ( <Heading key={index} value={value} color={this.color} /> )
             else if (value.type === 'paragraph') return ( <Par key={index} value={value} /> )
@@ -36,7 +38,8 @@ const Par = (props) => ( <p>{props.value.text}</p> )
 
 const Pre = (props) => ( <pre>{props.value.text}</pre> )
 
-const Img = (props) => ( <img src={props.value.url} height={props.value.dimensions.height} width={props.value.dimensions.width} /> )
+const Img = (props) => ( <img src={props.value.url} 
+  height={props.value.dimensions.height} width={props.value.dimensions.width} alt={props.value.alt} /> )
 
 const Heading = (props) => {
   var styleIfColor = props.color && {color: props.color}

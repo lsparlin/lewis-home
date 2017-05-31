@@ -24,7 +24,7 @@ class DocumentList extends React.Component {
   render () {
     return (
       <div className="DocumentList">
-        <h4>{this.title}</h4>
+        <h4 className="column-title">{this.title}</h4>
         <hr />
         <div className="document-list">
           <CSSTransitionGroup
