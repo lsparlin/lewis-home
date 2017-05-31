@@ -18,6 +18,7 @@ module.exports = {
     socialLink: {
       customType: 'social-link',
       properties: [
+        {name: 'name', apiName: 'name'},
         {name: 'image', apiName: 'image'},
         {name: 'socialUrl', apiName: 'url'}
       ]

@@ -36,7 +36,7 @@ class ParagraphWithSpans extends React.Component {
 }
 
 const Hyperlink = (props) => (
-  <a href={props.data.value.url} target="_blank">{ props.text }</a>
+  <a href={props.data.value.url} target="_blank" style={{targetNew: 'tab'}}>{ props.text }</a>
 )
 
 export default ParagraphWithSpans
