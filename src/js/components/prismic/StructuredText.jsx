@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ParagraphWithSpans from './ParagraphWithSpans'
+
 class StructuredText extends React.Component {
   constructor(props) {
     super(props);
@@ -12,17 +14,14 @@ class StructuredText extends React.Component {
     if (!this.structuredText.asText()) {
       return null
     }
-    // If the text contains spans for rich text - I will :( use this unsafe operation so I don't re-invent the wheel
-    var isTooComplexForMe = this.structuredText.blocks.filter(block => block.spans && !!block.spans.length).length
-    if (isTooComplexForMe) {
-      return ( <div className="StructuredText" dangerouslySetInnerHTML={{__html: this.structuredText.asHtml()}}></div> )
-    }
 
     return (
       <div className="StructuredText">
         { this.imageComponent && this.imageComponent() }
         { this.structuredText.blocks.map((value, index) => {
+            var hasSpans = value.spans && !!value.spans.length
             if (value.type.includes('heading')) return ( <Heading key={index} value={value} color={this.color} /> )
+            else if (value.type === 'paragraph' && hasSpans) return ( <ParagraphWithSpans key={index} value={value} /> )
             else if (value.type === 'paragraph') return ( <Par key={index} value={value} /> )
             else if (value.type === 'preformatted') return ( <Pre key={index} value={value} /> )
             else if (value.type === 'image') return ( <Img key={index} value={value} /> )
