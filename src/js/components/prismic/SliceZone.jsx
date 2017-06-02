@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PrismicHelper from './PrismicHelper';
 import StructuredText from './StructuredText';
 import Image from './Image';
 import {StyledCode, TextWithInlineImage} from './CustomGroups';

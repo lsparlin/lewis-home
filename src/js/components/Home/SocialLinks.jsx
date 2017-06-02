@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PrismicHelper from './prismic/PrismicHelper'
+import PrismicHelper from '../common/PrismicApiHelper'
 
 const socialLinkConfig = ENV.config.prismicPageMapping.socialLink
 

@@ -8,7 +8,7 @@ import NotFound from '../../NotFound'
 import StructuredText from '../StructuredText'
 import { imageBackgroundStyle } from '../Image'
 import SliceZone from '../SliceZone'
-import PrismicHelper from '../PrismicHelper'
+import PrismicHelper from '../../common/PrismicApiHelper'
 import DisqusThread from '../../disqus/DisqusThread'
 const Prismjs = require('../../../prism-code-styling/prism') // style code tags
 

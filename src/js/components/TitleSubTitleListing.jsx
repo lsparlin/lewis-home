@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import StructuredText from './prismic/StructuredText'
-import PrismicHelper from './prismic/PrismicHelper'
+import PrismicHelper from './common/PrismicApiHelper'
 
 const TitleSubTitleListing = (props) => {
   let docTypeConfig = ENV.config.prismicPageMapping[props.type]

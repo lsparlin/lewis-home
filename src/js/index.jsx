@@ -7,7 +7,7 @@ require('../scss/main.scss');
 import React from 'react';
 import {render} from 'react-dom';
 
-import HomePage from './components/HomePage'
+import HomePage from './components/Home'
 
 function prerenderIsReady() {
   setTimeout(() => { window.prerenderReady = true }, 250)
