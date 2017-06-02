@@ -5,9 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import NotFound from '../NotFound'
 import SocialLinks from './SocialLinks'
-import DocumentList from '../DocumentList'
-import DocumentPage from '../DocumentPage'
-import TagPage from '../TagPage'
+import {DocumentList, DocumentPage, TagPage} from '../Document'
 import StructuredText from '../prismic/StructuredText'
 import {AdditionalSiteMessage} from '../prismic/CustomGroups'
 import PrismicHelper from '../common/PrismicApiHelper'

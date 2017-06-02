@@ -1,7 +1,7 @@
 import React from 'react';
 
-import NotFound from './NotFound'
-import BlogPost from './prismic/document_types/BlogPost'
+import NotFound from '../NotFound'
+import BlogPost from '../prismic/document_types/BlogPost'
 
 const pageConfig = ENV.config.prismicPageMapping
 

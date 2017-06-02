@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import TitleSubTitleListing from './TitleSubTitleListing'
-import PrismicHelper from './common/PrismicApiHelper'
+import PrismicHelper from '../common/PrismicApiHelper'
 
 class TagPage extends React.Component {
   constructor(props) {
