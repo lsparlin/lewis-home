@@ -3,7 +3,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import {Helmet} from 'react-helmet';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import NotFound from '../NotFound'
+import {NotFound} from '../Status'
 import SocialLinks from './SocialLinks'
 import {DocumentList, DocumentPage, TagPage} from '../Document'
 import StructuredText from '../prismic/StructuredText'
