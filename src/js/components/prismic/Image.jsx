@@ -19,9 +19,14 @@ function imageBackgroundStyle(image, titleColor) {
   }
 }
 
+const ImageHelper = {
+  imageBackgroundStyle: imageBackgroundStyle
+}
+
 export default Image
 
 export { 
   Image,
+  ImageHelper,
   imageBackgroundStyle
 }

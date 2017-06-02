@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 var dateFormat = require('dateformat');
 
 import {NotFound} from '../../Status'
-import StructuredText from '../StructuredText'
-import { imageBackgroundStyle } from '../Image'
-import SliceZone from '../SliceZone'
+import { StructuredText,
+  SliceZone,
+  ImageHelper } from '../../prismic'
 import PrismicHelper from '../../common/PrismicApiHelper'
 import DisqusThread from '../../disqus/DisqusThread'
 const Prismjs = require('../../../prism-code-styling/prism') // style code tags
@@ -53,7 +53,7 @@ class BlogPost extends React.Component {
           transitionAppearTimeout={300}
           transitionEnter={false}
           transitionLeave={false} >
-          <div className="blog-post-hero-header" style={imageBackgroundStyle(this.state.titleImage, this.state.titleColorOnImageTextOnly)}> 
+          <div className="blog-post-hero-header" style={ImageHelper.imageBackgroundStyle(this.state.titleImage, this.state.titleColorOnImageTextOnly)}> 
             <div className="hero-text">
             <StructuredText value={this.state.title} />
             <StructuredText value={this.state.subTitle} color={this.state.subTitleColorOnImageTextOnly} />
