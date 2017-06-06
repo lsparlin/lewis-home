@@ -11,6 +11,7 @@ const SliceZone = (props) => {
     <div className="SliceZone">
       { sliceZone && sliceZone.slices.map((slice, index) => {
           if (slice.sliceType === 'text') return ( <StructuredText key={index} value={slice.value} /> )
+          else if (slice.sliceType === 'quote') return ( <QuoteSlice key={index} value={slice.value} /> )
           else if (slice.sliceType === 'code-sample') return ( <CodeSlice key={index} value={slice.value} /> )
           else if (slice.sliceType === 'styled-code-sample') return ( <StyledCodeSlice key={index} value={slice.value} /> )
           else if (slice.sliceType === 'ordered-list') return (<OrderedListSlice key={index} value={slice.value} /> )
@@ -22,6 +23,12 @@ const SliceZone = (props) => {
     </div>
   )
 }
+
+const QuoteSlice = (props) => (
+  <blockquote> <p>
+      {props.value.value}
+  </p> </blockquote>
+)
 
 const CodeSlice = (props) => ( 
   <pre> 
