@@ -35,7 +35,8 @@ const StyledCode = (props) => {
   let styledCodeProps = PrismicHelper.stateObjectFromFragments(
     groupConfig.styledCode,
     fragmentsFromNoRepeatGroup(props.value) )
-  return props.codeComponent(styledCodeProps.styledCode, styledCodeProps.languageTextOnly)
+  let languageClass = styledCodeProps.language && 'language-' + styledCodeProps.languageTextOnly
+  return props.codeComponent(styledCodeProps.styledCode, languageClass)
 }
 
 export {

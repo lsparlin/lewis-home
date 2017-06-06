@@ -32,8 +32,8 @@ const CodeSlice = (props) => (
 )
 
 const StyledCodeSlice = (props) => { 
-  const codeComponent = (styledCode, language) =>
-    ( <CodeSlice value={styledCode} languageClass={'language-' + language} /> )
+  const codeComponent = (styledCode, languageClass) =>
+    ( <CodeSlice value={styledCode} languageClass={languageClass} /> )
   return ( <StyledCode value={props.value} codeComponent={codeComponent} /> )
 }
 
