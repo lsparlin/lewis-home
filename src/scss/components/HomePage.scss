@@ -5,9 +5,11 @@
     margin-bottom: 8.0rem;
     text-align: center;
 
-    h1 {
-      font-size: 7.0rem;
-      margin-bottom: 5px;
+    @media (min-width: 750px) { 
+      h1 {
+        font-size: 7.0rem;
+        margin-bottom: 5px;
+      }
     }
 
     div {
