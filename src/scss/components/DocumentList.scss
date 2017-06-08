@@ -1,0 +1,15 @@
+.DocumentList {
+
+  .document-category {
+    .TitleSubTitleListing {
+      margin-left: 0.75rem;
+    }
+    .document-category-name {
+      margin: 0;
+      text-decoration: underline;
+    }
+  }
+  .document-category + .document-category {
+    margin-top: 25px;
+  }
+}

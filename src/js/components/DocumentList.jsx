@@ -10,7 +10,7 @@ class DocumentList extends React.Component {
     this.title = props.title || 'Recent Writings'
     this.type = props.type
     this.docTypeConfig = ENV.config.prismicPageMapping[props.type]
-    this.state = {documents: null}
+    this.state = {documents: null, categoryTags: props.categoryTags}
   }
 
   componentWillMount() {
@@ -33,14 +33,36 @@ class DocumentList extends React.Component {
             transitionAppearTimeout={300}
             transitionEnter={false}
             transitionLeave={false} >
-            { this.state.documents &&
-                this.state.documents.map( (doc) => (<TitleSubTitleListing key={doc.uid} doc={doc} type={this.type}/>) )
-            }
+            { this.state.documents && categorizedDocuments(this.state.documents, this.type, this.state.categoryTags) }
           </CSSTransitionGroup>
         </div>
       </div>
     )
   }
+}
+
+const categorizedDocuments = (documents, type, categoryTags) => {
+  if (!categoryTags.length) {
+    return documents.map( doc => (<TitleSubTitleListing key={doc.uid} doc={doc} type={type}/>) )
+  } 
+
+  return [...categoryTags, ''].map( tag => {
+    let categoryName = tag ? tag.replace(ENV.config.categoryTagPrefix, '') : 'misc.'
+    let documentsInCategory = documents.filter(doc => documentIsInCategory(doc, tag))
+
+    if (!documentsInCategory.length) { return null }
+    return (
+      <div key={tag} className="document-category">
+        <h5 className="document-category-name">on {categoryName}</h5>
+        { documentsInCategory.map( doc => <TitleSubTitleListing key={doc.uid} doc={doc} type={type}/> ) }
+      </div>
+    )
+  })
+}
+
+const documentIsInCategory = (doc, tag) => {
+  if (tag) { return doc.tags.includes(tag) }
+  else { return !doc.tags.find(docTag => docTag.startsWith(ENV.config.categoryTagPrefix)) }
 }
 
 export default DocumentList

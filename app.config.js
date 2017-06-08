@@ -1,6 +1,7 @@
 module.exports = {
   prismicApi: ENV.prismicApi || 'https://lewismsparlin.prismic.io/api',
   omitTags: ENV.prismicOmitTags && ENV.prismicOmitTags.split(','),
+  categoryTagPrefix: 'category-',
   prismicPageMapping: {
     home: {
       customType: 'site-header',

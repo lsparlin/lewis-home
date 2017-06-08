@@ -9,6 +9,10 @@ function getApi() {
   return API
 }
 
+function getAllTags() {
+  return getApi().then(api => api.data.tags)
+}
+
 function predicateAndOmitTags(singlePredicate) {
   let predicates = [singlePredicate]
   if (ENV.config.omitTags) {
@@ -62,6 +66,7 @@ const stateObjectFromFragments = (config, fragments, listName) => {
 }
 
 export default {
+  getAllTags,
   queryByTypeAndUid,
   queryAt,
   queryByDocType,
