@@ -61,7 +61,8 @@ class BlogPost extends React.Component {
           </div>
           <div className="tags margin-left-2p">
             <span className="publish-date">{dateFormat(this.state.date, 'mediumDate')}</span>
-            { this.state.tags.map(tagName =>
+            { this.state.tags.filter(tagName => !ENV.config.categoryTagPrefix || !tagName.startsWith(ENV.config.categoryTagPrefix))
+                .map(tagName =>
               <Link key={tagName} to={'/tag/' + tagName}> 
                 <span className="label label-default margin-h-1m">{tagName}</span> 
               </Link> )

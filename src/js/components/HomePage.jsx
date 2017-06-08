@@ -24,6 +24,7 @@ class HomePage extends React.Component {
   }
 
   componentWillMount() {
+    PrismicHelper.getAllTags().then(tags => this.setState({ categoryTags: tags.filter(tag => tag.startsWith(ENV.config.categoryTagPrefix)) }) )
     PrismicHelper.queryByTypeAndUid(homeConfig.customType, homeConfig.uid).then(homeDoc => {
       this.setState(Object.assign({}, {loading: false, url: ENV.url},
         PrismicHelper.stateObjectFromFragments(homeConfig, homeDoc.fragments) )
@@ -54,7 +55,7 @@ class HomePage extends React.Component {
 
           <BrowserRouter>
             <Switch>
-              <Route exact path="/" render={() => <HomeContent bio={this.state.biography} />} />
+              <Route exact path="/" render={() => <HomeContent bio={this.state.biography} categoryTags={this.state.categoryTags} />} />
               { Object.keys(ENV.config.prismicPageMapping).map(key => ENV.config.prismicPageMapping[key])
                   .filter(config => config.documentRoute)
                   .map( config =>
@@ -109,7 +110,7 @@ const HomeContent = (props) => (
       <StructuredText value={props.bio} />
     </div>
     <div className="seven columns">
-      <DocumentList type="blogPost"/>
+      <DocumentList type="blogPost" categoryTags={props.categoryTags}/>
     </div>
   </div>
 )
