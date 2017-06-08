@@ -37,6 +37,7 @@ class HomePage extends React.Component {
       return( <div></div> )
     }
     return(
+      <BrowserRouter>
       <div className="HomePage">
         { this.renderMetaTags() }
         <CSSTransitionGroup
@@ -45,32 +46,28 @@ class HomePage extends React.Component {
           transitionAppearTimeout={300}
           transitionEnter={false}
           transitionLeave={false} >
-          <section className="page-heading">
-            <a href="/"> <StructuredText value={this.state.title}/> </a>
+          <Switch>
+            <Route exact path="/" render={() => <PageHeader state={this.state} biography={this.state.biography} headerClass="page-block"/> }/>
+            <Route render={() => <PageHeader state={this.state}/> }/>
+          </Switch>
+          
 
-            <SocialLinks multiplier={1.5} />
-            <StructuredText value={this.state.subTitle} />
-            <AdditionalSiteMessage value={this.state.additionalMessage} />
-          </section>
-
-          <BrowserRouter>
-            <Switch>
-              <Route exact path="/" render={() => <HomeContent bio={this.state.biography} categoryTags={this.state.categoryTags} />} />
-              { Object.keys(ENV.config.prismicPageMapping).map(key => ENV.config.prismicPageMapping[key])
-                  .filter(config => config.documentRoute)
-                  .map( config =>
-                    <Route key={config.customType} path={config.documentRoute + ':uid'} 
-                      render={({match}) => <DocumentPage uid={match.params.uid} type={config.customType} />} 
-                    /> ) 
-              }
-              <Route path="/tag/:name" render={({match}) => <TagPage tagName={match.params.name} />} />
-              <Route component={NotFound} />
-            </Switch>
-          </BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={() => <DocumentList type="blogPost" title="Blog" categoryTags={this.state.categoryTags}/> }/>
+            { Object.keys(ENV.config.prismicPageMapping).map(key => ENV.config.prismicPageMapping[key])
+                .filter(config => config.documentRoute)
+                .map( config =>
+                  <Route key={config.customType} path={config.documentRoute + ':uid'} 
+                    component={({match}) => <DocumentPage uid={match.params.uid} type={config.customType} />} /> ) 
+            }
+            <Route path="/tag/:name" component={({match}) => <TagPage tagName={match.params.name} />} />
+            <Route component={NotFound} />
+          </Switch>
 
           <Footer />
         </CSSTransitionGroup>
       </div>
+      </BrowserRouter>
     )
   }
 
@@ -102,17 +99,19 @@ class HomePage extends React.Component {
 
 }
 
-const HomeContent = (props) => (
-  <div className="HomeContent row">
-    <div className="five columns">
-      <h4 className="column-title"> Quick Intro</h4>
-      <hr/>
-      <StructuredText value={props.bio} />
-    </div>
-    <div className="seven columns">
-      <DocumentList type="blogPost" categoryTags={props.categoryTags}/>
-    </div>
-  </div>
+const PageHeader = (props) => (
+  <section className={props.headerClass}>
+    <a href="/"> <StructuredText value={props.state.title}/> </a>
+
+    <SocialLinks multiplier={1.5} />
+    <StructuredText value={props.state.subTitle} />
+    <AdditionalSiteMessage value={props.state.additionalMessage} />
+    { props.biography && 
+        <div className="biography">
+          <StructuredText value={props.biography} />
+        </div>
+    }
+  </section> 
 )
 
 const Footer = () => (

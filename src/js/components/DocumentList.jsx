@@ -23,10 +23,9 @@ class DocumentList extends React.Component {
 
   render () {
     return (
-      <div className="DocumentList">
-        <h4 className="column-title">{this.title}</h4>
-        <hr />
-        <div className="document-list">
+      <div className="DocumentList page-block">
+        <h1 className="column-title">{this.title}</h1>
+        <div className="document-list row">
           <CSSTransitionGroup
             transitionName="easein"
             transitionAppear={true}
@@ -43,7 +42,7 @@ class DocumentList extends React.Component {
 
 const categorizedDocuments = (documents, type, categoryTags) => {
   if (!categoryTags.length) {
-    return documents.map( doc => (<TitleSubTitleListing key={doc.uid} doc={doc} type={type}/>) )
+    return documents.map( doc => (<div key={doc.uid} className="four columns"><TitleSubTitleListing doc={doc} type={type}/></div>) )
   } 
 
   return [...categoryTags, ''].map( tag => {
@@ -52,9 +51,9 @@ const categorizedDocuments = (documents, type, categoryTags) => {
 
     if (!documentsInCategory.length) { return null }
     return (
-      <div key={tag} className="document-category">
-        <h5 className="document-category-name">on {categoryName}</h5>
-        { documentsInCategory.map( doc => <TitleSubTitleListing key={doc.uid} doc={doc} type={type}/> ) }
+      <div key={tag} className="document-category row">
+        <h4 className="document-category-name">on {categoryName}</h4>
+        { documentsInCategory.map( doc => <div key ={doc.uid} className="four columns"><TitleSubTitleListing doc={doc} type={type}/></div> ) }
       </div>
     )
   })
