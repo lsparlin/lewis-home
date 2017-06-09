@@ -89,12 +89,18 @@ class BlogPost extends React.Component {
         { this.state.shortDescriptionTextOnly &&
             <meta name="description" content={this.state.shortDescriptionTextOnly} /> 
         }
-        { this.state.titleImage &&
+        { (this.state.titleImage || this.state.titleImageSmall) &&
             <meta name="twitter:card" content="summary_large_image" /> }
-        { this.state.titleImage &&
-            <meta name="twitter:image" content={this.state.titleImage.main.url} /> }
-        { this.state.titleImage &&
-            <meta property="og:image" content={this.state.titleImage.main.url} /> }
+        { (this.state.titleImage || this.state.titleImageSmall) &&
+            <meta name="twitter:image" content={this.state.titleImageSmall ? 
+                this.state.titleImageSmall.main.url :
+                this.state.titleImage.main.url} /> 
+        }
+        { (this.state.titleImage || this.state.titleImageSmall) &&
+            <meta property="og:image" content={this.state.titleImageSmall ? 
+                this.state.titleImageSmall.main.url : 
+                this.state.titleImage.main.url} /> 
+        }
         <meta property="og:url" content={this.state.url + '/blog/' + this.state.uid} />
         <meta property="og:type" content="article" />
         <meta name="twitter:title" content={this.state.titleTextOnly} />

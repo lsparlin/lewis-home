@@ -37,6 +37,7 @@ module.exports = {
         {name: 'title', apiName: 'title'},
         {name: 'subTitle', apiName: 'subtitle'},
         {name: 'titleImage', apiName: 'title-image'},
+        {name: 'titleImageSmall', apiName: 'title-image-small'},
         {name: 'titleColorOnImage', apiName: 'title-color'},
         {name: 'subTitleColorOnImage', apiName: 'subtitle-color'},
         {name: 'shortDescription', apiName: 'short-description'},
