@@ -30,7 +30,8 @@ module.exports = {
       pageSize: 5,
       listProperties: [
         {name: 'title', apiName: 'title'},
-        {name: 'subTitle', apiName: 'subtitle'}
+        {name: 'subTitle', apiName: 'subtitle'},
+        {name: 'titleImageSmall', apiName: 'title-image-small'}
       ],
       properties: [
         {name: 'title', apiName: 'title'},
