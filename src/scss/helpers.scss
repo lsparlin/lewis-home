@@ -4,13 +4,23 @@
 }
 
 @media (min-width: 750px) {
-.float-left {
-  float: left;
-  margin-right: 2rem;
+  .float-left {
+    float: left;
+    margin-right: 2rem;
+  }
+  
+  .float-right {
+    float: right;
+    margin-left: 2rem;
+  }
 }
 
-.float-right {
-  float: right;
-  margin-left: 2rem;
-}
+// skeleton customizations
+@media (min-width: 550px) and (max-width: 1050px) {
+  .column, .columns {
+    margin-left: 0%;
+  }
+  .four.columns {
+    width: 48%;
+  }
 }

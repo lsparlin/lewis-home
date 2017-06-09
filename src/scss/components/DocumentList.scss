@@ -1,8 +1,10 @@
 .DocumentList {
 
   .document-category {
-    .TitleSubTitleListing {
-      margin-left: 0.75rem;
+    @media (max-width: 550px) {
+      .TitleSubTitleListing {
+        margin-left: 0.75rem;
+      }
     }
     .document-category-name {
       margin: 0;
