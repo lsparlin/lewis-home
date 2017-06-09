@@ -30,7 +30,7 @@ class TagPage extends React.Component {
         <h4>Tag: <span className="label label-default">{this.state.tagName}</span></h4>
         <hr />
         <div className="tagged-list">
-          { this.state.documents.map( (doc) => (<TitleSubTitleListing key={doc.uid} doc={doc} type={appTypeFromPrismicType(doc.type)} />) )}
+          { this.state.documents.map( (doc) => (<TitleSubTitleListing key={doc.uid} doc={doc} type={appTypeFromPrismicType(doc.type)} noImage />) )}
         </div>
       </div>
     )

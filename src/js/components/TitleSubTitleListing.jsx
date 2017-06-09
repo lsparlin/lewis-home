@@ -14,7 +14,7 @@ const TitleSubTitleListing = (props) => {
   return(
     <div className={'TitleSubTitleListing dull-then-fade-in ' + (props.className || '')}>
       <Link to={docTypeConfig.documentRoute + doc.uid}>
-        { doc.titleImageSmall && <Image value={doc.titleImageSmall} width="100%" height="160rem" /> }
+        { !props.noImage && doc.titleImageSmall && <Image value={doc.titleImageSmall} width="100%" height="160rem" /> }
         <div className="titles">
           <StructuredText value={doc.title} /> 
           <StructuredText value={doc.subTitle} />
