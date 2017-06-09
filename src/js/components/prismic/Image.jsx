@@ -2,8 +2,12 @@ import React from 'react';
 
 const Image = (props) => {
   let imageMain = props.value.main
+  let dimensions = {
+    width: props.width || imageMain.width,
+    height: props.height || imageMain.height
+  }
 
-  return ( <img src={imageMain.url} height={imageMain.height} width={imageMain.width} alt={imageMain.alt} /> )
+  return ( <img src={imageMain.url} alt={imageMain.alt} {...dimensions} /> )
 }
 
 function imageBackgroundStyle(image, titleColor) {

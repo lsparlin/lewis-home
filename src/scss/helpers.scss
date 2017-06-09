@@ -14,6 +14,16 @@
     margin-left: 2rem;
   }
 }
+.dull-then-fade-in {
+  $fade_time: .25;
+  opacity: 0.75;
+  -moz-transition: opacity #{$fade_time + 's'} ease-in-out;
+  -webkit-transition: opacity #{$fade_time + 's'} ease-in-out;
+  transition: opacity #{$fade_time + 's'} ease-in-out;
+}
+.dull-then-fade-in:hover {
+  opacity: 1;
+}
 
 // skeleton customizations
 @media (min-width: 550px) and (max-width: 1050px) {

@@ -12,10 +12,14 @@ const TitleSubTitleListing = (props) => {
 
   console.log(doc.titleImageSmall)
   return(
-    <div className={'TitleSubTitleListing ' + (props.className || '')}>
-      { doc.titleImageSmall && <Image value={doc.titleImageSmall} /> }
-      <Link to={docTypeConfig.documentRoute + doc.uid}> <StructuredText value={doc.title} /> </Link>
-      <StructuredText value={doc.subTitle} />
+    <div className={'TitleSubTitleListing dull-then-fade-in ' + (props.className || '')}>
+      <Link to={docTypeConfig.documentRoute + doc.uid}>
+        { doc.titleImageSmall && <Image value={doc.titleImageSmall} width="100%" height="160rem" /> }
+        <div className="titles">
+          <StructuredText value={doc.title} /> 
+          <StructuredText value={doc.subTitle} />
+        </div>
+      </Link>
     </div>
   )
 }
