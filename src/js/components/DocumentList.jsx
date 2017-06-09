@@ -42,7 +42,7 @@ class DocumentList extends React.Component {
 
 const categorizedDocuments = (documents, type, categoryTags) => {
   if (!categoryTags.length) {
-    return documents.map( doc => (<div key={doc.uid} className="four columns"><TitleSubTitleListing doc={doc} type={type}/></div>) )
+    return documents.map( doc => (<TitleSubTitleListing doc={doc} type={type} key={doc.uid} className="four columns"/>) )
   } 
 
   return [...categoryTags, ''].map( tag => {
@@ -53,7 +53,7 @@ const categorizedDocuments = (documents, type, categoryTags) => {
     return (
       <div key={tag} className="document-category row">
         <h4 className="document-category-name">on {categoryName}</h4>
-        { documentsInCategory.map( doc => <div key ={doc.uid} className="four columns"><TitleSubTitleListing doc={doc} type={type}/></div> ) }
+        { documentsInCategory.map( doc => <TitleSubTitleListing doc={doc} type={type} key ={doc.uid} className="four columns"/> ) }
       </div>
     )
   })

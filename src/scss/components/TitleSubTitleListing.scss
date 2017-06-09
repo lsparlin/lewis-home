@@ -19,6 +19,9 @@
   }
 }
 
-.TitleSubTitleListing + .TitleSubTitleListing {
-  margin-top: 10px;
+@media (max-width: 750px) {
+  .TitleSubTitleListing + .TitleSubTitleListing {
+    margin-top: 10px;
+  }
 }
+

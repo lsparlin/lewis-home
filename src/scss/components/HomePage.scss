@@ -26,9 +26,18 @@
     }
 
     .biography {
-      font-family: Andale Mono, monospace;
+      font-family: "Courier New", Courier, monospace;
       margin-top: 15vh;
       text-align: justify;
+      p {
+        font-size: 1.4rem;
+        @media (min-width: 750px) {
+          font-size: 1.7rem;
+        }
+        @media (min-width: 1050px) {
+          font-size: 2.0rem;
+        }
+      }
     }
     .biography p:before {
       content: "// ";

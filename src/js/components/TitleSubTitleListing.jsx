@@ -10,7 +10,7 @@ const TitleSubTitleListing = (props) => {
     PrismicHelper.stateObjectFromFragments(docTypeConfig, props.doc.fragments, 'listProperties') )
 
   return(
-    <div className="TitleSubTitleListing">
+    <div className={'TitleSubTitleListing ' + (props.className || '')}>
       <Link to={docTypeConfig.documentRoute + doc.uid}> <StructuredText value={doc.title} /> </Link>
       <StructuredText value={doc.subTitle} />
     </div>
