@@ -14,14 +14,21 @@
     margin-left: 2rem;
   }
 }
-.dull-then-fade-in {
-  $fade_time: .25;
-  opacity: 0.75;
-  -moz-transition: opacity #{$fade_time + 's'} ease-in-out;
-  -webkit-transition: opacity #{$fade_time + 's'} ease-in-out;
-  transition: opacity #{$fade_time + 's'} ease-in-out;
+
+.fade {
+  transition: opacity .25s ease-in-out;
 }
-.dull-then-fade-in:hover {
+.fade:hover,
+.fade:active {
+  opacity: 0.75;
+}
+
+.dull-then-fade-in {
+  opacity: 0.75;
+  transition: opacity .25s ease-in-out;
+}
+.dull-then-fade-in:hover,
+.dull-then-fade-in:active {
   opacity: 1;
 }
 

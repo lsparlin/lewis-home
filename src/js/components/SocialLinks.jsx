@@ -35,7 +35,7 @@ const SocialLink = (props) => {
   return (
     <a className="SocialLink margin-h-1m" rel="me" href={fragmentProps.socialUrlTextOnly} title={title}
       target="_blank" style={{targetNew: 'tab'}}>
-      <img alt={title} src={fragmentProps.image.main.url} 
+      <img className="fade" alt={title} src={fragmentProps.image.main.url} 
         height={(fragmentProps.image.main.height * m)  + 'px'} 
         width={(fragmentProps.image.main.width * m) +'px'} />
     </a>

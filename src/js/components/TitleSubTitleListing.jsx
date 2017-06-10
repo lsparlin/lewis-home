@@ -10,7 +10,6 @@ const TitleSubTitleListing = (props) => {
   let doc = Object.assign({}, {uid: props.doc.uid},
     PrismicHelper.stateObjectFromFragments(docTypeConfig, props.doc.fragments, 'listProperties') )
 
-  console.log(doc.titleImageSmall)
   return(
     <div className={'TitleSubTitleListing dull-then-fade-in ' + (props.className || '')}>
       <Link to={docTypeConfig.documentRoute + doc.uid}>
