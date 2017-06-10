@@ -18,8 +18,7 @@
 .fade {
   transition: opacity .25s ease-in-out;
 }
-.fade:hover,
-.fade:active {
+.fade:hover {
   opacity: 0.75;
 }
 
@@ -27,8 +26,7 @@
   opacity: 0.75;
   transition: opacity .25s ease-in-out;
 }
-.dull-then-fade-in:hover,
-.dull-then-fade-in:active {
+.dull-then-fade-in:hover {
   opacity: 1;
 }
 
