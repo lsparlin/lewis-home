@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 var dateFormat = require('dateformat');
 
-import NotFound from '../../NotFound'
+import NotFound from '../../status'
 import StructuredText from '../StructuredText'
 import { imageBackgroundStyle } from '../Image'
 import SliceZone from '../SliceZone'
