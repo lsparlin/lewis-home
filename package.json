@@ -35,6 +35,7 @@
     "node-sass": "^4.5.3",
     "prismic.io": "^3.5.6",
     "react": "^16.0.0",
+    "react-disqus-comments": "^1.1.1",
     "react-dom": "^16.0.0",
     "react-helmet": "^5.0.3",
     "react-router": "^4.2.0",

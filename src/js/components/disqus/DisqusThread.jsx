@@ -1,19 +1,16 @@
 import React from 'react';
-
-import Disqus from 'js/disqus'
+import ReactDisqusComments from 'react-disqus-comments';
 
 export default (props) => {
   if (!ENV.disqusShortname) {
     return null
+  } else {
+    return ( <ReactDisqusComments 
+      shortname={props.shortname}
+      url={props.url}
+      identifier={props.identifier}
+      title={props.title}
+    /> )
   }
-
-  Disqus.initDisqus({
-    shortname: props.shortname,
-    url: props.url,
-    identifier: props.identifier,
-    title: props.title
-  })
-
-  return (<div id="disqus_thread"></div>)
 }
 
