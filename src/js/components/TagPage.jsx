@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import TitleSubTitleListing from './TitleSubTitleListing'
-import {PrismicHelper} from './prismic'
+import TitleSubTitleListing from 'components/TitleSubTitleListing'
+import {PrismicHelper} from 'prismic'
 
 class TagPage extends React.Component {
   constructor(props) {

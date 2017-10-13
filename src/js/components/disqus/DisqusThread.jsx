@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Disqus from '../../disqus'
+import Disqus from 'js/disqus'
 
 export default (props) => {
   if (!ENV.disqusShortname) {

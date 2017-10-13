@@ -1,9 +1,9 @@
 import React from 'react';
 
-import PrismicHelper from './PrismicHelper';
-import StructuredText from './StructuredText';
-import Image from './Image';
-import {StyledCode, TextWithInlineImage} from './CustomGroups';
+import PrismicHelper from 'prismic/PrismicHelper';
+import StructuredText from 'prismic/StructuredText';
+import Image from 'prismic/Image';
+import {StyledCode, TextWithInlineImage} from 'prismic/CustomGroups';
 
 const SliceZone = (props) => {
   let sliceZone = props.value

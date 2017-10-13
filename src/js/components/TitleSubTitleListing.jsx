@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { PrismicHelper,
   StructuredText, 
-  Image } from './prismic'
+  Image } from 'prismic'
 
 const TitleSubTitleListing = (props) => {
   let docTypeConfig = ENV.config.prismicPageMapping[props.type]

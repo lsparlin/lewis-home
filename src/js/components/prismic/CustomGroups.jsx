@@ -1,8 +1,8 @@
 import React from 'react';
 
-import StructuredText from './StructuredText'
-import Image from './Image'
-import PrismicHelper from './PrismicHelper'
+import StructuredText from 'prismic/StructuredText'
+import Image from 'prismic/Image'
+import PrismicHelper from 'prismic/PrismicHelper'
 
 let groupConfig = ENV.config.prismicGroupMapping
 

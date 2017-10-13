@@ -4,13 +4,13 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 var dateFormat = require('dateformat');
 
-import {NotFound} from '../status'
+import {NotFound} from 'components/status'
 import { PrismicHelper, 
   StructuredText,
   SliceZone,
-  imageBackgroundStyle  } from '../prismic'
-import DisqusThread from '../disqus/DisqusThread'
-const Prismjs = require('../../prism-code-styling/prism') // style code tags
+  imageBackgroundStyle  } from 'components/prismic'
+import DisqusThread from 'components/disqus/DisqusThread'
+const Prismjs = require('js/prism-code-styling/prism') // style code tags
 
 const blogConfig = ENV.config.prismicPageMapping.blogPost
 

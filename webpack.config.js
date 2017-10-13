@@ -15,6 +15,11 @@ module.exports = {
     resolve: {
       extensions: ['.js', '.jsx'],
       alias: {
+        'style': __dirname + '/src/style',
+        'scss': __dirname + '/src/scss',
+        'js': __dirname + '/src/js',
+        'components': __dirname + '/src/js/components',
+        'prismic': __dirname + '/src/js/components/prismic',
         'config': path.resolve(__dirname, 'app.config.js')
       }
     },

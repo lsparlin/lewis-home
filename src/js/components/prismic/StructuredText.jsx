@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ParagraphWithSpans from './ParagraphWithSpans'
+import ParagraphWithSpans from 'prismic/ParagraphWithSpans'
 
 class StructuredText extends React.Component {
   constructor(props) {

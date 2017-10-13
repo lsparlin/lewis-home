@@ -1,8 +1,8 @@
 import React from 'react';
 import { CSSTransitionGroup } from 'react-transition-group'; 
 
-import TitleSubTitleListing from './TitleSubTitleListing'
-import {PrismicHelper} from './prismic'
+import TitleSubTitleListing from 'components/TitleSubTitleListing'
+import {PrismicHelper} from 'prismic'
 
 class DocumentList extends React.Component {
   constructor(props) {
