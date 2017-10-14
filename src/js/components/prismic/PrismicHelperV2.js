@@ -9,6 +9,10 @@ function getApi() {
   return API
 }
 
+function getAllTags() {
+  return getApi().then(api => api.data.tags)
+}
+
 function predicateAndOmitTags(singlePredicate) {
   let predicates = [singlePredicate]
   if (ENV.config.omitTags) {
@@ -20,6 +24,12 @@ function predicateAndOmitTags(singlePredicate) {
 
 const queryByDocType = (type, ordered, limitTo, pageSize, page) => {
   return queryAt('document.type', type, ordered, limitTo, pageSize, page)
+}
+const queryByTypeAndUid = (type, uid) => {
+  return getApi().then( api => {
+    return api.query(predicateAndOmitTags(Prismic.Predicates.at('my.' + type + '.uid', uid)) )
+    .then(response => response.results[0])
+  })
 }
 
 const queryAt = (field, name, ordered, limitTo, pageSize, page) => {
@@ -56,7 +66,9 @@ const stateObjectFromData = (config, data, listName) => {
 }
 
 export default {
+  getAllTags,
   queryAt,
   queryByDocType,
+  queryByTypeAndUid,
   stateObjectFromData
 }
