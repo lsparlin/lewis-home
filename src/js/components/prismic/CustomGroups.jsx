@@ -3,11 +3,12 @@ import React from 'react';
 import StructuredText from 'prismic/StructuredText'
 import Image from 'prismic/Image'
 import PrismicHelper from 'prismic/PrismicHelper'
+import PrismicHelperV2 from 'prismic/PrismicHelperV2'
 
 let groupConfig = ENV.config.prismicGroupMapping
 
 const AdditionalSiteMessage = (props) => {
-  let messageProps = PrismicHelper.stateObjectFromFragments(
+  let messageProps = PrismicHelperV2.stateObjectFromData(
     groupConfig.siteAdditionalMessage, 
     fragmentsFromNoRepeatGroup(props.value) )
   return <StructuredText value={messageProps.additionalMessage} color={messageProps.messageColorTextOnly} />
@@ -46,7 +47,11 @@ export {
 }
 
 const fragmentsFromNoRepeatGroup = (group) => {
-  return group.value[0].fragments
+  if (group.value) { // TODO v1_remove
+    return group.value[0].fragments
+  } else {
+    return group[0]
+  }
 }
 
 

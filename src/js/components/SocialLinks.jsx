@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {PrismicHelper, PrismicHelperV2} from 'prismic'
+import {PrismicHelperV2} from 'prismic'
 
 const socialLinkConfig = ENV.config.prismicPageMapping.socialLink
 
@@ -12,7 +12,7 @@ class SocialLinks extends React.Component {
 
   componentWillMount() {
     PrismicHelperV2.queryByDocType(socialLinkConfig.customType)
-      .then(results => { console.log(results); return this.setState({linkDocuments: results}) })
+      .then(results => this.setState({linkDocuments: results}) )
   }
 
   render() {
@@ -30,11 +30,10 @@ class SocialLinks extends React.Component {
 const SocialLink = (props) => {
   let m = props.multiplier || 1
   let dataProps = PrismicHelperV2.stateObjectFromData(socialLinkConfig, props.data)
-  let title = 'Link to ' + dataProps.nameTextOnly
-  console.log(dataProps)
+  let title = 'Link to ' + dataProps.name
   
   return (
-    <a className="SocialLink margin-h-1m" rel="me" href={dataProps.socialUrlTextOnly} title={title}
+    <a className="SocialLink margin-h-1m" rel="me" href={dataProps.socialUrl.url} title={title}
       target="_blank" style={{targetNew: 'tab'}}>
       <img className="fade" alt={title} src={dataProps.image.url} 
         height={(dataProps.image.dimensions.height * m)  + 'px'} 

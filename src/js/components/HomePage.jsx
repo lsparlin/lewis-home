@@ -8,9 +8,10 @@ import SocialLinks from 'components/SocialLinks'
 import DocumentList from 'components/DocumentList'
 import DocumentPage from 'components/DocumentPage'
 import TagPage from 'components/TagPage'
-import {PrismicHelper,
+import {
+  PrismicHelperV2,
   StructuredText,
-  AdditionalSiteMessage} from 'prismic'
+  AdditionalSiteMessage } from 'prismic'
 
 let homeConfig = ENV.config.prismicPageMapping.home
 
@@ -24,10 +25,10 @@ class HomePage extends React.Component {
   }
 
   componentWillMount() {
-    PrismicHelper.getAllTags().then(tags => this.setState({ categoryTags: tags.filter(tag => tag.startsWith(ENV.config.categoryTagPrefix)) }) )
-    PrismicHelper.queryByTypeAndUid(homeConfig.customType, homeConfig.uid).then(homeDoc => {
+    PrismicHelperV2.getAllTags().then(tags => this.setState({ categoryTags: tags.filter(tag => tag.startsWith(ENV.config.categoryTagPrefix)) }) )
+    PrismicHelperV2.queryByTypeAndUid(homeConfig.customType, homeConfig.uid).then(homeDoc => {
       this.setState(Object.assign({}, {loading: false, url: ENV.url},
-        PrismicHelper.stateObjectFromFragments(homeConfig, homeDoc.fragments) )
+        PrismicHelperV2.stateObjectFromData(homeConfig, homeDoc.data) )
       )
     }).then(this.onReady)
   }
@@ -73,24 +74,24 @@ class HomePage extends React.Component {
 
   renderMetaTags() {
     return (
-      <Helmet titleTemplate={'%s | ' + this.state.titleTextOnly}>
+      <Helmet titleTemplate={'%s | ' + this.state.title[0].text}>
         <title>Home</title>
-        <meta name="description" content={this.state.siteDescriptionTextOnly} />
-        <meta name="keywords" content={this.state.siteKeywordsTextOnly} />
+        <meta name="description" content={this.state.siteDescription[0].text} />
+        <meta name="keywords" content={this.state.siteKeywords[0].text} />
         <meta name="twitter:card" content="summary" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={this.state.url} />
-        <meta property="og:site_name" content={this.state.titleTextOnly} />
+        <meta property="og:site_name" content={this.state.title[0].text} />
         <meta property="og:locale" content="en_US" />
-        <meta name="twitter:title" content={this.state.titleTextOnly} />
-        <meta property="og:title" content={this.state.titleTextOnly} />
-        <meta name="twitter:description" content={this.state.siteDescriptionTextOnly} />
-        <meta property="og:description" content={this.state.siteDescriptionTextOnly} />
+        <meta name="twitter:title" content={this.state.title[0].text} />
+        <meta property="og:title" content={this.state.title[0].text} />
+        <meta name="twitter:description" content={this.state.siteDescription[0].text} />
+        <meta property="og:description" content={this.state.siteDescription[0].text} />
         { this.state.socialCardImage &&
-          <meta name="twitter:image" content={this.state.socialCardImage.main.url} />
+          <meta name="twitter:image" content={this.state.socialCardImage.url} />
         }
         { this.state.socialCardImage &&
-          <meta property="og:image" content={this.state.socialCardImage.main.url} />
+          <meta property="og:image" content={this.state.socialCardImage.url} />
         }
         <link rel="canonical" href={ENV.url} />
       </Helmet>

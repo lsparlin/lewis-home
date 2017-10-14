@@ -5,20 +5,23 @@ import ParagraphWithSpans from 'prismic/ParagraphWithSpans'
 class StructuredText extends React.Component {
   constructor(props) {
     super(props);
-    this.structuredText = props.value
+    this.parts = props.value
+    if (this.parts.blocks) { // TODO v1_remove
+      this.parts = this.parts.blocks
+    }
     this.color = props.color
     this.imageComponent = props.imageComponent
   }
 
   render() {
-    if (!this.structuredText.asText()) {
+    if (!this.parts || !this.parts.length) {
       return null
     }
 
     return (
       <div className="StructuredText">
         { this.imageComponent && this.imageComponent() }
-        { this.structuredText.blocks.map((value, index) => {
+        { this.parts.map((value, index) => {
             var hasSpans = value.spans && !!value.spans.length
             if (value.type.includes('heading')) return ( <Heading key={index} value={value} color={this.color} /> )
             else if (value.type === 'paragraph' && hasSpans) return ( <ParagraphWithSpans key={index} value={value} /> )
