@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {PrismicHelper} from 'prismic'
+import {PrismicHelper, PrismicHelperV2} from 'prismic'
 
 const socialLinkConfig = ENV.config.prismicPageMapping.socialLink
 
@@ -11,15 +11,15 @@ class SocialLinks extends React.Component {
   }
 
   componentWillMount() {
-    PrismicHelper.queryByDocType(socialLinkConfig.customType)
-      .then(results => this.setState({linkDocuments: results}) )
+    PrismicHelperV2.queryByDocType(socialLinkConfig.customType)
+      .then(results => { console.log(results); return this.setState({linkDocuments: results}) })
   }
 
   render() {
     return (
       <div className="SocialLinks">
         { this.state.linkDocuments && this.state.linkDocuments.map((linkDoc, index) => 
-            <SocialLink key={index} fragments={linkDoc.fragments} multiplier={this.state.multiplier} /> )
+            <SocialLink key={index} data={linkDoc.data} multiplier={this.state.multiplier} /> )
         }
       </div>
      )
@@ -29,15 +29,16 @@ class SocialLinks extends React.Component {
 
 const SocialLink = (props) => {
   let m = props.multiplier || 1
-  let fragmentProps = PrismicHelper.stateObjectFromFragments(socialLinkConfig, props.fragments)
-  let title = 'Link to ' + fragmentProps.nameTextOnly
+  let dataProps = PrismicHelperV2.stateObjectFromData(socialLinkConfig, props.data)
+  let title = 'Link to ' + dataProps.nameTextOnly
+  console.log(dataProps)
   
   return (
-    <a className="SocialLink margin-h-1m" rel="me" href={fragmentProps.socialUrlTextOnly} title={title}
+    <a className="SocialLink margin-h-1m" rel="me" href={dataProps.socialUrlTextOnly} title={title}
       target="_blank" style={{targetNew: 'tab'}}>
-      <img className="fade" alt={title} src={fragmentProps.image.main.url} 
-        height={(fragmentProps.image.main.height * m)  + 'px'} 
-        width={(fragmentProps.image.main.width * m) +'px'} />
+      <img className="fade" alt={title} src={dataProps.image.url} 
+        height={(dataProps.image.dimensions.height * m)  + 'px'} 
+        width={(dataProps.image.dimensions.width * m) +'px'} />
     </a>
   )
 }
