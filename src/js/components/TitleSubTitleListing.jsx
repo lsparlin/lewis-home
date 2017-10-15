@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { PrismicHelper,
+import { PrismicHelperV2,
   StructuredText, 
   Image } from 'prismic'
 
 const TitleSubTitleListing = (props) => {
   let docTypeConfig = ENV.config.prismicPageMapping[props.type]
   let doc = Object.assign({}, {uid: props.doc.uid},
-    PrismicHelper.stateObjectFromFragments(docTypeConfig, props.doc.fragments, 'listProperties') )
+    PrismicHelperV2.stateObjectFromData(docTypeConfig, props.doc.data, 'listProperties') )
 
   return(
     <div className={'TitleSubTitleListing dull-then-fade-in ' + (props.className || '')}>

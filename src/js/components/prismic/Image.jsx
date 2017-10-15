@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Image = (props) => {
-  let imageMain = props.value.main
+  let imageMain = props.value.main || props.value
   let dimensions = {
     width: props.width || imageMain.width,
     height: props.height || imageMain.height
@@ -12,8 +12,9 @@ const Image = (props) => {
 
 function imageBackgroundStyle(image, titleColor) {
   if (image) {
+    let url = image.main ? image.main.url : image.url // TODO v1_remove
     return Object.assign({},
-      { backgroundImage: 'url(' + image.main.url + ')' },
+      { backgroundImage: 'url(' + url + ')' },
       titleColor && { color: titleColor}
     )
   }

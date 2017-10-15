@@ -2,7 +2,6 @@ import React from 'react';
 
 import StructuredText from 'prismic/StructuredText'
 import Image from 'prismic/Image'
-import PrismicHelper from 'prismic/PrismicHelper'
 import PrismicHelperV2 from 'prismic/PrismicHelperV2'
 
 let groupConfig = ENV.config.prismicGroupMapping
@@ -11,14 +10,14 @@ const AdditionalSiteMessage = (props) => {
   let messageProps = PrismicHelperV2.stateObjectFromData(
     groupConfig.siteAdditionalMessage, 
     fragmentsFromNoRepeatGroup(props.value) )
-  return <StructuredText value={messageProps.additionalMessage} color={messageProps.messageColorTextOnly} />
+  return <StructuredText value={messageProps.additionalMessage} color={messageProps.messageColor} />
 }
 
 const TextWithInlineImage = (props) => {
-  let  inlineImgProps = PrismicHelper.stateObjectFromFragments(
+  let  inlineImgProps = PrismicHelperV2.stateObjectFromData(
     groupConfig.textWithInlineImage,
     fragmentsFromNoRepeatGroup(props.value) )
-  let floatClass = inlineImgProps.imageFloatTextOnly ? 'float-' + inlineImgProps.imageFloatTextOnly : ''
+  let floatClass = inlineImgProps.imageFloat ? 'float-' + inlineImgProps.imageFloat : ''
   let imageComponent = () => (
     <div className={'overflow-scroll-x ' + floatClass}>
       <Image value={inlineImgProps.inlineImage} />
@@ -33,10 +32,10 @@ const TextWithInlineImage = (props) => {
 }
 
 const StyledCode = (props) => {
-  let styledCodeProps = PrismicHelper.stateObjectFromFragments(
+  let styledCodeProps = PrismicHelperV2.stateObjectFromData(
     groupConfig.styledCode,
     fragmentsFromNoRepeatGroup(props.value) )
-  let languageClass = styledCodeProps.language && 'language-' + styledCodeProps.languageTextOnly
+  let languageClass = styledCodeProps.language && 'language-' + styledCodeProps.language
   return props.codeComponent(styledCodeProps.styledCode, languageClass)
 }
 

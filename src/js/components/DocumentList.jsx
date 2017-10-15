@@ -2,7 +2,7 @@ import React from 'react';
 import { CSSTransitionGroup } from 'react-transition-group'; 
 
 import TitleSubTitleListing from 'components/TitleSubTitleListing'
-import {PrismicHelper} from 'prismic'
+import {PrismicHelperV2} from 'prismic'
 
 class DocumentList extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class DocumentList extends React.Component {
     let limitToProperties = this.docTypeConfig.listProperties && 
       this.docTypeConfig.listProperties.map(prop => this.docTypeConfig.customType + '.' + prop.apiName)
 
-    PrismicHelper.queryByDocType(this.docTypeConfig.customType, 'ordered', limitToProperties, this.docTypeConfig.pageSize)
+    PrismicHelperV2.queryByDocType(this.docTypeConfig.customType, 'ordered', limitToProperties, this.docTypeConfig.pageSize)
       .then(results => this.setState({documents: results}) )
   }
 
