@@ -46,11 +46,7 @@ export {
 }
 
 const fragmentsFromNoRepeatGroup = (group) => {
-  if (group.value) { // TODO v1_remove
-    return group.value[0].fragments
-  } else {
-    return group[0]
-  }
+  return group[0]
 }
 
 

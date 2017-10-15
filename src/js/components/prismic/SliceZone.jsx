@@ -8,10 +8,6 @@ const SliceZone = (props) => {
   let sliceZone = props.value
   let slices = sliceZone
   let sliceType = 'slice_type'
-  if (sliceZone && sliceZone.slices) { // TODO v1_remove
-    slices = sliceZone.slices
-    sliceType = 'sliceType'
-  }
   return (
     <div className="SliceZone">
       { slices && slices.map((slice, index) => {
@@ -37,7 +33,7 @@ const QuoteSlice = (props) => (
 
 const CodeSlice = (props) => ( 
   <pre> 
-    { (props.value.blocks || props.value).map( (block, index) => 
+    { props.value.map( (block, index) => 
       <code key={index} className={'overflow-scroll-x ' + (props.languageClass || '')}>{block.text}</code> ) 
     }
   </pre> 
@@ -51,7 +47,7 @@ const StyledCodeSlice = (props) => {
 
 const OrderedListSlice = (props) => (
   <ol>
-    { (props.value.blocks || props.value).map( (block, index) => <li key={index}>{block.text}</li> ) }
+    { props.value.map( (block, index) => <li key={index}>{block.text}</li> ) }
   </ol>
 )
 

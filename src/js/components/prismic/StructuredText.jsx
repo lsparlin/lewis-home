@@ -6,9 +6,6 @@ class StructuredText extends React.Component {
   constructor(props) {
     super(props);
     this.parts = props.value
-    if (this.parts.blocks) { // TODO v1_remove
-      this.parts = this.parts.blocks
-    }
     this.color = props.color
     this.imageComponent = props.imageComponent
   }

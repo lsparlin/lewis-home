@@ -12,9 +12,8 @@ const Image = (props) => {
 
 function imageBackgroundStyle(image, titleColor) {
   if (image) {
-    let url = image.main ? image.main.url : image.url // TODO v1_remove
     return Object.assign({},
-      { backgroundImage: 'url(' + url + ')' },
+      { backgroundImage: 'url(' + image.url + ')' },
       titleColor && { color: titleColor}
     )
   }
