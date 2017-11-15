@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import TitleSubTitleListing from 'components/TitleSubTitleListing'
-import {PrismicHelper} from 'prismic'
+import {PrismicHelperV2} from 'prismic'
 
 class TagPage extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class TagPage extends React.Component {
   }
 
   componentWillMount() {
-    PrismicHelper.queryAt('document.tags', [this.state.tagName], 'ordered', false, 10)
+    PrismicHelperV2.queryAt('document.tags', [this.state.tagName], 'ordered', false, 10)
       .then(results => this.setState({loading: false, documents: results}) )
   }
 
