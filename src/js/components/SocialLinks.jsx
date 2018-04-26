@@ -10,7 +10,7 @@ class SocialLinks extends React.Component {
     this.state = { multiplier: props.multiplier }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     PrismicHelperV2.queryByDocType(socialLinkConfig.customType)
       .then(results => this.setState({linkDocuments: results}) )
   }

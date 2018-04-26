@@ -10,7 +10,7 @@ class TagPage extends React.Component {
     this.state = {loading: true, tagName: props.tagName};
   }
 
-  componentWillMount() {
+  componentDidMount() {
     PrismicHelperV2.queryAt('document.tags', [this.state.tagName], 'ordered', false, 10)
       .then(results => this.setState({loading: false, documents: results}) )
   }

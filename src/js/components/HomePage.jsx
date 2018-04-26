@@ -24,7 +24,7 @@ class HomePage extends React.Component {
     this.renderMetaTags = this.renderMetaTags.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     PrismicHelperV2.getAllTags().then(tags => this.setState({ categoryTags: tags.filter(tag => tag.startsWith(ENV.config.categoryTagPrefix)) }) )
     PrismicHelperV2.queryByTypeAndUid(homeConfig.customType, homeConfig.uid).then(homeDoc => {
       this.setState(Object.assign({}, {loading: false, url: ENV.url},

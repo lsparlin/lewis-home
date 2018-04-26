@@ -13,7 +13,7 @@ class DocumentList extends React.Component {
     this.state = {documents: null, categoryTags: props.categoryTags}
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let limitToProperties = this.docTypeConfig.listProperties && 
       this.docTypeConfig.listProperties.map(prop => this.docTypeConfig.customType + '.' + prop.apiName)
 

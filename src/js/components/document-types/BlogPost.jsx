@@ -24,7 +24,7 @@ class BlogPost extends React.Component {
     this.renderMetaTags = this.renderMetaTags.bind(this)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     PrismicHelperV2.queryByTypeAndUid(blogConfig.customType, this.blogUID).then(blogDocument => {
       if (!blogDocument) {
         this.setState({loading: false})
