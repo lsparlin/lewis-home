@@ -32,7 +32,7 @@ class BlogPost extends React.Component {
         let propsFromFragments = PrismicHelperV2.stateObjectFromData(blogConfig, blogDocument.data)
         this.setState( Object.assign({}, propsFromFragments,
           {loading: false, url: ENV.url, disqusName: ENV.disqusShortname, uid: this.blogUID,
-            tags: blogDocument.tags, date: blogDocument.firstPublicationDate})
+            tags: blogDocument.tags, date: blogDocument.first_publication_date})
         )
       }
     })
