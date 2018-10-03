@@ -2,7 +2,7 @@ import React from 'react';
 import { CSSTransitionGroup } from 'react-transition-group'; 
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-var dateFormat = require('dateformat');
+var moment = require('moment');
 
 import {NotFound} from 'components/status'
 import { 
@@ -32,7 +32,7 @@ class BlogPost extends React.Component {
         let propsFromFragments = PrismicHelperV2.stateObjectFromData(blogConfig, blogDocument.data)
         this.setState( Object.assign({}, propsFromFragments,
           {loading: false, url: ENV.url, disqusName: ENV.disqusShortname, uid: this.blogUID,
-            tags: blogDocument.tags, date: blogDocument.first_publication_date})
+            tags: blogDocument.tags, date: moment(blogDocument.first_publication_date)})
         )
       }
     })
@@ -61,7 +61,7 @@ class BlogPost extends React.Component {
             </div>
           </div>
           <div className="tags margin-left-2p">
-            <span className="publish-date">{dateFormat(this.state.date, 'mediumDate')}</span>
+            <span className="publish-date">{this.state.date.format('MMM D, YYYY')}</span>
             { this.state.tags.filter(tagName => !ENV.config.categoryTagPrefix || !tagName.startsWith(ENV.config.categoryTagPrefix))
                 .map(tagName =>
               <Link key={tagName} to={'/tag/' + tagName}> 
